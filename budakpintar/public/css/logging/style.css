@@ -7,10 +7,14 @@ height: 1px;
 background: #eee;
 }
 .h-custom {
-height: calc(100% - 73px);
+height: 90vh;
 }
 @media (max-width: 450px) {
 .h-custom {
 height: 100%;
 }
+}
+
+#logging {
+    height: 90vh;
 }

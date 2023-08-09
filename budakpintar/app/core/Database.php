@@ -1,67 +1,67 @@
 <?php
 
-class Database{ //PHP Data Objects
+class Database{
     private $db_host = DB_HOST;
     private $db_user = DB_USER;
     private $db_pass = DB_PASS;
     private $db_name = DB_NAME;
 
-    private $dbh, $stmt; //database handler, statement(db + query)
+    private $dbh, $statement;
     
-    public function __construct(){
-        $dsn = 'mysql:host=' . $this->db_host . ';dbname=' . $this->db_name; //Data Source Name
+    public function __construct(){ //CONNECT
+        $dsn = 'mysql:host=' . $this->db_host . ';dbname=' . $this->db_name;
 
-        $option = [ //Optimasi koneksi database
+        $option = [
             PDO::ATTR_PERSISTENT => true,
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
         ];
         try{
-            $this->dbh = new PDO($dsn,$this->db_user,$this->db_pass,$option); //Mengakses database
-        } catch(PDOException $error) { //Mengambil pesan error
-            die($error->getMessage()); //Menampilkan pesan
+            $this->dbh = new PDO($dsn,$this->db_user,$this->db_pass,$option);
+        } catch(PDOException $error) {
+            die($error->getMessage());
         }
     }
 
-    public function query($query){
-        $this->stmt = $this->dbh->prepare($query); //Menyiapkan query
+    public function query($query){ //QUERY
+        $this->statement = $this->dbh->prepare($query);
     }
 
-    public function bind($param,$value,$type = null){
-        if(is_null($type)){ //Mengecek nilai sebuah variabel null atau tidak
+    public function bind($param,$value,$type = null){ //SQL INJECTION HANDLER
+        if(is_null($type)){
             switch(true){
-                case is_int($value): //Mengecek nilai sebuah variabel integer atau tidak
-                    $type = PDO::PARAM_INT; //Set tipe data query ke int
+                case is_int($value):
+                    $type = PDO::PARAM_INT; 
                     break;
-                case is_bool($value): //Mengecek nilai sebuah variabel boolean atau tidak
-                    $type = PDO::PARAM_BOOL; //Set tipe data query ke boolean
+                case is_bool($value):
+                    $type = PDO::PARAM_BOOL;
                     break;
-                case is_null($value): //Mengecek nilai sebuah variabel NULL atau tidak
-                    $type = PDO::PARAM_NULL; //Set tipe data query ke NULL
+                case is_null($value):
+                    $type = PDO::PARAM_NULL;
                     break;
-                case is_string($value): //Mengecek nilai sebuah variabel string atau tidak
-                    $type = PDO::PARAM_STR; //Set tipe data query ke string
+                case is_string($value):
+                    $type = PDO::PARAM_STR;
                     break;
             }
         }
-        $this->stmt->bindValue($param, $value, $type); //Method untuk melakukan bind terhadap query menghindari SQL injection
+        $this->statement->bindValue($param, $value, $type);
     }
 
-    public function exec(){
-        $this->stmt->execute();
+    public function exec(){ //EXECUTE TO DB
+        $this->statement->execute();
     }
 
-    public function resultSet(){ //Banyak data
+    public function resultSet(){ //MULTI DATA
         $this->exec();
-        return $this->stmt->fetchAll(PDO::FETCH_ASSOC); //Mengubah hasil query menjadi array associative
+        return $this->statement->fetchAll(PDO::FETCH_ASSOC);
     }
     
-    public function single(){ //Satu data
+    public function single(){ //SINGLE DATA
         $this->exec();
-        return $this->stmt->fetch(PDO::FETCH_ASSOC);
+        return $this->statement->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function rowCount(){
-        return $this->stmt->rowCount(); //Menghasilkan angka 1 untuk indikator query dijalankan
+    public function rowCount(){ //ROWS AFFECTED
+        return $this->statement->rowCount();
     }
 
 }

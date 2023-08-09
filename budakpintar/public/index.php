@@ -1,5 +1,5 @@
 <?php
-// if (!session_id()) session_start(); //Mengecek apakah ada session atau tidak
+if (!session_id()) session_start();
 require_once '../app/init.php';
 
 $app = new App;

@@ -1,15 +1,20 @@
 
     <!-- LOGIN -->
       <form class="d-flex justify-content-start">
-        <a class="btn btn-outline-primary me-2 d-inline-block btn-sm" href="<?=BASEURL?>/logging/signup/">Sign Up</a>
-        <a class="btn btn-primary text-white me-2 d-inline-block btn-sm" href="<?=BASEURL?>/logging">Login</a>
+        <button type="button" id="tombol-daftar" class="btn btn-outline-primary me-2 d-inline-block btn-sm" data-bs-toggle="modal" data-bs-target="#formModal1">Daftar</button>
+        <button type="button" id="tombol-masuk" class="btn btn-primary text-white me-2 d-inline-block btn-sm" data-bs-toggle="modal" data-bs-target="#formModal1">Masuk</button>
       </form>
     </div>
   </nav>
   <!-- NAVBAR END -->
+  
+
 
   <!-- HERO START -->
   <section id="hero" class="mb-5">
+        <div id="flasher">
+        <?php Flasher::flash(); ?>
+    </div>
     <div class="row">
       <div class="col-md-6">
         <h2 class="fs-1 text-start  mb-5 pt-md-5">Kerjakan kuis, kapan dan di mana saja!
@@ -18,12 +23,12 @@
           kemampuan.
         </p>
         <div class="row mb-2">
-          <div class="col-8 col-md-5">
+          <div class="col-8 col-md-7">
             <button type="button" class="btn btn-primary btn-lg w-75">Jelajahi Kuis</button>
           </div>
         </div>
         <div class="row">
-          <div class="col-8 col-md-5">
+          <div class="col-8 col-md-7">
             <button type="button" class="btn btn-outline-primary btn-lg w-75">Buat Kuis</button>
           </div>
         </div>
@@ -50,7 +55,7 @@
     <div class="mathematics">
       <h3 class="fs-4">Matematika</h3>
       <div class="row ">
-        <div class="col-md-4">
+        <div class="col-md-4 pt-3">
           <div class="card">
             <img src="<?=BASEURL;?>/img/probabilitas.jpeg" class="card-img-top" height="200" alt="...">
             <div class="card-body">
@@ -60,7 +65,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 pt-3">
           <div class="card">
             <img src="<?=BASEURL;?>/img/statistika.jpeg" class="card-img-top" height="200" alt="...">
             <div class="card-body">
@@ -70,7 +75,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 pt-3">
           <div class="card">
             <img src="<?=BASEURL;?>/img/spldv.jpg" class="card-img-top" height="200" alt="...">
             <div class="card-body">
@@ -86,3 +91,22 @@
   <!-- CATEGORY END -->
 
 
+
+<!-- Modal -->
+<div class="modal fade" id="formModal1" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="formModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form method="post">
+        <div class="modal-body">
+          
+        </div>
+        <div class="modal-footer">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

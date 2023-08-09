@@ -5,12 +5,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="<?=BASEURL;?>/css/bootstrap/bootstrap.min.css">
-  <title><?= $data['judul'];?></title>
   <link rel="stylesheet" href="<?=BASEURL;?>/css/home/style.css">
+  <title><?= $data['judul'];?></title>
 </head>
 
-<body class="container">
-
+<body>
+  <div class="container">
   <!-- NAVBAR START -->
   <nav class="navbar navbar-light bg-white fixed-top">
     <div class="container">
