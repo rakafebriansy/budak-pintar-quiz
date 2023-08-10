@@ -3,24 +3,31 @@
 $nama_pengguna = $_SESSION['nama_pengguna'];
 $alamat_email = $_SESSION['alamat_email'];
 $id_pengguna = $_SESSION['id_pengguna'];
-
+$gambar = '';
+$tampilan_gambar = 'user.png';
+if (isset($_SESSION['gambar'])){
+  $gambar = $_SESSION['gambar'];
+}
+if ($gambar != ''){
+  $tampilan_gambar = $gambar;
+}
 
 ?>
 
 <div class="container">
   <!-- NAVBAR START -->
-  <nav class="navbar navbar-light bg-white fixed-top">
+  <nav class="navbar navbar-light fixed-top bg-white">
     <div class="container">
       <a class="navbar-brand" href="#">
         <img src="<?=BASEURL;?>/img/logo.png" alt="" height="40" class="d-inline-block align-text-center">
         <img src="<?=BASEURL;?>/img/name_brand.svg" alt="" height="20" class="d-inline-block align-text-center">
       </a>
     <!-- LOGIN -->
-      <form class="d-flex justify-content-start align-items-center text-center">
+      <div class="d-flex justify-content-start align-items-center text-center">
         <label for="tombol-profil">
-          <img src="<?=BASEURL;?>/img/user.png" width="40" alt="">
+          <img src="<?=BASEURL;?>/img/<?=$tampilan_gambar?>" width="40" alt="">
         </label>
-        <a id="tombol-profil" name="tombol-profil" class="btn ms-1 " data-bs-toggle="modal" data-bs-target="#formModal1"><?= $nama_pengguna;?></a>
+        <a id="tombol-profil" name="tombol-profil" class="btn ms-1 fs-5" data-bs-toggle="modal" data-bs-target="#formModal1"><?= $nama_pengguna;?></a>
       </form>
     </div>
   </nav>
@@ -117,24 +124,24 @@ $id_pengguna = $_SESSION['id_pengguna'];
           <h5 class="modal-title" id="formModalLabel">Profil</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <form action="<?=BASEURL?>/logged/editProfile" method="post">
+        <form action="<?=BASEURL?>/logged/editProfile" method="post" enctype="multipart/form-data">
           <div class="modal-body justify-content-center">
             <div class="container d-flex justify-content-center">
 
-              <img src="<?=BASEURL?>/img/user.png" width="100" alt="">
+              <img src="<?=BASEURL?>/img/<?=$tampilan_gambar?>" width="100" alt="">
             </div>
             <div class="container d-flex justify-content-center mt-2">
-
-              <button id="upload-image" type="button" class="btn btn-light text-primary d-block">Ubah Foto
-                Profil</button>
             </div>
             <div class="container">
+              <input type="hidden" name="gambar_default" value="<?=$gambar?>">
               <label for="nama_pengguna" class="mt-4">Nama Pengguna</label>
               <input type="text" id="edit-username" class="form-control form-control-lg mt-2" name="nama_pengguna"
-                value="<?=$nama_pengguna?>" placeholder="Masukkan nama pengguna"/>
+                value="<?=$nama_pengguna?>" placeholder="Masukkan nama pengguna" required/>
               <label for="alamat_email" class="mt-3">Email</label>
               <input type="email" id="edit-email" class="form-control form-control-lg mt-2" name="alamat_email"
-                value="<?=$alamat_email?>" placeholder="Masukkan alamat email yang valid"/>
+                value="<?=$alamat_email?>" placeholder="Masukkan alamat email yang valid" required/>
+              <label for="gambar" class="mt-3">Foto Profil</label>
+              <input type="file" name="gambar" id="gambar" class="form-control form-control-lg mt-2">
             </div>
             </div>
             <div class="modal-footer text-center text-lg-start d-flex justify-content-between align-items-center">

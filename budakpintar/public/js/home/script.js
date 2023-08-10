@@ -13,13 +13,13 @@ MASUK_BTN.addEventListener('click',function(){
     <!-- Username input -->
     <div class="form-outline mb-4 mt-3">
         <input type="text" id="signin-username" class="form-control form-control-lg" name="nama_pengguna"
-            placeholder="Masukkan nama pengguna" />
+            placeholder="Masukkan nama pengguna" required/>
     </div>
 
     <!-- Password input -->
     <div class="form-outline mb-2">
         <input type="password" id="signin-password" class="form-control form-control-lg" name="kata_sandi"
-            placeholder="Masukkan kata sandi" />
+            placeholder="Masukkan kata sandi" required/>
     </div>
 `
     MODAL_FOOTER.classList = 'modal-footer text-center text-lg-start d-flex justify-content-between align-items-center'
@@ -39,19 +39,19 @@ DAFTAR_BTN.addEventListener('click',function(){
     <!-- Username input -->
     <div class="form-outline mb-4 mt-3">
         <input type="text" id="signup-username" class="form-control form-control-lg" name="nama_pengguna"
-            placeholder="Masukkan nama pengguna" />
+            placeholder="Masukkan nama pengguna" required/>
     </div>
 
     <!-- Email input -->
     <div class="form-outline mb-4 mt-3">
         <input type="email" id="signup-email" class="form-control form-control-lg" name="alamat_email"
-            placeholder="Masukkan alamat email yang valid" />
+            placeholder="Masukkan alamat email yang valid" required/>
     </div>
 
     <!-- Password input -->
     <div class="form-outline mb-2">
         <input type="password" id="signup-password" class="form-control form-control-lg" name="kata_sandi"
-            placeholder="Masukkan kata sandi" />
+            placeholder="Masukkan kata sandi" required/>
     </div>
 `
 MODAL_FOOTER.classList = 'modal-footer text-center text-lg-star d-flex justify-content-start align-items-center'
