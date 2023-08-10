@@ -18,6 +18,9 @@ class User_model {
     public function autentikasi($data,$db_data){
         if (strtolower(htmlspecialchars($data['nama_pengguna'])) == $db_data['nama_pengguna']){
             if (password_verify(htmlspecialchars($data['kata_sandi']),$db_data['kata_sandi'])){
+                $_SESSION['nama_pengguna'] = $db_data['nama_pengguna'];
+                $_SESSION['kata_sandi'] = $db_data['kata_sandi'];
+                $_SESSION['alamat_email'] = $db_data['alamat_email'];
                 return 1;
             } else {
                 return 0;

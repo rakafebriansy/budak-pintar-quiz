@@ -3,7 +3,7 @@ const MASUK_BTN = document.querySelector('#tombol-masuk');
 const MODAL_BODY = document.querySelector('.modal-body');
 const MODAL_TITLE = document.querySelector('.modal-title');
 const MODAL_FOOTER = document.querySelector('.modal-footer');
-const MODAL_FORM = document.querySelector('.modal-content>form')
+const MODAL_FORM = document.querySelector('.modal-content>form');
 
 MASUK_BTN.addEventListener('click',function(){
     MODAL_TITLE.innerText = 'Sign in';

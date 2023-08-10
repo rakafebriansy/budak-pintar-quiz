@@ -9,7 +9,7 @@ class Home extends Controller {
     }
     public function daftar(){
         if($this->model('User_model')->daftarAkun($_POST)>0){
-            Flasher::setFlash('Berhasil','terdaftar','success');
+            Flasher::setFlash('Berhasil','terdaftar','primary');
             header('Location: ' . BASEURL . '/home');
             exit;
         } else {
@@ -20,8 +20,8 @@ class Home extends Controller {
     }
     public function masuk(){
         if($this->model('User_model')->masukAkun($_POST)>0){
-            Flasher::setFlash('Berhasil','masuk','success');
-            header('Location: ' . BASEURL . '/home');
+            Flasher::setFlash('Berhasil','masuk','primary');
+            header('Location: ' . BASEURL . '/logged');
             exit;
         } else {
             Flasher::setFlash('Gagal','masuk','danger');
