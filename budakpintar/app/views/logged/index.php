@@ -2,6 +2,7 @@
 
 $nama_pengguna = $_SESSION['nama_pengguna'];
 $alamat_email = $_SESSION['alamat_email'];
+$id_pengguna = $_SESSION['id_pengguna'];
 
 
 ?>
@@ -116,7 +117,7 @@ $alamat_email = $_SESSION['alamat_email'];
           <h5 class="modal-title" id="formModalLabel">Profil</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <form method="post">
+        <form action="<?=BASEURL?>/logged/editProfile" method="post">
           <div class="modal-body justify-content-center">
             <div class="container d-flex justify-content-center">
 
@@ -159,13 +160,13 @@ $alamat_email = $_SESSION['alamat_email'];
           <div class="modal-body fs-4">
             Apakah anda yakin untuk menghapus akun anda?
           </div>
-          <form action="">
-            <div class="modal-footer text-center text-lg-start d-flex justify-content-between align-items-center">
-              <button type="button" class="btn btn-outline-secondary" data-bs-target="#formModal1" data-bs-toggle="modal"
+          <div class="modal-footer text-center text-lg-start d-flex justify-content-between align-items-center">
+              <form action="<?=BASEURL?>/logged/deleteAccount" method="post">
+                <button type="button" class="btn btn-outline-secondary" data-bs-target="#formModal1" data-bs-toggle="modal"
               data-bs-dismiss="modal">Kembali ke Profil</button>
-              <button type="submit" class="btn btn-danger" >Hapus</button>
+                <button type="submit" class="btn btn-danger" >Hapus</button>
+            </form>
             </div>
-          </form>
         </div>
       </div>
     </div>

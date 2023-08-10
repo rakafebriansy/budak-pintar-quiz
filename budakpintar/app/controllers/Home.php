@@ -7,7 +7,7 @@ class Home extends Controller {
         $this->view('home/index',$data);
         $this->view('templates/home-footer');
     }
-    public function daftar(){
+    public function register(){
         if($this->model('User_model')->daftarAkun($_POST)>0){
             Flasher::setFlash('Berhasil','terdaftar','primary');
             header('Location: ' . BASEURL . '/home');
@@ -18,7 +18,7 @@ class Home extends Controller {
             exit;
         }
     }
-    public function masuk(){
+    public function login(){
         if($this->model('User_model')->masukAkun($_POST)>0){
             Flasher::setFlash('Berhasil','masuk','primary');
             header('Location: ' . BASEURL . '/logged');

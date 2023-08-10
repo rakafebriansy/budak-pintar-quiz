@@ -15,9 +15,10 @@ class User_model {
         $db_data = $this->db->single();
         return $this->autentikasi($data,$db_data);
     }
-    public function autentikasi($data,$db_data){
+    private function autentikasi($data,$db_data){
         if (strtolower(htmlspecialchars($data['nama_pengguna'])) == $db_data['nama_pengguna']){
             if (password_verify(htmlspecialchars($data['kata_sandi']),$db_data['kata_sandi'])){
+                $_SESSION['id_pengguna'] = $db_data['id_pengguna'];
                 $_SESSION['nama_pengguna'] = $db_data['nama_pengguna'];
                 $_SESSION['kata_sandi'] = $db_data['kata_sandi'];
                 $_SESSION['alamat_email'] = $db_data['alamat_email'];
@@ -49,13 +50,37 @@ class User_model {
             return $this->db->rowCount();
         }
     }
-    public function cekNamaPengguna($nama_pengguna){
+    private function cekNamaPengguna($nama_pengguna){
         $query = "SELECT nama_pengguna FROM " .$this->table . " WHERE nama_pengguna=:nama_pengguna";
         $this->db->query($query);
         $this->db->bind('nama_pengguna',$nama_pengguna);
         return $this->db->single();
     }
 
+    public function ubahInformasiAkun($new_data){
+        $query = "UPDATE " . $this->table . " SET nama_pengguna=:nama_pengguna, alamat_email=:alamat_email WHERE id_pengguna=:id_pengguna";
+        $this->db->query($query);
+        $this->db->bind('nama_pengguna',htmlspecialchars($new_data['nama_pengguna']));
+        $this->db->bind('alamat_email',htmlspecialchars($new_data['alamat_email']));
+        $this->db->bind('id_pengguna',$_SESSION['id_pengguna']);
+
+        $this->db->exec();
+        $rowsAffected = $this->db->rowCount();
+        if ($rowsAffected > 0){
+            $_SESSION['nama_pengguna'] = $new_data['nama_pengguna'];
+            $_SESSION['alamat_email'] = $new_data['alamat_email'];
+        }
+        return $rowsAffected;
+    }
+    
+    public function hapusAkun($id_pengguna){
+        $query = "DELETE FROM " . $this->table . " WHERE id_pengguna=:id_pengguna";
+        $this->db->query($query);
+        $this->db->bind('id_pengguna',htmlspecialchars($id_pengguna));
+
+        $this->db->exec();
+        return $this->db->rowCount();
+    }
 }
 
 ?>

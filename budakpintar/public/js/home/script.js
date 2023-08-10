@@ -7,7 +7,7 @@ const MODAL_FORM = document.querySelector('.modal-content>form');
 
 MASUK_BTN.addEventListener('click',function(){
     MODAL_TITLE.innerText = 'Sign in';
-    MODAL_FORM.setAttribute('action','http://localhost/budakpintar/public/home/masuk');
+    MODAL_FORM.setAttribute('action','http://localhost/budakpintar/public/home/login');
     MODAL_BODY.innerHTML = `
 <input type="hidden" name="id" id="id">
     <!-- Username input -->
@@ -32,7 +32,7 @@ MASUK_BTN.addEventListener('click',function(){
 DAFTAR_BTN.addEventListener('click',function(){
 
     MODAL_TITLE.innerText = 'Sign up';
-    MODAL_FORM.setAttribute('action','http://localhost/budakpintar/public/home/daftar');
+    MODAL_FORM.setAttribute('action','http://localhost/budakpintar/public/home/register');
     MODAL_BODY.innerHTML = `                    
     
 
