@@ -1,3 +1,4 @@
+</div>
 <footer class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary mt-5 container-fluid">
     <!-- Copyright -->
     <div class="text-white mb-3 mb-md-0">
@@ -23,7 +24,7 @@
     <!-- Right -->
 </footer>
 <script src="<?=BASEURL;?>/js/bootstrap/bootstrap.bundle.min.js"></script>
-<script src="<?=BASEURL;?>/js/home/script.js"></script>
+<script src="<?=BASEURL;?>/js/landing/script.js"></script>
 </body>
 
 </html>
