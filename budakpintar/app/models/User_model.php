@@ -8,11 +8,18 @@ class User_model {
     }
 
     //PRIVATE
-    private function cekBerdasarkan($kolom,$nilai){
+    private function getBerdasarkan($kolom,$nilai){
         $query = "SELECT * FROM " . $this->table . " WHERE " . $kolom . "=:" . $kolom;
         $this->db->query($query);
         $this->db->bind($kolom,$nilai);
         return $this->db->single();
+    }
+    private function cekBerdasarkan($kolom,$nilai){
+        $query = "SELECT " . $kolom . " FROM " . $this->table . " WHERE " . $kolom . "=:" . $kolom;
+        $this->db->query($query);
+        $this->db->bind($kolom,$nilai);
+        $this->db->exec();
+        return $this->db->rowCount();
     }
     private function autentikasi($data,$db_data){
         if (strtolower(htmlspecialchars($data['nama_pengguna'])) == $db_data['nama_pengguna']){
@@ -60,7 +67,7 @@ class User_model {
 
 
     public function daftarAkun($new_data){
-        $db_data = $this->cekBerdasarkan('nama_pengguna',htmlspecialchars($new_data['nama_pengguna']));
+        $db_data = $this->getBerdasarkan('nama_pengguna',htmlspecialchars($new_data['nama_pengguna']));
         if ($db_data['nama_pengguna'] == $new_data['nama_pengguna']){
             return 0;
         } else {
@@ -87,7 +94,7 @@ class User_model {
         }
 
         //cek nama sama
-        $db_data = $this->cekBerdasarkan('nama_pengguna',$new_data['nama_pengguna']);
+        $db_data = $this->getBerdasarkan('nama_pengguna',$new_data['nama_pengguna']);
         if ($db_data !== false && $db_data['nama_pengguna'] != $_SESSION['nama_pengguna']){
                 return 0;
             }
@@ -123,7 +130,7 @@ class User_model {
     }
 
     public function ubahKataSandi($data){
-        $db_data = $this->cekBerdasarkan('id_pengguna',$_SESSION['id_pengguna']);
+        $db_data = $this->getBerdasarkan('id_pengguna',$_SESSION['id_pengguna']);
         $kata_sandi_baru = password_hash($data['kata_sandi_baru'],PASSWORD_DEFAULT);
         if (password_verify($data['kata_sandi_lama'],$db_data['kata_sandi'])){
             $query = "UPDATE " . $this->table . " SET kata_sandi=:kata_sandi WHERE id_pengguna=:id_pengguna";
@@ -135,6 +142,18 @@ class User_model {
             return $this->db->rowCount();
         } else {
             return 0;
+        }
+    }
+
+    public function lupaKataSandi($data){
+        $db_data = $this->getBerdasarkan('nama_pengguna',$data['nama_pengguna']);
+        if($db_data == false){
+            return 0;
+        } else {
+
+            //KIRIM EMAIL
+            //BELOM
+            return 1;
         }
     }
 }

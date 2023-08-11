@@ -32,6 +32,17 @@ class Landing extends Controller {
             exit;
         }
     }
+    public function forgotPassword(){
+        if($this->model('User_model')->lupaKataSandi($_POST)>0){
+            Flasher::setFlash('Akan segera','menerima email','primary');
+            header('Location: ' . BASEURL . '/landing');
+            exit;
+        } else {
+            Flasher::setFlash('Tidak akan','menerima email','danger');
+            header('Location: ' . BASEURL . '/landing');
+            exit;
+        }
+    }
 }
 
 ?>

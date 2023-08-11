@@ -101,18 +101,35 @@
 
 
 
-<!-- Modal -->
-<div class="modal fade" id="formModal1" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+<!-- UTILITY MODAL 1-->
+<div class="modal fade" id="formModal1" tabindex="-1" aria-labelledby="formModalLabel1" aria-hidden="true">
   <div class="modal-dialog">
-    <div class="modal-content">
+    <div id="form-modal-1" class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="formModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="formModalLabel1">Modal title</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <form method="post">
         <div class="modal-body">
           
         </div>
+        <div class="modal-footer text-center text-lg-start d-flex justify-content-between align-items-center">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- UTILITY MODAL 2-->
+<div class="modal fade" id="formModal2" tabindex="-1" aria-labelledby="formModalLabel2" aria-hidden="true">
+  <div class="modal-dialog">
+    <div id="form-modal-2" class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="formModalLabel2">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form method="post">
+        <div class="modal-body"></div>
         <div class="modal-footer text-center text-lg-start d-flex justify-content-between align-items-center">
         </div>
       </form>
