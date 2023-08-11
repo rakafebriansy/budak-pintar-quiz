@@ -1,5 +1,7 @@
 <?php
 
+use PHPMailer\PHPMailer\PHPMailer;
+
 class User_model {
     private $table = 'pengguna';
     private $db;
@@ -8,6 +10,17 @@ class User_model {
     }
 
     //PRIVATE
+    private function getRandomString($n){
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $randomString = '';
+    
+        for ($i = 0; $i < $n; $i++) {
+            $index = rand(0, strlen($characters) - 1);
+            $randomString .= $characters[$index];
+        }
+    
+        return $randomString;
+    }
     private function getBerdasarkan($kolom,$nilai){
         $query = "SELECT * FROM " . $this->table . " WHERE " . $kolom . "=:" . $kolom;
         $this->db->query($query);
@@ -54,6 +67,16 @@ class User_model {
     
         return $nama_baru;
     }
+    private function ubahLupaSandi($id){
+        $kata_sandi_baru = $this->getRandomString(8);
+        $query = "UPDATE " . $this->table . " SET kata_sandi=:kata_sandi WHERE id_pengguna=:id_pengguna";
+            $this->db->query($query);
+            $this->db->bind('kata_sandi',password_hash($kata_sandi_baru,PASSWORD_DEFAULT));
+            $this->db->bind('id_pengguna',$id);
+            $this->db->exec();
+            
+            return $kata_sandi_baru;
+    }
 
 
     //PUBLIC
@@ -68,7 +91,7 @@ class User_model {
 
     public function daftarAkun($new_data){
         $db_data = $this->getBerdasarkan('nama_pengguna',htmlspecialchars($new_data['nama_pengguna']));
-        if ($db_data['nama_pengguna'] == $new_data['nama_pengguna']){
+        if ($db_data['nama_pengguna'] == strtolower($new_data['nama_pengguna'])){
             return 0;
         } else {
             $query = "INSERT INTO " . $this->table . " VALUES('',:nama_pengguna,:kata_sandi,:alamat_email,'')";
@@ -94,7 +117,7 @@ class User_model {
         }
 
         //cek nama sama
-        $db_data = $this->getBerdasarkan('nama_pengguna',$new_data['nama_pengguna']);
+        $db_data = $this->getBerdasarkan('nama_pengguna',strtolower($new_data['nama_pengguna']));
         if ($db_data !== false && $db_data['nama_pengguna'] != $_SESSION['nama_pengguna']){
                 return 0;
             }
@@ -102,7 +125,7 @@ class User_model {
         //exec db
         $query = "UPDATE " . $this->table . " SET nama_pengguna=:nama_pengguna, alamat_email=:alamat_email, gambar=:gambar WHERE id_pengguna=:id_pengguna";
         $this->db->query($query);
-        $this->db->bind('nama_pengguna',htmlspecialchars($new_data['nama_pengguna']));
+        $this->db->bind('nama_pengguna',strtolower(htmlspecialchars($new_data['nama_pengguna'])));
         $this->db->bind('alamat_email',htmlspecialchars($new_data['alamat_email']));
         $this->db->bind('gambar',$informasi_gambar);
         $this->db->bind('id_pengguna',$_SESSION['id_pengguna']);
@@ -146,16 +169,50 @@ class User_model {
     }
 
     public function lupaKataSandi($data){
-        $db_data = $this->getBerdasarkan('nama_pengguna',$data['nama_pengguna']);
+        $db_data = $this->getBerdasarkan('nama_pengguna',strtolower($data['nama_pengguna']));
         if($db_data == false){
             return 0;
         } else {
+            $kata_sandi_baru =  $this->ubahLupaSandi($db_data['id_pengguna']);
+            $nama_penerima = strtoupper($db_data['nama_pengguna']);
+            $email_penerima = $db_data['alamat_email'];
+            $subjek = 'Informasi perubahan kata sandi Budak Pintar';
+            $pesan = "Halo " . $nama_penerima . ", kamu telah melupakan kata sandi-mu dan kata sandi-mu telah kami perbarui menjadi "  . $kata_sandi_baru . ". Segera masuk dan ubah kata sandi anda untuk keamanan akun anda."
+            . PHP_EOL . "Jangan lupa dengan kata sandi-mu!"
+            . PHP_EOL . PHP_EOL . "Salam hangat, sobat Pintar.";
 
-            //KIRIM EMAIL
-            //BELOM
-            return 1;
+            //create instance
+            $mail = new PHPMailer(true);
+
+            //server settings
+            // $mail->SMTPDebug = 2;
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com'; //web address
+            $mail->SMTPAuth = true;
+            $mail->Username = 'budakpintar5@gmail.com';
+            $mail->Password = 'bvhbfwlzzqeyqytv';
+            $mail->SMTPSecure = 'tls';
+            $mail->Port = 587; //web port
+
+            //prepare
+            $mail->setFrom('budakpintar5@gmail.com','Admin Budak Pintar');
+            $mail->addAddress($email_penerima,'Bapak ' . $nama_penerima);
+
+            //content
+            $mail->isHTML(true);
+            $mail->Subject = $subjek;
+            $mail->Body = $pesan;
+            $report =$mail->send();
+
+            if($report){
+                // echo '<script> window.replace.href="http://localhost/budakpintar/public/";</script>';
+                return 1;
+            } else {
+                // echo '<script> window.replace.href="http://localhost/budakpintar/public/";</script>';
+                return 0;
+            }
+
         }
     }
 }
-
 ?>
