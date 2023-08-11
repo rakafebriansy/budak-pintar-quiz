@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../../../public/css/bootstrap/bootstrap.min.css">
-  <link rel="stylesheet" href="../../../public/css/home/style.css">
+  <link rel="stylesheet" href="../../../public/css/logging/style.css">
   <title>
     <?= $data['judul'];?>
   </title>
@@ -22,10 +22,15 @@
         </a>
 
         <!-- LOGIN -->
-        <div class="d-flex justify-content-start align-items-center text-center">
+        <div class="dropdown justify-content-start align-items-center text-center">
           <img src="../../../public/img/user.png" width="40" alt="">
-          <a id="tombol-profil" name="tombol-profil" class="btn ms-1 " data-bs-toggle="modal"
-            data-bs-target="#formModal1">Ummunada_</a>
+          <a id="dropdownMenuButton1" name="dropdownMenuButton1" class="btn ms-1 fs-5 dropdown-toggle"
+          data-bs-toggle="dropdown" aria-expanded="false">Ummunada_</a>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" href="#" id="tombol-profil" name="tombol-profil" data-bs-toggle="modal" data-bs-target="#formModal1">Ubah Profil</a></li>
+            <li><a class="dropdown-item" href="#">Ubah Sandi</a></li>
+            <li><a class="dropdown-item" href="#">Keluar</a></li>
+          </ul>
         </div>
       </div>
     </nav>
@@ -36,11 +41,10 @@
     <!-- HERO START -->
     <section id="hero" class="mb-5">
       <div id="flasher">
-        <?php Flasher::flash(); ?>
       </div>
       <div class="row">
         <div class="col-md-6">
-          <h2 class="fs-1 text-start  mb-5 pt-md-5">Kerjakan kuis, kapan dan di mana saja!
+          <h2 class="fs-1 text-start  mb-5 pt-md-5" id="kalimat-awal">Kerjakan kuis, kapan dan di mana saja!
           </h2>
           <p class="fs-4 text-start mb-5">Pilih kuis sesuai keinginan kamu, agar menambah pengetahuan dan mengasah
             kemampuan.
@@ -115,8 +119,6 @@
       </div>
     </section>
     <!-- CATEGORY END -->
-
-
 
     <!-- 1st MODAL -->
     <div class="modal fade" id="formModal1" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">

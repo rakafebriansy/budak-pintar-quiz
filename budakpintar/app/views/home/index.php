@@ -111,7 +111,7 @@
         <div class="modal-body">
           
         </div>
-        <div class="modal-footer">
+        <div class="modal-footer text-center text-lg-start d-flex justify-content-between align-items-center">
         </div>
       </form>
     </div>

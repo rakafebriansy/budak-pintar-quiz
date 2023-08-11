@@ -1,4 +1,8 @@
 #hero {
     padding-top: 6rem;
   }
-  
+@media (max-width:576px){
+    #kalimat-awal{
+        margin-top: 50px;
+    }
+}

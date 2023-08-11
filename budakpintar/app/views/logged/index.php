@@ -22,13 +22,18 @@ if ($gambar != ''){
         <img src="<?=BASEURL;?>/img/logo.png" alt="" height="40" class="d-inline-block align-text-center">
         <img src="<?=BASEURL;?>/img/name_brand.svg" alt="" height="20" class="d-inline-block align-text-center">
       </a>
-    <!-- LOGIN -->
-      <div class="d-flex justify-content-start align-items-center text-center">
-        <label for="tombol-profil">
-          <img src="<?=BASEURL;?>/img/<?=$tampilan_gambar?>" width="40" alt="">
-        </label>
-        <a id="tombol-profil" name="tombol-profil" class="btn ms-1 fs-5" data-bs-toggle="modal" data-bs-target="#formModal1"><?= $nama_pengguna;?></a>
-      </form>
+    <!-- PROFILE -->
+    <div class="dropdown justify-content-start align-items-center text-center">
+      <label for="tombol-profil">      
+        <img src="<?=BASEURL;?>/img/<?=$tampilan_gambar?>" width="40" alt="">
+      </label>
+      <a id="dropdownMenuButton1" name="dropdownMenuButton1" class="btn ms-1 fs-5 dropdown-toggle"
+      data-bs-toggle="dropdown" aria-expanded="false"><?= $nama_pengguna;?></a>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        <li><a class="dropdown-item" href="#" id="tombol-profil" name="tombol-profil" data-bs-toggle="modal" data-bs-target="#formModal1">Ubah Profil</a></li>
+        <li><a class="dropdown-item" href="#" id="tombol-ubah-sandi" name="tombol-ubah-sandi" data-bs-toggle="modal" data-bs-target="#formModal2">Ubah Sandi</a></li>
+        <li><a class="dropdown-item" href="#" id="tombol-keluar" name="tombol-keluar" data-bs-toggle="modal" data-bs-target="#formModal2">Keluar</a></li>
+      </ul>
     </div>
   </nav>
   <!-- NAVBAR END -->
@@ -64,7 +69,9 @@ if ($gambar != ''){
     </div>
   </section>
   <!-- HERO END -->
+
   <br><br><br>
+
   <!-- SEARCH START -->
   <section id="search" class="mt-5 mb-5">
     <h2 class="">Temukan kuis yang kamu suka!</h2>
@@ -74,7 +81,9 @@ if ($gambar != ''){
     </form>
   </section>
   <!-- SEARCH END -->
-<br><br>
+
+  <br><br>
+
   <!-- CATEGORY START -->
   <section id="category">
     <div class="mathematics">
@@ -116,65 +125,57 @@ if ($gambar != ''){
   <!-- CATEGORY END -->
 
 
-  <!-- 1st MODAL -->
+  <!-- EDIT PROFILE MODAL START -->
   <div class="modal fade" id="formModal1" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
+      <div id="form-modal-1" class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="formModalLabel">Profil</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <form action="<?=BASEURL?>/logged/editProfile" method="post" enctype="multipart/form-data">
-          <div class="modal-body justify-content-center">
-            <div class="container d-flex justify-content-center">
-
-              <img src="<?=BASEURL?>/img/<?=$tampilan_gambar?>" width="100" alt="">
-            </div>
-            <div class="container d-flex justify-content-center mt-2">
-            </div>
-            <div class="container">
-              <input type="hidden" name="gambar_default" value="<?=$gambar?>">
-              <label for="nama_pengguna" class="mt-4">Nama Pengguna</label>
-              <input type="text" id="edit-username" class="form-control form-control-lg mt-2" name="nama_pengguna"
-                value="<?=$nama_pengguna?>" placeholder="Masukkan nama pengguna" required/>
-              <label for="alamat_email" class="mt-3">Email</label>
-              <input type="email" id="edit-email" class="form-control form-control-lg mt-2" name="alamat_email"
-                value="<?=$alamat_email?>" placeholder="Masukkan alamat email yang valid" required/>
-              <label for="gambar" class="mt-3">Foto Profil</label>
-              <input type="file" name="gambar" id="gambar" class="form-control form-control-lg mt-2">
-            </div>
-            </div>
-            <div class="modal-footer text-center text-lg-start d-flex justify-content-between align-items-center">
-              <button type="button" class="btn btn-danger text-white" data-bs-target="#formModalToggle1"
-                data-bs-toggle="modal" data-bs-dismiss="modal" style="padding-left: 2rem; padding-right: 2rem;">Hapus
-                Akun</button>
-              <button type="submit" class="btn btn-primary"
-                style="padding-left: 2rem; padding-right: 2rem;">Simpan</button>
-            </div>
+        <div class="modal-body">
+          <div class="container d-flex justify-content-center">
+            <img src="<?=BASEURL?>/img/<?=$tampilan_gambar?>" width="100" alt="">
           </div>
+          <input type="hidden" name="gambar_default" value="<?=$gambar?>">
+          <label for="nama_pengguna" class="mt-4">Nama Pengguna</label>
+          <input type="text" class="form-control form-control-lg mt-2" name="nama_pengguna"
+            value="<?=$nama_pengguna?>" placeholder="Masukkan nama pengguna" required/>
+          <label for="alamat_email" class="mt-3">Email</label>
+          <input type="email" class="form-control form-control-lg mt-2" name="alamat_email"
+            value="<?=$alamat_email?>" placeholder="Masukkan alamat email yang valid" required/>
+          <label for="gambar" class="mt-3">Foto Profil</label>
+          <input type="file" name="gambar" class="form-control form-control-lg mt-2">
+        </div>
+        <div class="modal-footer text-center text-lg-start d-flex justify-content-between align-items-center">
+          <button id="tombol-hapus-akun" type="button" class="btn btn-danger text-white" data-bs-target="#formModal2"
+            data-bs-toggle="modal" data-bs-dismiss="modal" style="padding-left: 1rem; padding-right: 1rem;">Hapus
+            Akun</button>
+          <button type="submit" class="btn btn-primary"
+            style="padding-left: 1rem; padding-right: 1rem;">Simpan</button>
+        </div>
         </form>
       </div>
     </div>
-    <!-- 2nd MODAL -->
-    <div class="modal fade" id="formModalToggle1" aria-hidden="true" aria-labelledby="formModalToggleLabel1"
-      tabindex="-1">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="formModalToggleLabel1">Hapus Akun</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body fs-4">
-            Apakah anda yakin untuk menghapus akun anda?
-          </div>
-          <div class="modal-footer text-center text-lg-start d-flex justify-content-between align-items-center">
-              <form action="<?=BASEURL?>/logged/deleteAccount" method="post">
-                <button type="button" class="btn btn-outline-secondary" data-bs-target="#formModal1" data-bs-toggle="modal"
-              data-bs-dismiss="modal">Kembali ke Profil</button>
-                <button type="submit" class="btn btn-danger" >Hapus</button>
-            </form>
-            </div>
+  </div>
+  <!-- EDIT PROFILE MODAL END -->
+
+
+
+  <!-- UTILTY MODAL START-->
+  <div class="modal fade" id="formModal2" aria-hidden="true" aria-labelledby="formModalLabel2"
+    tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div id="form-modal-2" class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="formModalLabel2"></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+        <form method="post">
+          <div class="modal-body fs-4"></div>
+          <div class="modal-footer text-center text-lg-start d-flex justify-content-between align-items-center"></div>
+        </form>
       </div>
     </div>
   </div>

@@ -39,6 +39,17 @@ class Logged extends Controller{
             exit;
         }
     }
+    public function changePassword(){
+        if($this->model('User_model')->ubahKataSandi($_POST)>0){
+            Flasher::setFlash('Berhasil','diubah','primary');
+            header('Location: ' . BASEURL . '/logged');
+            exit;
+        } else {
+            Flasher::setFlash('Gagal','diubah','danger');
+            header('Location: ' . BASEURL . '/logged');
+            exit;
+        }
+    }
 }
 
 

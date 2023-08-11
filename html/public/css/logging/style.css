@@ -14,3 +14,11 @@ height: calc(100% - 73px);
 height: 100%;
 }
 }
+#hero {
+    padding-top: 8rem;
+}
+@media (max-width:576px){
+    #hero{
+        margin-top: 1rem;
+    }
+}
