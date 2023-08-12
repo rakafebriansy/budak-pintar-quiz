@@ -43,26 +43,21 @@ class User_model {
     }
     private function autentikasiMasuk($data,$db_data)
     {
-        $nama_pengguna = strtolower(stripslashes(htmlspecialchars($data['nama_pengguna'])));
         $kata_sandi = stripslashes(htmlspecialchars($data['kata_sandi']));
 
-        if ($nama_pengguna == $db_data['nama_pengguna']){
-            if (password_verify($kata_sandi,$db_data['kata_sandi'])){
-                $_SESSION['id_pengguna'] = $db_data['id_pengguna'];
-                $_SESSION['nama_pengguna'] = $db_data['nama_pengguna'];
-                $_SESSION['alamat_email'] = $db_data['alamat_email'];
-                $_SESSION['gambar'] = $db_data['gambar'];
-                return 1;
-            } else {
-                return 0;
-            }
+        if (password_verify($kata_sandi,$db_data['kata_sandi'])){
+            $_SESSION['id_pengguna'] = $db_data['id_pengguna'];
+            $_SESSION['nama_pengguna'] = $db_data['nama_pengguna'];
+            $_SESSION['alamat_email'] = $db_data['alamat_email'];
+            $_SESSION['gambar'] = $db_data['gambar'];
+            return 1;
         } else {
             return 0;
         }
     }
     private function pindahkanGambar($data,$old_data)
     {
-        $nama_gambar = stripslashes(htmlspecialchars($data['nama_gambar']));
+        $nama_gambar = stripslashes(htmlspecialchars($data['name']));
         $ekstensi_gambar_valid = EKSTENSI_GAMBAR_VALID;
         $ekstensi_gambar = explode('.',$nama_gambar);
         $ekstensi_gambar = strtolower(end($ekstensi_gambar));
@@ -73,14 +68,14 @@ class User_model {
         }
 
         //jika ukuran > 5MB
-        if($data['ukuran_gambar'] > 5*MB){
+        if($data['size'] > 5*MB){
             return $old_data;
             }
             
         $nama_baru = uniqid();
         $nama_baru.= '.';
         $nama_baru.= $ekstensi_gambar;
-        move_uploaded_file($data['temporary'],'img/'.$nama_baru);
+        move_uploaded_file($data['tmp_name'],'img/'.$nama_baru);
     
         return $nama_baru;
     }
@@ -109,6 +104,11 @@ class User_model {
         $this->db->bind('nama_pengguna',$nama_pengguna);
         
         $db_data = $this->db->single();
+
+        if(!$db_data){
+            return -1;
+        }
+
         return $this->autentikasiMasuk($data,$db_data);
     }
     public function daftarAkun($new_data)
@@ -116,7 +116,7 @@ class User_model {
         $nama_pengguna = strtolower(stripslashes(htmlspecialchars($new_data['nama_pengguna'])));
         $db_data = $this->getBerdasarkan('nama_pengguna',$nama_pengguna);
         if ($db_data['nama_pengguna'] == strtolower($new_data['nama_pengguna'])){
-            return 0;
+            return -1;
         } else {
             $hashed_kata_sandi = password_hash(htmlspecialchars($new_data['kata_sandi']),PASSWORD_DEFAULT);
             $alamat_email = stripslashes(htmlspecialchars($new_data['alamat_email']));
@@ -134,7 +134,7 @@ class User_model {
     public function ubahInformasiAkun($new_data,$new_file)
     {
         //cek kosong
-        if ($new_file['kode_eror'] == 0){
+        if ($new_file['error'] == 0){
             $informasi_gambar = $this->pindahkanGambar($new_file,$new_data['gambar_default']);
         } else{
             $informasi_gambar = $new_data['gambar_default'];
@@ -143,7 +143,7 @@ class User_model {
         //cek nama sama
         $db_data = $this->getBerdasarkan('nama_pengguna',strtolower($new_data['nama_pengguna']));
         if ($db_data !== false && $db_data['nama_pengguna'] != $_SESSION['nama_pengguna']){
-                return 0;
+                return -1;
             }
 
         //exec db
@@ -187,6 +187,10 @@ class User_model {
         $kata_sandi_baru = password_hash($data['kata_sandi_baru'],PASSWORD_DEFAULT);
 
         if (password_verify($data['kata_sandi_lama'],$db_data['kata_sandi'])){
+            if($data['kata_sandi_lama'] == $data['kata_sandi_baru']){
+                return -1;
+            }
+
             $query = "UPDATE " . $this->table . " SET kata_sandi=:kata_sandi WHERE id_pengguna=:id_pengguna";
 
             $this->db->query($query);
@@ -204,7 +208,7 @@ class User_model {
     {
         $db_data = $this->getBerdasarkan('nama_pengguna',strtolower($data['nama_pengguna']));
 
-        if($db_data == false){
+        if(!$db_data){
             return 0;
         } else {
             //prepare

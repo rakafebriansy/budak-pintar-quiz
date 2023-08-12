@@ -10,8 +10,13 @@ class Landing extends Controller {
         $this->view('templates/landing-footer');
     }
     public function register(){
-        if($this->model('User_model')->daftarAkun($_POST)>0){
+        $error_code = $this->model('User_model')->daftarAkun($_POST);
+        if($error_code>0){
             Flasher::setFlash('Anda','Berhasil','membuat akun','primary');
+            header('Location: ' . BASEURL . '/landing');
+            exit;
+        } else if ($error_code<0){
+            Flasher::setFlash('Nama',strtolower($_POST['nama_pengguna']),'telah digunakan','danger');
             header('Location: ' . BASEURL . '/landing');
             exit;
         } else {
@@ -21,20 +26,25 @@ class Landing extends Controller {
         }
     }
     public function login(){
-        if($this->model('User_model')->masukAkun($_POST)>0){
+        $error_code = $this->model('User_model')->masukAkun($_POST);
+        if($error_code>0){
             $_SESSION['login'] = true;
             Flasher::setFlash('Anda','Berhasil','masuk','primary');
             header('Location: ' . BASEURL . '/home');
             exit;
+        } else if ($error_code<0) {
+            Flasher::setFlash('Akun dengan nama',strtolower($_POST['nama_pengguna']),'tidak ditemukan','danger');
+            header('Location: ' . BASEURL . '/landing');
+            exit;
         } else {
-            Flasher::setFlash('Anda','Gagal','masuk','danger');
+            Flasher::setFlash('Kata sandi','Salah','','danger');
             header('Location: ' . BASEURL . '/landing');
             exit;
         }
     }
     public function forgotPassword(){
         if($this->model('User_model')->lupaKataSandi($_POST)>0){
-            Flasher::setFlash('Anda','Akan segera','menerima email','primary');
+            Flasher::setFlash('Anda','Akan segera.','menerima email','primary');
             // header('Location: ' . BASEURL . '/landing');
             echo '<script> window.location.href="http://localhost/budakpintar/public/";</script>';
             exit;

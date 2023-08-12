@@ -13,13 +13,15 @@ class Home extends Controller{
             header('Location: ' . BASEURL . '/home');
             exit;
         } else{
-            $informasi_gambar = ['nama_gambar'=>$_FILES['gambar']['name'],
-            'ukuran_gambar' => $_FILES['gambar']['size'],
-            'kode_eror'=> $_FILES['gambar']['error'],
-            'temporary'=>$_FILES['gambar']['tmp_name']];
+            $informasi_gambar = $_FILES['gambar'];
+            $error_code  = $this->model('User_model')->ubahInformasiAkun($_POST,$informasi_gambar);
 
-            if($this->model('User_model')->ubahInformasiAkun($_POST,$informasi_gambar)>0){
+            if($error_code>0){
                 Flasher::setFlash('Akun anda','Berhasil','diperbarui','success');
+                header('Location: ' . BASEURL . '/home');
+                exit;
+            } else if ($error_code<0){
+                Flasher::setFlash('Nama',strtolower($_POST['nama_pengguna']),'telah tersedia','danger');
                 header('Location: ' . BASEURL . '/home');
                 exit;
             } else {
@@ -42,12 +44,17 @@ class Home extends Controller{
         }
     }
     public function changePassword(){
-        if($this->model('User_model')->ubahKataSandi($_POST)>0){
+        $error_code = $this->model('User_model')->ubahKataSandi($_POST);
+        if($error_code>0){
             Flasher::setFlash('Kata sandi anda','Berhasil','diperbarui','success');
             header('Location: ' . BASEURL . '/home');
             exit;
+        } else if ($error_code<0) {
+            Flasher::setFlash('Silahkan isi kembali dengan kata sandi yang','Baru','','warning');
+            header('Location: ' . BASEURL . '/home');
+            exit;
         } else {
-            Flasher::setFlash('Kata sandi anda','Gagal','diperbarui','danger');
+            Flasher::setFlash('Kata sandi','Salah','','danger');
             header('Location: ' . BASEURL . '/home');
             exit;
         }
