@@ -25,10 +25,10 @@ if ($gambar != ''){
     <!-- PROFILE -->
     <div class="dropdown justify-content-start align-items-center text-center">
       <label for="tombol-profil">      
-        <img src="<?=BASEURL;?>/img/<?=$tampilan_gambar?>" width="40" alt="" class="img-thumbnail">
+        <img src="<?=BASEURL;?>/img/<?=$tampilan_gambar?>" width="40" alt="">
       </label>
       <a id="dropdownMenuButton1" name="dropdownMenuButton1" class="btn ms-1 fs-5 dropdown-toggle"
-      data-bs-toggle="dropdown" aria-expanded="false"><?= $nama_pengguna;?></a>
+      data-bs-toggle="dropdown" aria-expanded="false"><?=ucfirst($nama_pengguna);?></a>
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
         <li><a class="dropdown-item" href="#" id="tombol-profil" name="tombol-profil" data-bs-toggle="modal" data-bs-target="#formModal1">Ubah Profil</a></li>
         <li><a class="dropdown-item" href="#" id="tombol-ubah-sandi" name="tombol-ubah-sandi" data-bs-toggle="modal" data-bs-target="#formModal2">Ubah Sandi</a></li>
@@ -54,7 +54,7 @@ if ($gambar != ''){
         </p>
         <div class="row mb-2">
           <div class="col-8 col-md-7">
-            <button type="button" class="btn btn-primary btn-lg w-75">Jelajahi Kuis</button>
+            <a href="#category-linked" class="btn btn-primary btn-lg w-75">Jelajahi Kuis</a>
           </div>
         </div>
         <div class="row">
@@ -70,7 +70,7 @@ if ($gambar != ''){
   </section>
   <!-- HERO END -->
 
-  <br><br><br>
+  <br><div id="category-linked"></div><br><br>
 
   <!-- SEARCH START -->
   <section id="search" class="mt-5 mb-5">
@@ -136,12 +136,12 @@ if ($gambar != ''){
         <form action="<?=BASEURL?>/home/editProfile" method="post" enctype="multipart/form-data">
         <div class="modal-body">
           <div class="container d-flex justify-content-center">
-            <img src="<?=BASEURL?>/img/<?=$tampilan_gambar?>" width="100" alt="">
+            <img src="<?=BASEURL?>/img/<?=$tampilan_gambar?>" width="100" alt="" class="img-thumbnail">
           </div>
           <input type="hidden" name="gambar_default" value="<?=$gambar?>">
           <label for="nama_pengguna" class="mt-4">Nama Pengguna</label>
           <input type="text" class="form-control form-control-lg mt-2" name="nama_pengguna"
-            value="<?=$nama_pengguna?>" placeholder="Masukkan nama pengguna" required/>
+            value="<?=ucfirst($nama_pengguna)?>" placeholder="Masukkan nama pengguna" required/>
           <label for="alamat_email" class="mt-3">Email</label>
           <input type="email" class="form-control form-control-lg mt-2" name="alamat_email"
             value="<?=$alamat_email?>" placeholder="Masukkan alamat email yang valid" required/>

@@ -62,8 +62,9 @@ class User_model {
     }
     private function pindahkanGambar($data,$old_data)
     {
+        $nama_gambar = stripslashes(htmlspecialchars($data['nama_gambar']));
         $ekstensi_gambar_valid = EKSTENSI_GAMBAR_VALID;
-        $ekstensi_gambar = explode('.',htmlspecialchars($data['nama_gambar']));
+        $ekstensi_gambar = explode('.',$nama_gambar);
         $ekstensi_gambar = strtolower(end($ekstensi_gambar));
 
         //jika ekstensi gambar invalid
@@ -101,29 +102,30 @@ class User_model {
     //PUBLIC
     public function masukAkun($data)
     {
+        $nama_pengguna = strtolower(stripslashes(htmlspecialchars($data['nama_pengguna'])));
         $query = "SELECT * FROM " . $this->table . " WHERE nama_pengguna=:nama_pengguna";
 
         $this->db->query($query);
-        $this->db->bind('nama_pengguna',$data['nama_pengguna']);
+        $this->db->bind('nama_pengguna',$nama_pengguna);
         
         $db_data = $this->db->single();
         return $this->autentikasiMasuk($data,$db_data);
     }
     public function daftarAkun($new_data)
     {
-        $db_data = $this->getBerdasarkan('nama_pengguna',htmlspecialchars($new_data['nama_pengguna']));
+        $nama_pengguna = strtolower(stripslashes(htmlspecialchars($new_data['nama_pengguna'])));
+        $db_data = $this->getBerdasarkan('nama_pengguna',$nama_pengguna);
         if ($db_data['nama_pengguna'] == strtolower($new_data['nama_pengguna'])){
             return 0;
         } else {
+            $hashed_kata_sandi = password_hash(htmlspecialchars($new_data['kata_sandi']),PASSWORD_DEFAULT);
+            $alamat_email = stripslashes(htmlspecialchars($new_data['alamat_email']));
             $query = "INSERT INTO " . $this->table . " VALUES('',:nama_pengguna,:kata_sandi,:alamat_email,'')";
-            $this->db->query($query);
-
-            $nama_pengguna = strtolower(stripslashes(htmlspecialchars($new_data['nama_pengguna'])));
-            $hashed_sandi = password_hash(htmlspecialchars($new_data['kata_sandi']),PASSWORD_DEFAULT);
-        
+            
+            $this->db->query($query);        
             $this->db->bind('nama_pengguna',$nama_pengguna);
-            $this->db->bind('kata_sandi',$hashed_sandi);
-            $this->db->bind('alamat_email',htmlspecialchars($new_data['alamat_email']));
+            $this->db->bind('kata_sandi',$hashed_kata_sandi);
+            $this->db->bind('alamat_email',$alamat_email);
             $this->db->exec();
     
             return $this->db->rowCount();
@@ -145,10 +147,13 @@ class User_model {
             }
 
         //exec db
+        $nama_pengguna =strtolower(stripslashes(htmlspecialchars($new_data['nama_pengguna'])));
+        $alamat_email = stripslashes(htmlspecialchars($new_data['alamat_email']));
         $query = "UPDATE " . $this->table . " SET nama_pengguna=:nama_pengguna, alamat_email=:alamat_email, gambar=:gambar WHERE id_pengguna=:id_pengguna";
+        
         $this->db->query($query);
-        $this->db->bind('nama_pengguna',strtolower(htmlspecialchars($new_data['nama_pengguna'])));
-        $this->db->bind('alamat_email',htmlspecialchars($new_data['alamat_email']));
+        $this->db->bind('nama_pengguna',$nama_pengguna);
+        $this->db->bind('alamat_email',$alamat_email);
         $this->db->bind('gambar',$informasi_gambar);
         $this->db->bind('id_pengguna',$_SESSION['id_pengguna']);
         $this->db->exec();

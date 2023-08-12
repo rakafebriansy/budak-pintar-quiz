@@ -9,7 +9,7 @@ class Home extends Controller{
         $this->view('templates/home-footer');
     }
     public function editProfile(){
-        if($_POST['nama_pengguna'] == $_SESSION['nama_pengguna'] && $_POST['alamat_email'] == $_SESSION['alamat_email'] && $_FILES['gambar']['error'] == 4){
+        if(strtolower($_POST['nama_pengguna']) == $_SESSION['nama_pengguna'] && $_POST['alamat_email'] == $_SESSION['alamat_email'] && $_FILES['gambar']['error'] == 4){
             header('Location: ' . BASEURL . '/home');
             exit;
         } else{
