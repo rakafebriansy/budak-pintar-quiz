@@ -65,10 +65,10 @@ CREATE TABLE `kuis` (
 CREATE TABLE `kumpulan_soal` (
   `id_kumpulan_soal` int(11) NOT NULL,
   `pertanyaan` varchar(255) NOT NULL,
-  `opsi_a` int(255) NOT NULL,
-  `opsi_b` int(255) NOT NULL,
-  `opsi_c` int(255) NOT NULL,
-  `opsi_d` int(255) NOT NULL,
+  `opsi_a` varchar(255) NOT NULL,
+  `opsi_b` varchar(255) NOT NULL,
+  `opsi_c` varchar(255) NOT NULL,
+  `opsi_d` varchar(255) NOT NULL,
   `opsi_benar` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
