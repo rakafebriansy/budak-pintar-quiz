@@ -19,11 +19,11 @@ class Home extends Controller{
             'temporary'=>$_FILES['gambar']['tmp_name']];
 
             if($this->model('User_model')->ubahInformasiAkun($_POST,$informasi_gambar)>0){
-                Flasher::setFlash('Berhasil','diperbarui','primary');
+                Flasher::setFlash('Akun anda','Berhasil','diperbarui','success');
                 header('Location: ' . BASEURL . '/home');
                 exit;
             } else {
-                Flasher::setFlash('Gagal','diperbarui','danger');
+                Flasher::setFlash('Akun anda','Gagal','diperbarui','danger');
                 header('Location: ' . BASEURL . '/home');
                 exit;
             }
@@ -31,34 +31,34 @@ class Home extends Controller{
     }
     public function deleteAccount(){
         if($this->model('User_model')->hapusAkun($_SESSION['id_pengguna'])>0){
-            Flasher::setFlash('Berhasil','dihapus','success');
+            Flasher::setFlash('Akun anda','Berhasil','dihapus','success');
             session_unset();
             header('Location: ' . BASEURL . '/landing');
             exit;
         } else {
-            Flasher::setFlash('Gagal','dihapus','danger');
+            Flasher::setFlash('Akun anda','Gagal','dihapus','danger');
             header('Location: ' . BASEURL . '/home');
             exit;
         }
     }
     public function changePassword(){
         if($this->model('User_model')->ubahKataSandi($_POST)>0){
-            Flasher::setFlash('Berhasil','diubah','primary');
+            Flasher::setFlash('Kata sandi anda','Berhasil','diperbarui','success');
             header('Location: ' . BASEURL . '/home');
             exit;
         } else {
-            Flasher::setFlash('Gagal','diubah','danger');
+            Flasher::setFlash('Kata sandi anda','Gagal','diperbarui','danger');
             header('Location: ' . BASEURL . '/home');
             exit;
         }
     }
     public function logout(){
         if(session_unset()){
-            Flasher::setFlash('Berhasil','keluar','success');
+            Flasher::setFlash('Anda','Berhasil','keluar','primary');
             header('Location: ' . BASEURL . '/landing');
             exit;
         } else {
-            Flasher::setFlash('Gagal','keluar','danger');
+            Flasher::setFlash('Anda','Gagal','keluar','danger');
             header('Location: ' . BASEURL . '/home');
             exit;
         }

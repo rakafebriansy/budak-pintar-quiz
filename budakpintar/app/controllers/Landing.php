@@ -11,11 +11,11 @@ class Landing extends Controller {
     }
     public function register(){
         if($this->model('User_model')->daftarAkun($_POST)>0){
-            Flasher::setFlash('Berhasil','terdaftar','primary');
+            Flasher::setFlash('Anda','Berhasil','membuat akun','primary');
             header('Location: ' . BASEURL . '/landing');
             exit;
         } else {
-            Flasher::setFlash('Gagal','terdaftar','danger');
+            Flasher::setFlash('Anda','Gagal','membuat akun','danger');
             header('Location: ' . BASEURL . '/landing');
             exit;
         }
@@ -23,23 +23,23 @@ class Landing extends Controller {
     public function login(){
         if($this->model('User_model')->masukAkun($_POST)>0){
             $_SESSION['login'] = true;
-            Flasher::setFlash('Berhasil','masuk','primary');
+            Flasher::setFlash('Anda','Berhasil','masuk','primary');
             header('Location: ' . BASEURL . '/home');
             exit;
         } else {
-            Flasher::setFlash('Gagal','masuk','danger');
+            Flasher::setFlash('Anda','Gagal','masuk','danger');
             header('Location: ' . BASEURL . '/landing');
             exit;
         }
     }
     public function forgotPassword(){
         if($this->model('User_model')->lupaKataSandi($_POST)>0){
-            Flasher::setFlash('Akan segera','menerima email','primary');
+            Flasher::setFlash('Anda','Akan segera','menerima email','primary');
             // header('Location: ' . BASEURL . '/landing');
             echo '<script> window.location.href="http://localhost/budakpintar/public/";</script>';
             exit;
         } else {
-            Flasher::setFlash('Tidak akan','menerima email','danger');
+            Flasher::setFlash('Akun anda','Belum','terdaftar','danger');
             // header('Location: ' . BASEURL . '/landing');
             echo '<script> window.location.href="http://localhost/budakpintar/public/";</script>';
             exit;

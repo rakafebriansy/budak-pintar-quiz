@@ -10,7 +10,8 @@ class User_model {
     }
 
     //PRIVATE
-    private function getRandomString($n){
+    private function getRandomString($n)
+    {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $randomString = '';
     
@@ -21,22 +22,32 @@ class User_model {
     
         return $randomString;
     }
-    private function getBerdasarkan($kolom,$nilai){
+    private function getBerdasarkan($kolom,$nilai)
+    {
         $query = "SELECT * FROM " . $this->table . " WHERE " . $kolom . "=:" . $kolom;
+
         $this->db->query($query);
         $this->db->bind($kolom,$nilai);
+
         return $this->db->single();
     }
-    private function cekBerdasarkan($kolom,$nilai){
+    private function cekBerdasarkan($kolom,$nilai)
+    {
         $query = "SELECT " . $kolom . " FROM " . $this->table . " WHERE " . $kolom . "=:" . $kolom;
+
         $this->db->query($query);
         $this->db->bind($kolom,$nilai);
         $this->db->exec();
+
         return $this->db->rowCount();
     }
-    private function autentikasi($data,$db_data){
-        if (strtolower(htmlspecialchars($data['nama_pengguna'])) == $db_data['nama_pengguna']){
-            if (password_verify(htmlspecialchars($data['kata_sandi']),$db_data['kata_sandi'])){
+    private function autentikasiMasuk($data,$db_data)
+    {
+        $nama_pengguna = strtolower(stripslashes(htmlspecialchars($data['nama_pengguna'])));
+        $kata_sandi = stripslashes(htmlspecialchars($data['kata_sandi']));
+
+        if ($nama_pengguna == $db_data['nama_pengguna']){
+            if (password_verify($kata_sandi,$db_data['kata_sandi'])){
                 $_SESSION['id_pengguna'] = $db_data['id_pengguna'];
                 $_SESSION['nama_pengguna'] = $db_data['nama_pengguna'];
                 $_SESSION['alamat_email'] = $db_data['alamat_email'];
@@ -49,17 +60,22 @@ class User_model {
             return 0;
         }
     }
-    private function pindahkanGambar($data,$old_data){
+    private function pindahkanGambar($data,$old_data)
+    {
         $ekstensi_gambar_valid = EKSTENSI_GAMBAR_VALID;
-
         $ekstensi_gambar = explode('.',htmlspecialchars($data['nama_gambar']));
         $ekstensi_gambar = strtolower(end($ekstensi_gambar));
+
+        //jika ekstensi gambar invalid
         if(!in_array($ekstensi_gambar,$ekstensi_gambar_valid)){
             return $old_data;
         }
+
+        //jika ukuran > 5MB
         if($data['ukuran_gambar'] > 5*MB){
             return $old_data;
             }
+            
         $nama_baru = uniqid();
         $nama_baru.= '.';
         $nama_baru.= $ekstensi_gambar;
@@ -67,29 +83,34 @@ class User_model {
     
         return $nama_baru;
     }
-    private function ubahLupaSandi($id){
+    private function ubahLupaSandi($id)
+    {
+        //mengganti kata sandi dengan string random
         $kata_sandi_baru = $this->getRandomString(8);
         $query = "UPDATE " . $this->table . " SET kata_sandi=:kata_sandi WHERE id_pengguna=:id_pengguna";
-            $this->db->query($query);
-            $this->db->bind('kata_sandi',password_hash($kata_sandi_baru,PASSWORD_DEFAULT));
-            $this->db->bind('id_pengguna',$id);
-            $this->db->exec();
+
+        $this->db->query($query);
+        $this->db->bind('kata_sandi',password_hash($kata_sandi_baru,PASSWORD_DEFAULT));
+        $this->db->bind('id_pengguna',$id);
+        $this->db->exec();
             
-            return $kata_sandi_baru;
+        return $kata_sandi_baru;
     }
 
 
     //PUBLIC
-    public function masukAkun($data){
+    public function masukAkun($data)
+    {
         $query = "SELECT * FROM " . $this->table . " WHERE nama_pengguna=:nama_pengguna";
+
         $this->db->query($query);
         $this->db->bind('nama_pengguna',$data['nama_pengguna']);
+        
         $db_data = $this->db->single();
-        return $this->autentikasi($data,$db_data);
+        return $this->autentikasiMasuk($data,$db_data);
     }
-
-
-    public function daftarAkun($new_data){
+    public function daftarAkun($new_data)
+    {
         $db_data = $this->getBerdasarkan('nama_pengguna',htmlspecialchars($new_data['nama_pengguna']));
         if ($db_data['nama_pengguna'] == strtolower($new_data['nama_pengguna'])){
             return 0;
@@ -97,18 +118,19 @@ class User_model {
             $query = "INSERT INTO " . $this->table . " VALUES('',:nama_pengguna,:kata_sandi,:alamat_email,'')";
             $this->db->query($query);
 
+            $nama_pengguna = strtolower(stripslashes(htmlspecialchars($new_data['nama_pengguna'])));
             $hashed_sandi = password_hash(htmlspecialchars($new_data['kata_sandi']),PASSWORD_DEFAULT);
         
-            $this->db->bind('nama_pengguna',strtolower(htmlspecialchars($new_data['nama_pengguna'])));
+            $this->db->bind('nama_pengguna',$nama_pengguna);
             $this->db->bind('kata_sandi',$hashed_sandi);
             $this->db->bind('alamat_email',htmlspecialchars($new_data['alamat_email']));
-            
             $this->db->exec();
     
             return $this->db->rowCount();
         }
     }
-    public function ubahInformasiAkun($new_data,$new_file){
+    public function ubahInformasiAkun($new_data,$new_file)
+    {
         //cek kosong
         if ($new_file['kode_eror'] == 0){
             $informasi_gambar = $this->pindahkanGambar($new_file,$new_data['gambar_default']);
@@ -129,11 +151,10 @@ class User_model {
         $this->db->bind('alamat_email',htmlspecialchars($new_data['alamat_email']));
         $this->db->bind('gambar',$informasi_gambar);
         $this->db->bind('id_pengguna',$_SESSION['id_pengguna']);
-
         $this->db->exec();
         $rowsAffected = $this->db->rowCount();
 
-        //set session var
+        //set session variable
         if ($rowsAffected > 0){
             $_SESSION['nama_pengguna'] = $new_data['nama_pengguna'];
             $_SESSION['alamat_email'] = $new_data['alamat_email'];
@@ -141,38 +162,47 @@ class User_model {
                 $_SESSION['gambar'] = $informasi_gambar;
             }
         }
+
         return $rowsAffected;
     }    
-    public function hapusAkun($id_pengguna){
+    public function hapusAkun($id_pengguna)
+    {
         $query = "DELETE FROM " . $this->table . " WHERE id_pengguna=:id_pengguna";
-        $this->db->query($query);
-        $this->db->bind('id_pengguna',htmlspecialchars($id_pengguna));
 
+        $this->db->query($query);
+        $this->db->bind('id_pengguna',$id_pengguna);
         $this->db->exec();
+
         return $this->db->rowCount();
     }
 
-    public function ubahKataSandi($data){
+    public function ubahKataSandi($data)
+    {
         $db_data = $this->getBerdasarkan('id_pengguna',$_SESSION['id_pengguna']);
         $kata_sandi_baru = password_hash($data['kata_sandi_baru'],PASSWORD_DEFAULT);
+
         if (password_verify($data['kata_sandi_lama'],$db_data['kata_sandi'])){
             $query = "UPDATE " . $this->table . " SET kata_sandi=:kata_sandi WHERE id_pengguna=:id_pengguna";
+
             $this->db->query($query);
             $this->db->bind('kata_sandi',$kata_sandi_baru);
             $this->db->bind('id_pengguna',$_SESSION['id_pengguna']);
-    
             $this->db->exec();
+
             return $this->db->rowCount();
         } else {
             return 0;
         }
     }
 
-    public function lupaKataSandi($data){
+    public function lupaKataSandi($data)
+    {
         $db_data = $this->getBerdasarkan('nama_pengguna',strtolower($data['nama_pengguna']));
+
         if($db_data == false){
             return 0;
         } else {
+            //prepare
             $kata_sandi_baru =  $this->ubahLupaSandi($db_data['id_pengguna']);
             $nama_penerima = strtoupper($db_data['nama_pengguna']);
             $email_penerima = $db_data['alamat_email'];
@@ -181,11 +211,11 @@ class User_model {
             . PHP_EOL . "Jangan lupa dengan kata sandi-mu!"
             . PHP_EOL . PHP_EOL . "Salam hangat, sobat Pintar.";
 
-            //create instance
+            //membuat instance
             $mail = new PHPMailer(true);
 
             //server settings
-            // $mail->SMTPDebug = 2;
+            // $mail->SMTPDebug = 2; //debugging
             $mail->isSMTP();
             $mail->Host = 'smtp.gmail.com'; //web address
             $mail->SMTPAuth = true;
@@ -194,16 +224,15 @@ class User_model {
             $mail->SMTPSecure = 'tls';
             $mail->Port = 587; //web port
 
-            //prepare
+            //set pengiriman
             $mail->setFrom('budakpintar5@gmail.com','Admin Budak Pintar');
             $mail->addAddress($email_penerima,'Bapak ' . $nama_penerima);
-
-            //content
             $mail->isHTML(true);
             $mail->Subject = $subjek;
             $mail->Body = $pesan;
-            $report =$mail->send();
 
+            //pengiriman
+            $report =$mail->send();
             if($report){
                 // echo '<script> window.replace.href="http://localhost/budakpintar/public/";</script>';
                 return 1;
