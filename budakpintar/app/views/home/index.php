@@ -59,7 +59,9 @@ if ($gambar != ''){
         </div>
         <div class="row">
           <div class="col-8 col-md-7">
-            <button type="button" class="btn btn-outline-primary btn-lg w-75">Buat Kuis</button>
+            <form action="<?=BASEURL?>/create" method="post">
+              <button type="submit" class="btn btn-outline-primary btn-lg w-75">Buat Kuis</button>
+          </form>
           </div>
         </div>
       </div>

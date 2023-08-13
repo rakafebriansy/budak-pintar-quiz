@@ -4,9 +4,10 @@ class Home extends Controller{
     public function index() {
         if (!isset($_SESSION['login'])) header('Location: ' . BASEURL . '/landing');
         $data['judul'] = 'HOME';
-        $this->view('templates/home-header',$data);
-        $this->view('home/index',$_POST);
-        $this->view('templates/home-footer');
+        $data['folder'] = 'home';
+        $this->view('templates/header',$data);
+        $this->view('home/index');
+        $this->view('templates/footer',$data);
     }
     public function editProfile(){
         if(strtolower($_POST['nama_pengguna']) == $_SESSION['nama_pengguna'] && $_POST['alamat_email'] == $_SESSION['alamat_email'] && $_FILES['gambar']['error'] == 4){

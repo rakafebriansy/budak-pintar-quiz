@@ -5,9 +5,10 @@ class Landing extends Controller {
         // var_dump($_SESSION);die;
         if (isset($_SESSION['login'])) header('Location: ' . BASEURL . '/home');
         $data['judul'] = 'LANDING PAGE';
-        $this->view('templates/landing-header',$data);
-        $this->view('landing/index',$data);
-        $this->view('templates/landing-footer');
+        $data['folder'] = 'landing';
+        $this->view('templates/header',$data);
+        $this->view('landing/index');
+        $this->view('templates/footer',$data);
     }
     public function register(){
         $error_code = $this->model('User_model')->daftarAkun($_POST);

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 12 Agu 2023 pada 09.17
--- Versi server: 10.4.27-MariaDB
--- Versi PHP: 8.2.0
+-- Generation Time: Aug 13, 2023 at 04:14 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `detail_kuis`
+-- Table structure for table `detail_kuis`
 --
 
 CREATE TABLE `detail_kuis` (
@@ -35,7 +35,7 @@ CREATE TABLE `detail_kuis` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `genre`
+-- Table structure for table `genre`
 --
 
 CREATE TABLE `genre` (
@@ -46,7 +46,7 @@ CREATE TABLE `genre` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kuis`
+-- Table structure for table `kuis`
 --
 
 CREATE TABLE `kuis` (
@@ -59,7 +59,7 @@ CREATE TABLE `kuis` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kumpulan_soal`
+-- Table structure for table `kumpulan_soal`
 --
 
 CREATE TABLE `kumpulan_soal` (
@@ -76,7 +76,7 @@ CREATE TABLE `kumpulan_soal` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pengguna`
+-- Table structure for table `pengguna`
 --
 
 CREATE TABLE `pengguna` (
@@ -87,32 +87,22 @@ CREATE TABLE `pengguna` (
   `gambar` varchar(13) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data untuk tabel `pengguna`
---
-
-INSERT INTO `pengguna` (`id_pengguna`, `nama_pengguna`, `kata_sandi`, `alamat_email`, `gambar`) VALUES
-(1, 'arief', '$2y$10$YjVTggeSgaqgT0tYGCaKReVdJ3hTSTAIOvPh341UGEYhk/PjuhKMK', 'arief@gmail.com', '');
 
 --
--- Indexes for dumped tables
---
-
---
--- Indeks untuk tabel `detail_kuis`
+-- Indexes for table `detail_kuis`
 --
 ALTER TABLE `detail_kuis`
   ADD PRIMARY KEY (`kuis_id_kuis`),
   ADD KEY `detail_kuis_kumpulan_soal_fk` (`kumpulan_soal_id_kumpulan_soal`);
 
 --
--- Indeks untuk tabel `genre`
+-- Indexes for table `genre`
 --
 ALTER TABLE `genre`
   ADD PRIMARY KEY (`id_genre`);
 
 --
--- Indeks untuk tabel `kuis`
+-- Indexes for table `kuis`
 --
 ALTER TABLE `kuis`
   ADD PRIMARY KEY (`id_kuis`),
@@ -120,59 +110,59 @@ ALTER TABLE `kuis`
   ADD KEY `kuis_pengguna_fk` (`pengguna_id_pengguna`);
 
 --
--- Indeks untuk tabel `kumpulan_soal`
+-- Indexes for table `kumpulan_soal`
 --
 ALTER TABLE `kumpulan_soal`
   ADD PRIMARY KEY (`id_kumpulan_soal`);
 
 --
--- Indeks untuk tabel `pengguna`
+-- Indexes for table `pengguna`
 --
 ALTER TABLE `pengguna`
   ADD PRIMARY KEY (`id_pengguna`),
   ADD UNIQUE KEY `nama_pengguna` (`nama_pengguna`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `genre`
+-- AUTO_INCREMENT for table `genre`
 --
 ALTER TABLE `genre`
   MODIFY `id_genre` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `kuis`
+-- AUTO_INCREMENT for table `kuis`
 --
 ALTER TABLE `kuis`
   MODIFY `id_kuis` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `kumpulan_soal`
+-- AUTO_INCREMENT for table `kumpulan_soal`
 --
 ALTER TABLE `kumpulan_soal`
   MODIFY `id_kumpulan_soal` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `pengguna`
+-- AUTO_INCREMENT for table `pengguna`
 --
 ALTER TABLE `pengguna`
-  MODIFY `id_pengguna` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_pengguna` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `detail_kuis`
+-- Constraints for table `detail_kuis`
 --
 ALTER TABLE `detail_kuis`
   ADD CONSTRAINT `detail_kuis_kuis_fk` FOREIGN KEY (`kuis_id_kuis`) REFERENCES `kuis` (`id_kuis`),
   ADD CONSTRAINT `detail_kuis_kumpulan_soal_fk` FOREIGN KEY (`kumpulan_soal_id_kumpulan_soal`) REFERENCES `kumpulan_soal` (`id_kumpulan_soal`);
 
 --
--- Ketidakleluasaan untuk tabel `kuis`
+-- Constraints for table `kuis`
 --
 ALTER TABLE `kuis`
   ADD CONSTRAINT `kuis_genre_fk` FOREIGN KEY (`genre_id_genre`) REFERENCES `genre` (`id_genre`),

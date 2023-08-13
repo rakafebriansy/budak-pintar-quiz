@@ -23,7 +23,7 @@
     <!-- Right -->
 </footer>
 <script src="<?=BASEURL;?>/js/bootstrap/bootstrap.bundle.min.js"></script>
-<script src="<?=BASEURL;?>/js/home/script.js"></script>
+<script src="<?=BASEURL;?>/js/<?= $data['folder'];?>/script.js"></script>
 </body>
 
 </html>
