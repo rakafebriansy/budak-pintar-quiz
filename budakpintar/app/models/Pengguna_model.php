@@ -2,7 +2,7 @@
 
 use PHPMailer\PHPMailer\PHPMailer;
 
-class User_model {
+class Pengguna_model {
     private $table = 'pengguna';
     private $db;
     public function __construct(){

@@ -30,9 +30,9 @@ if ($gambar != ''){
       <a id="dropdownMenuButton1" name="dropdownMenuButton1" class="btn ms-1 fs-5 dropdown-toggle"
       data-bs-toggle="dropdown" aria-expanded="false"><?=ucfirst($nama_pengguna);?></a>
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-        <li><a class="dropdown-item" href="#" id="tombol-profil" name="tombol-profil" data-bs-toggle="modal" data-bs-target="#formModal1">Ubah Profil</a></li>
-        <li><a class="dropdown-item" href="#" id="tombol-ubah-sandi" name="tombol-ubah-sandi" data-bs-toggle="modal" data-bs-target="#formModal2">Ubah Sandi</a></li>
-        <li><a class="dropdown-item" href="#" id="tombol-keluar" name="tombol-keluar" data-bs-toggle="modal" data-bs-target="#formModal2">Keluar</a></li>
+        <li><a class="dropdown-item" id="tombol-profil" name="tombol-profil" data-bs-toggle="modal" data-bs-target="#formModal1">Ubah Profil</a></li>
+        <li><a class="dropdown-item" id="tombol-ubah-sandi" name="tombol-ubah-sandi" data-bs-toggle="modal" data-bs-target="#formModal2">Ubah Sandi</a></li>
+        <li><a class="dropdown-item" id="tombol-keluar" name="tombol-keluar" data-bs-toggle="modal" data-bs-target="#formModal2">Keluar</a></li>
       </ul>
     </div>
   </nav>
@@ -59,9 +59,7 @@ if ($gambar != ''){
         </div>
         <div class="row">
           <div class="col-8 col-md-7">
-            <form action="<?=BASEURL?>/create" method="post">
-              <button type="submit" class="btn btn-outline-primary btn-lg w-75">Buat Kuis</button>
-          </form>
+            <button id="tombol-buat-kuis" type="button" class="btn btn-outline-primary btn-lg w-75" data-bs-toggle="modal" data-bs-target="#formModal2">Buat Kuis</button>
           </div>
         </div>
       </div>

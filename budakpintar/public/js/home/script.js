@@ -51,4 +51,21 @@ if (e.target.id == 'tombol-hapus-akun') {
     <button type="submit" class="btn btn-danger px-3">Keluar</button>
     `;
   }
+  if (e.target.id == 'tombol-buat-kuis'){
+    MODAL_TITLE.innerText = 'Buat Kuis';
+    MODAL_FORM.setAttribute('action','http://localhost/budakpintar/public/create');
+    if (MODAL_FOOTER.classList.contains('justify-content-between')){
+      MODAL_FOOTER.classList.replace('justify-content-between','justify-content-center');
+    }
+    MODAL_BODY.innerHTML = `
+    <input type="text" class="form-control form-control-lg mt-2" name="nama_kuis"
+    placeholder="Masukkan nama kuis anda" required/>
+    <input type="text" class="form-control form-control-lg mt-2" name="genre"
+    placeholder="Masukkan genre kuis anda" required/>
+    `;
+    MODAL_FOOTER.innerHTML = `
+    <button type="submit" class="btn btn-primary px-3">Buat</button>
+    `;
+  }
+
 });

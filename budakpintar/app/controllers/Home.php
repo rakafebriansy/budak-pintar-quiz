@@ -15,7 +15,7 @@ class Home extends Controller{
             exit;
         } else{
             $informasi_gambar = $_FILES['gambar'];
-            $error_code  = $this->model('User_model')->ubahInformasiAkun($_POST,$informasi_gambar);
+            $error_code  = $this->model('Pengguna_model')->ubahInformasiAkun($_POST,$informasi_gambar);
 
             if($error_code>0){
                 Flasher::setFlash('Akun anda','Berhasil','diperbarui','success');
@@ -33,7 +33,7 @@ class Home extends Controller{
         }
     }
     public function deleteAccount(){
-        if($this->model('User_model')->hapusAkun($_SESSION['id_pengguna'])>0){
+        if($this->model('Pengguna_model')->hapusAkun($_SESSION['id_pengguna'])>0){
             Flasher::setFlash('Akun anda','Berhasil','dihapus','success');
             session_unset();
             header('Location: ' . BASEURL . '/landing');
@@ -45,7 +45,7 @@ class Home extends Controller{
         }
     }
     public function changePassword(){
-        $error_code = $this->model('User_model')->ubahKataSandi($_POST);
+        $error_code = $this->model('Pengguna_model')->ubahKataSandi($_POST);
         if($error_code>0){
             Flasher::setFlash('Kata sandi anda','Berhasil','diperbarui','success');
             header('Location: ' . BASEURL . '/home');

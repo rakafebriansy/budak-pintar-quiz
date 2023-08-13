@@ -1,3 +1,8 @@
+<?php 
+$nama_kuis = $data['nama_kuis'];
+
+?>
+
 <form action="<?=BASEURL?>/create/createQuiz" method="post">
   <div class="container ">
     <nav class="navbar navbar-light fixed-top bg-white">
@@ -10,10 +15,11 @@
               class="d-inline-block align-text-center">
           </a>
           <!-- SEND -->
+          
           <div class="buttons">
-            <button type="submit" name="tombol-keluar" class="btn btn-danger me-2" data-bs-toggle="modal"
+            <button type="submit" name="tombol-batal" class="btn btn-danger me-2" data-bs-toggle="modal"
               data-bs-target="#formModal1"
-              style="padding-right: 1rem !important; padding-left: 1rem !important;">Keluar</button>
+              style="padding-right: 1rem !important; padding-left: 1rem !important;">Batal</button>
             <button type="submit" name="tombol-kirim" class="btn btn-outline-primary" data-bs-toggle="modal"
               data-bs-target="#formModal1"
               style="padding-right: 1rem !important; padding-left: 1rem !important;">Kirim</button>
@@ -22,8 +28,14 @@
       </div>
     </nav>
     <br><br><br>
+    <div class="text-center">
+      <input type="hidden" name="nama_kuis" value="<?=$nama_kuis?>">
+      <input type="hidden" name="genre" value="<?=$data['genre']?>">
+      <h3 class="text-info"><?=$nama_kuis?></h3>
+    </div>
     <div id="after-body" class="container d-flex justify-content-center">
       <div id="template-body" class="col-md-6">
+        <hr>
         <!-- TAMBAH SOAL -->
 
         <!-- TAMBAH SOAL -->

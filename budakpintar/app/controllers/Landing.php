@@ -11,7 +11,7 @@ class Landing extends Controller {
         $this->view('templates/footer',$data);
     }
     public function register(){
-        $error_code = $this->model('User_model')->daftarAkun($_POST);
+        $error_code = $this->model('Pengguna_model')->daftarAkun($_POST);
         if($error_code>0){
             Flasher::setFlash('Anda','Berhasil','membuat akun','primary');
             header('Location: ' . BASEURL . '/landing');
@@ -27,7 +27,7 @@ class Landing extends Controller {
         }
     }
     public function login(){
-        $error_code = $this->model('User_model')->masukAkun($_POST);
+        $error_code = $this->model('Pengguna_model')->masukAkun($_POST);
         if($error_code>0){
             $_SESSION['login'] = true;
             Flasher::setFlash('Anda','Berhasil','masuk','primary');
@@ -44,7 +44,7 @@ class Landing extends Controller {
         }
     }
     public function forgotPassword(){
-        if($this->model('User_model')->lupaKataSandi($_POST)>0){
+        if($this->model('Pengguna_model')->lupaKataSandi($_POST)>0){
             Flasher::setFlash('Anda','Akan segera.','menerima email','primary');
             // header('Location: ' . BASEURL . '/landing');
             echo '<script> window.location.href="http://localhost/budakpintar/public/";</script>';
