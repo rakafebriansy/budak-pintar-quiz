@@ -11,14 +11,13 @@ TAMBAHSOAL_SINGLE.addEventListener('click',function(){
     <div class="mb-3">
       <label for="pertanyaan" class="form-label">Pertanyaan</label>
       <input type="hidden" name="soal[${counter}][tipe_soal]" value="single">
-      <textarea rows="3" type="text" class="form-control" name="soal[${counter}][pertanyaan]"></textarea>
+      <textarea rows="3" type="text" class="form-control" name="soal[${counter}][pertanyaan]" required></textarea>
     </div>
     <div class="container mb-4">
-      <label for="opsi-a" class="form-label">Opsi Jawaban</label>
-      <input type="text" class="form-control mb-2" name="soal[${counter}][opsi-a]" placeholder="Opsi A">
-      <input type="text" class="form-control mb-2" name="soal[${counter}][opsi-b]" placeholder="Opsi B">
-      <input type="text" class="form-control mb-2" name="soal[${counter}][opsi-c]" placeholder="Opsi C">
-      <input type="text" class="form-control mb-2" name="soal[${counter}][opsi-d]" placeholder="Opsi D">
+      <input type="text" class="form-control mb-2" name="soal[${counter}][opsi_a]" placeholder="Opsi A" required>
+      <input type="text" class="form-control mb-2" name="soal[${counter}][opsi_b]" placeholder="Opsi B" required>
+      <input type="text" class="form-control mb-2" name="soal[${counter}][opsi_c]" placeholder="Opsi C" required>
+      <input type="text" class="form-control mb-2" name="soal[${counter}][opsi_d]" placeholder="Opsi D" required>
     </div>
     <div class="container mb-2">
 
@@ -50,7 +49,7 @@ TAMBAHSOAL_SINGLE.addEventListener('click',function(){
             </div>
             <div class="form-check d-inline-block">
               <input class="form-check-input" type="radio" id="jawabanD${counter}"
-                name="soal[${counter}][jawaban]" value="d">
+                name="soal[${counter}][jawaban]" value="d"> 
               <label class="form-check-label" for="jawabanD${counter}">
                 D
               </label>
@@ -71,17 +70,16 @@ TAMBAHSOAL_MULTIPLE.addEventListener('click',function(){
     EL.classList = 'row justify-content-center';
     let template = `          
     <h5 class="text-center">Soal ${counter+1}</h5>
-    <input type="hidden" name="soal[${counter}][tipe_soal]" value="single">
+    <input type="hidden" name="soal[${counter}][tipe_soal]" value="multiple">
     <div class="mb-3">
       <label for="pertanyaan" class="form-label">Pertanyaan</label>
-      <textarea rows="3" type="text" class="form-control" name="soal[${counter}][pertanyaan]"></textarea>
+      <textarea rows="3" type="text" class="form-control" name="soal[${counter}][pertanyaan]" required></textarea>
     </div>
     <div class="container mb-4">
-      <label for="opsi-a" class="form-label">Opsi Jawaban</label>
-      <input type="text" class="form-control mb-2" name="soal[${counter}][opsi-a]" placeholder="Opsi A">
-      <input type="text" class="form-control mb-2" name="soal[${counter}][opsi-b]" placeholder="Opsi B">
-      <input type="text" class="form-control mb-2" name="soal[${counter}][opsi-c]" placeholder="Opsi C">
-      <input type="text" class="form-control mb-2" name="soal[${counter}][opsi-d]" placeholder="Opsi D">
+      <input type="text" class="form-control mb-2" name="soal[${counter}][opsi_a]" placeholder="Opsi A" required>
+      <input type="text" class="form-control mb-2" name="soal[${counter}][opsi_b]" placeholder="Opsi B" required>
+      <input type="text" class="form-control mb-2" name="soal[${counter}][opsi_c]" placeholder="Opsi C" required>
+      <input type="text" class="form-control mb-2" name="soal[${counter}][opsi_d]" placeholder="Opsi D" required>
     </div>
     <div class="container mb-2">
 
@@ -92,28 +90,28 @@ TAMBAHSOAL_MULTIPLE.addEventListener('click',function(){
           <div class="d-inline-block">
             <div class="form-check d-inline-block">
               <input class="form-check-input" type="checkbox" id="jawabanA${counter}"
-                name="soal[${counter}][jawaban-a]">
+                name="soal[${counter}][jawaban_a]">
               <label class="form-check-label" for="jawabanA${counter}">
                 A
               </label>
             </div>
             <div class="form-check d-inline-block">
               <input class="form-check-input" type="checkbox" id="jawabanB${counter}"
-                name="soal[${counter}][jawaban-b]">
+                name="soal[${counter}][jawaban_b]">
               <label class="form-check-label" for="jawabanB${counter}">
                 B
               </label>
             </div>
             <div class="form-check d-inline-block">
               <input class="form-check-input" type="checkbox" id="jawabanC${counter}"
-                name="soal[${counter}][jawaban-c]">
+                name="soal[${counter}][jawaban_c]">
               <label class="form-check-label" for="jawabanC${counter}">
                 C
               </label>
             </div>
             <div class="form-check d-inline-block">
               <input class="form-check-input" type="checkbox" id="jawabanD${counter}"
-                name="soal[${counter}][jawaban-d]">
+                name="soal[${counter}][jawaban_d]">
               <label class="form-check-label" for="jawabanD${counter}">
                 D
               </label>
