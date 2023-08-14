@@ -60,7 +60,7 @@ if (e.target.id == 'tombol-hapus-akun') {
     MODAL_BODY.innerHTML = `
     <input type="text" class="form-control form-control-lg mt-2" name="nama_kuis"
     placeholder="Masukkan nama kuis anda" required/>
-    <input type="text" class="form-control form-control-lg mt-2" name="genre"
+    <input type="text" class="form-control form-control-lg mt-2" name="nama_genre"
     placeholder="Masukkan genre kuis anda" required/>
     `;
     MODAL_FOOTER.innerHTML = `

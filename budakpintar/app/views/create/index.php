@@ -30,7 +30,7 @@ $nama_kuis = $data['nama_kuis'];
     <br><br><br>
     <div class="text-center">
       <input type="hidden" name="nama_kuis" value="<?=$nama_kuis?>">
-      <input type="hidden" name="genre" value="<?=$data['genre']?>">
+      <input type="hidden" name="nama_genre" value="<?=$data['nama_genre']?>">
       <h3 class="text-info"><?=$nama_kuis?></h3>
     </div>
     <div id="after-body" class="container d-flex justify-content-center">

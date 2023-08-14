@@ -28,8 +28,8 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `detail_kuis` (
-  `kuis_id_kuis` int(11) NOT NULL,
-  `kumpulan_soal_id_kumpulan_soal` int(11) NOT NULL
+  `kumpulan_soal_id_kumpulan_soal` int(11) NOT NULL,
+  `kuis_id_kuis` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -92,8 +92,8 @@ CREATE TABLE `pengguna` (
 -- Indexes for table `detail_kuis`
 --
 ALTER TABLE `detail_kuis`
-  ADD PRIMARY KEY (`kuis_id_kuis`),
-  ADD KEY `detail_kuis_kumpulan_soal_fk` (`kumpulan_soal_id_kumpulan_soal`);
+  ADD PRIMARY KEY (`kumpulan_soal_id_kumpulan_soal`),
+  ADD KEY `detail_kuis_kuis_fk` (`kuis_id_kuis`);
 
 --
 -- Indexes for table `genre`
@@ -121,10 +121,6 @@ ALTER TABLE `kumpulan_soal`
 ALTER TABLE `pengguna`
   ADD PRIMARY KEY (`id_pengguna`),
   ADD UNIQUE KEY `nama_pengguna` (`nama_pengguna`);
-
---
--- AUTO_INCREMENT for dumped tables
---
 
 --
 -- AUTO_INCREMENT for table `genre`
@@ -158,8 +154,8 @@ ALTER TABLE `pengguna`
 -- Constraints for table `detail_kuis`
 --
 ALTER TABLE `detail_kuis`
-  ADD CONSTRAINT `detail_kuis_kuis_fk` FOREIGN KEY (`kuis_id_kuis`) REFERENCES `kuis` (`id_kuis`),
-  ADD CONSTRAINT `detail_kuis_kumpulan_soal_fk` FOREIGN KEY (`kumpulan_soal_id_kumpulan_soal`) REFERENCES `kumpulan_soal` (`id_kumpulan_soal`);
+  ADD CONSTRAINT `detail_kuis_kumpulan_soal_fk` FOREIGN KEY (`kumpulan_soal_id_kumpulan_soal`) REFERENCES `kumpulan_soal` (`id_kumpulan_soal`),
+  ADD CONSTRAINT `detail_kuis_kuis_fk` FOREIGN KEY (`kuis_id_kuis`) REFERENCES `kuis` (`id_kuis`);
 
 --
 -- Constraints for table `kuis`
