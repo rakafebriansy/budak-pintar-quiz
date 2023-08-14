@@ -7,7 +7,7 @@ $nama_kuis = $data['nama_kuis'];
   <div class="container ">
     <nav class="navbar navbar-light fixed-top bg-white">
       <div class="container d-flex justify-content-center px-4">
-        <div class="col-md-6 d-flex justify-content-between align-items-center">
+        <div class="col-md-8 d-flex justify-content-between align-items-center">
           <a class="navbar-brand" href="#">
             <img src="<?=BASEURL?>/img/logo.png" alt="" height="40"
               class="d-inline-block align-text-center">
@@ -17,7 +17,7 @@ $nama_kuis = $data['nama_kuis'];
           <!-- SEND -->
           
           <div class="buttons">
-            <button type="submit" name="tombol-kirim" class="btn btn-outline-primary"
+            <button type="submit" name="tombol-kirim" class="btn btn-primary"
               style="padding-right: 1rem !important; padding-left: 1rem !important;">Kirim</button>
           </div>
         </div>
@@ -30,7 +30,7 @@ $nama_kuis = $data['nama_kuis'];
       <h3 class="text-info"><?=$nama_kuis?></h3>
     </div>
     <div id="after-body" class="container d-flex justify-content-center">
-      <div id="template-body" class="col-md-6">
+      <div id="template-body" class="col-md-8">
         <hr>
         <!-- TAMBAH SOAL -->
 
@@ -38,9 +38,10 @@ $nama_kuis = $data['nama_kuis'];
       </div>
     </div>
     <div class="container d-flex justify-content-center">
-      <div class="col-md-6 d-flex justify-content-end">
+      <div class="col-md-8 d-flex justify-content-between align-items-start">
+        <button type="button" id="tombol-hapus" class="btn btn-outline-danger btn-sm">Hapus</button>
         <div class="dropdown mb-5">
-          <button class="btn btn-primary dropdown-toggle" type="button" id="tambah" data-bs-toggle="dropdown"
+          <button class="btn btn-outline-primary dropdown-toggle  btn-sm" type="button" id="tambah" data-bs-toggle="dropdown"
             aria-expanded="false">
             Tambah Soal
           </button>
