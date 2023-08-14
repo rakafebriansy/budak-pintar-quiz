@@ -12,6 +12,11 @@ class Create extends Controller{
         $this->view('templates/footer',$data);
     }
     public function createQuiz(){
+        if(!isset($_POST['soal'])) {
+            Flasher::setFlash('Kuis','Tidak dapat dibuat','(tidak memuat soal)','danger');
+            header('Location: ' . BASEURL . '/create');
+            exit;
+        }
         $db_genre = $this->model('Genre_model')->getGenreBy('nama_genre',$_POST['nama_genre']);
         $id_kuis = $this->model('Kuis_model')->tambahKuis($_POST['nama_kuis'],$db_genre['id_genre']);
         $ids_kumpulan_soal = $this->model('Kumpulansoal_model')->tambahSoal($_POST['soal']);
