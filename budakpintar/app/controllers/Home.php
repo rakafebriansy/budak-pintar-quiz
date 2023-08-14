@@ -5,9 +5,10 @@ class Home extends Controller{
         if (!isset($_SESSION['login'])) header('Location: ' . BASEURL . '/landing');
         $data['judul'] = 'HOME';
         $data['folder'] = 'home';
-        $db_genre = $this->model('Genre_model')->getGenreAll();
+        $data['genre'] = $this->model('Genre_model')->getGenreAll();
+        $data['kuis'] = $this->model('Kuis_model')->getKuisAll();
         $this->view('templates/header',$data);
-        $this->view('home/index',$db_genre);
+        $this->view('home/index',$data);
         $this->view('templates/footer',$data);
     }
     public function editProfile(){

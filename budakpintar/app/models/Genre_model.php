@@ -22,6 +22,9 @@ class Genre_model {
 
         return $this->db->single();
     }
+    public function gantiIdNama (){
+        
+    }
 }
 
 ?>

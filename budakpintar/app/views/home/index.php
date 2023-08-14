@@ -12,6 +12,9 @@ if ($gambar != ''){
   $tampilan_gambar = $gambar;
 }
 
+$db_genre = $data['genre'];
+$db_kuis = $data['kuis'];
+
 
 ?>
 
@@ -71,10 +74,10 @@ if ($gambar != ''){
   </section>
   <!-- HERO END -->
 
-  <br><div id="category-linked"></div><br><br>
+  <br><div id="category-linked"></div><br>
 
   <!-- SEARCH START -->
-  <section id="search" class="mt-5 mb-5">
+  <section id="search" class="mt-5 mb-3">
     <h2 class="">Temukan kuis yang kamu suka!</h2>
     <form class="d-flex mt-4">
       <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -83,48 +86,32 @@ if ($gambar != ''){
   </section>
   <!-- SEARCH END -->
 
-  <br><br>
-
   <!-- CATEGORY START -->
   <section id="category">
     <div class="mathematics">
       <div class="row ">
+        <?php foreach($db_kuis as $kuis){
+          $id_genre = $kuis['genre_id_genre'];
+          $nama_kuis;
+          foreach($db_genre as $genre){
+            if($genre['id_genre'] == $id_genre){
+              $nama_kuis = $genre['nama_genre'];
+            }
+          }
+        ?>
         <div class="col-md-4 pt-3">
           <div class="card">
             <div class="card-header">
-              Featured
+              <?=ucfirst($nama_kuis);?>
             </div>
             <div class="card-body">
-              <h5 class="card-title">Special title treatment</h5>
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
+              <h5 class="card-title"><?=$kuis['nama_kuis'];?></h5>
+              <p class="card-text"><?=$kuis['deksripsi_kuis'];?></p>
+              <a href="#" class="btn btn-primary">Mulai</a>
             </div>
           </div>
         </div>
-        <div class="col-md-4 pt-3">
-          <div class="card">
-            <div class="card-header">
-              Featured
-            </div>
-            <div class="card-body">
-              <h5 class="card-title">Special title treatment</h5>
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 pt-3">
-          <div class="card">
-            <div class="card-header">
-              Featured
-            </div>
-            <div class="card-body">
-              <h5 class="card-title">Special title treatment</h5>
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-        </div>
+        <?php } ?>
       </div>
     </div>
   </section>
@@ -186,13 +173,13 @@ if ($gambar != ''){
             <input type="text" class="form-control form-control-lg mt-2" name="deskripsi_kuis"
             placeholder="Masukkan deskripsi kuis anda" maxlength="150" required/>
             <div class="dropdown mb-2 mt-2">
-              <input id="nama-genre" type="hidden" name="nama_genre" value="<?=$data[0]['nama_genre']?>">
+              <input id="nama-genre" type="hidden" name="nama_genre" value="<?=$db_genre[0]['nama_genre']?>">
               <button class="btn btn-lg btn-light dropdown-toggle" type="button" id="pilih-genre" data-bs-toggle="dropdown"
                 aria-expanded="false">
-                  <?= ucfirst($data[0]['nama_genre']);?>
+                  <?= ucfirst($db_genre[0]['nama_genre']);?>
               </button>
               <ul class="dropdown-menu" aria-labelledby="pilih-genre">
-                <?php foreach($data as $genre){ ?>
+                <?php foreach($db_genre as $genre){ ?>
                 <li><a class="dropdown-item nama-nama-genre"><?=ucfirst($genre['nama_genre'])?></a></li>
                 <?php } ?>
               </ul>
