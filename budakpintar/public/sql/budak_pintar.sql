@@ -53,7 +53,8 @@ CREATE TABLE `kuis` (
   `id_kuis` int(11) NOT NULL,
   `pengguna_id_pengguna` int(11) NOT NULL,
   `genre_id_genre` int(11) NOT NULL,
-  `nama_kuis` varchar(60) NOT NULL
+  `nama_kuis` varchar(60) NOT NULL,
+  `deksripsi_kuis` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------

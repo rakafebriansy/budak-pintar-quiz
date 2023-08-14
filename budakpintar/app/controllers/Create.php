@@ -7,6 +7,7 @@ class Create extends Controller{
         $data['folder'] = 'create';
         $data['nama_kuis'] = $_POST['nama_kuis'];
         $data['nama_genre'] = strtolower($_POST['nama_genre']);
+        $data['deskripsi_kuis'] = $_POST['deskripsi_kuis'];
         $this->view('templates/header',$data);
         $this->view('create/index',$data);
         $this->view('templates/footer',$data);
@@ -18,7 +19,7 @@ class Create extends Controller{
             exit;
         }
         $db_genre = $this->model('Genre_model')->getGenreBy('nama_genre',$_POST['nama_genre']);
-        $id_kuis = $this->model('Kuis_model')->tambahKuis($_POST['nama_kuis'],$db_genre['id_genre']);
+        $id_kuis = $this->model('Kuis_model')->tambahKuis($_POST['nama_kuis'],$_POST['deskripsi_kuis'],$db_genre['id_genre']);
         $ids_kumpulan_soal = $this->model('Kumpulansoal_model')->tambahSoal($_POST['soal']);
         if ($this->model('Detailkuis_model')->tambahDetailKuis($id_kuis,$ids_kumpulan_soal)>0){
             Flasher::setFlash('Kuis anda telah','Berhasil','dibuat','primary');

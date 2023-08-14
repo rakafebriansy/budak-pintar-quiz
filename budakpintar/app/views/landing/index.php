@@ -10,8 +10,8 @@
       </a>
     <!-- LOGIN -->
       <div class="d-flex justify-content-start">
-        <button type="button" id="tombol-daftar" class="btn btn-outline-primary me-2 d-inline-block btn-sm" data-bs-toggle="modal" data-bs-target="#formModal1">Daftar</button>
-        <button type="button" id="tombol-masuk" class="btn btn-primary text-white me-2 d-inline-block btn-sm" data-bs-toggle="modal" data-bs-target="#formModal1">Masuk</button>
+        <button type="button" id="tombol-daftar" class="btn btn-outline-primary me-2 d-inline-block" data-bs-toggle="modal" data-bs-target="#formModal1">Daftar</button>
+        <button type="button" id="tombol-masuk" class="btn btn-primary text-white me-2 d-inline-block" data-bs-toggle="modal" data-bs-target="#formModal1">Masuk</button>
       </div>
     </div>
   </nav>

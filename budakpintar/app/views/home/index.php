@@ -88,35 +88,40 @@ if ($gambar != ''){
   <!-- CATEGORY START -->
   <section id="category">
     <div class="mathematics">
-      <h3 class="fs-4">Matematika</h3>
       <div class="row ">
         <div class="col-md-4 pt-3">
           <div class="card">
-            <img src="<?=BASEURL;?>/img/probabilitas.jpeg" class="card-img-top" height="200" alt="...">
+            <div class="card-header">
+              Featured
+            </div>
             <div class="card-body">
-              <h5 class="card-title">Judul Kuis</h5>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, necessitatibus.</p>
-              <a href="#" class="btn btn-primary">Mulai</a>
+              <h5 class="card-title">Special title treatment</h5>
+              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
             </div>
           </div>
         </div>
         <div class="col-md-4 pt-3">
           <div class="card">
-            <img src="<?=BASEURL;?>/img/statistika.jpeg" class="card-img-top" height="200" alt="...">
+            <div class="card-header">
+              Featured
+            </div>
             <div class="card-body">
-              <h5 class="card-title">Judul Kuis</h5>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, necessitatibus.</p>
-              <a href="#" class="btn btn-primary">Mulai</a>
+              <h5 class="card-title">Special title treatment</h5>
+              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
             </div>
           </div>
         </div>
         <div class="col-md-4 pt-3">
           <div class="card">
-            <img src="<?=BASEURL;?>/img/spldv.jpg" class="card-img-top" height="200" alt="...">
+            <div class="card-header">
+              Featured
+            </div>
             <div class="card-body">
-              <h5 class="card-title">Judul Kuis</h5>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, necessitatibus.</p>
-              <a href="#" class="btn btn-primary">Mulai</a>
+              <h5 class="card-title">Special title treatment</h5>
+              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
             </div>
           </div>
         </div>
@@ -177,12 +182,14 @@ if ($gambar != ''){
           <div class="modal-body fs-4">
             <input type="hidden" value="on" name="buat">
             <input type="text" class="form-control form-control-lg mt-2" name="nama_kuis"
-            placeholder="Masukkan nama kuis anda" required/>
+            placeholder="Masukkan nama kuis anda" maxlength="40" required/>
+            <input type="text" class="form-control form-control-lg mt-2" name="deskripsi_kuis"
+            placeholder="Masukkan deskripsi kuis anda" maxlength="150" required/>
             <div class="dropdown mb-2 mt-2">
-              <input id="nama-genre" type="hidden" name="nama_genre" value="">
+              <input id="nama-genre" type="hidden" name="nama_genre" value="<?=$data[0]['nama_genre']?>">
               <button class="btn btn-lg btn-light dropdown-toggle" type="button" id="pilih-genre" data-bs-toggle="dropdown"
                 aria-expanded="false">
-                Sosial
+                  <?= ucfirst($data[0]['nama_genre']);?>
               </button>
               <ul class="dropdown-menu" aria-labelledby="pilih-genre">
                 <?php foreach($data as $genre){ ?>
