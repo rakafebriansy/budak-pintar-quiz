@@ -22,6 +22,13 @@ class Detailkuis_model {
         }
         return 1;
     }
+    public function getDetailkuisBy($kolom,$nilai)
+    {
+        $query = "SELECT * FROM " . $this->table . " WHERE " . $kolom . "=:" . $kolom;
+        $this->db->query($query);
+        $this->db->bind($kolom,$nilai);
+        return $this->db->resultSet();
+    }
 }
 
 ?>

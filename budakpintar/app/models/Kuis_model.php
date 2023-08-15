@@ -13,6 +13,14 @@ class Kuis_model {
         $this->db->query($query);   
         return $this->db->resultSet();
     }
+    
+    public function getKuisBy($kolom,$nilai)
+    {
+        $query = "SELECT * FROM " . $this->table . " WHERE " . $kolom . "=:" . $kolom;
+        $this->db->query($query);
+        $this->db->bind($kolom,$nilai);
+        return $this->db->single();
+    }
 
     public function tambahKuis($nama_kuis,$deskripsi_kuis,$id_genre)
     {

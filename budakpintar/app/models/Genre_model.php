@@ -16,14 +16,9 @@ class Genre_model {
     public function getGenreBy($kolom,$nilai)
     {
         $query = "SELECT * FROM " . $this->table . " WHERE " . $kolom . "=:" . $kolom;
-
         $this->db->query($query);
         $this->db->bind($kolom,$nilai);
-
         return $this->db->single();
-    }
-    public function gantiIdNama (){
-        
     }
 }
 

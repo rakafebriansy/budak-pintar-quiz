@@ -6,7 +6,7 @@ class Landing extends Controller {
         $data['judul'] = 'LANDING PAGE';
         $data['folder'] = 'landing';
         $this->view('templates/header',$data);
-        $this->view('landing/index');
+        $this->view($data['folder'] . '/index');
         $this->view('templates/footer',$data);
     }
     public function register(){

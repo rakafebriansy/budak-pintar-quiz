@@ -4,7 +4,7 @@ $nama_kuis = $data['nama_kuis'];
 ?>
 
 <form action="<?=BASEURL?>/create/createQuiz" method="post">
-  <div class="container ">
+  <div class="container">
     <nav class="navbar navbar-light fixed-top bg-white">
       <div class="container d-flex justify-content-center px-4">
         <div class="col-md-8 d-flex justify-content-between align-items-center">
@@ -33,8 +33,6 @@ $nama_kuis = $data['nama_kuis'];
     <div id="after-body" class="container d-flex justify-content-center">
       <div id="template-body" class="col-md-8">
         <hr>
-        <!-- TAMBAH SOAL -->
-
         <!-- TAMBAH SOAL -->
       </div>
     </div>

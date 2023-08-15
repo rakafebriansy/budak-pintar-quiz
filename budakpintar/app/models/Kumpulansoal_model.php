@@ -7,6 +7,17 @@ class Kumpulansoal_model {
         $this->db = new Database;
     }
 
+    public function getKumpulanSoalBy($kolom,$kumpulan_nilai)
+    {
+        $kumpulan_soal = [];
+        foreach($kumpulan_nilai as $nilai){
+            $query = "SELECT * FROM " . $this->table . " WHERE " . $kolom . "=:" . $kolom;
+            $this->db->query($query);
+            $this->db->bind($kolom,$nilai['kumpulan_soal_id_kumpulan_soal']);
+            array_push($kumpulan_soal,$this->db->single());
+        }
+        return $kumpulan_soal;
+    }
     public function tambahSoal($soal)
     {
         $ids_kumpulan_soal = [];

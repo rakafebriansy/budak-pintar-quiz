@@ -9,7 +9,7 @@ class Create extends Controller{
         $data['nama_genre'] = strtolower($_POST['nama_genre']);
         $data['deskripsi_kuis'] = $_POST['deskripsi_kuis'];
         $this->view('templates/header',$data);
-        $this->view('create/index',$data);
+        $this->view($data['folder'] . '/index',$data);
         $this->view('templates/footer',$data);
     }
     public function createQuiz(){

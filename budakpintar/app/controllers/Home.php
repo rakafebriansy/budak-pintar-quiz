@@ -8,7 +8,7 @@ class Home extends Controller{
         $data['genre'] = $this->model('Genre_model')->getGenreAll();
         $data['kuis'] = $this->model('Kuis_model')->getKuisAll();
         $this->view('templates/header',$data);
-        $this->view('home/index',$data);
+        $this->view($data['folder'] . '/index',$data);
         $this->view('templates/footer',$data);
     }
     public function editProfile(){

@@ -85,7 +85,7 @@ CREATE TABLE `pengguna` (
   `nama_pengguna` varchar(60) NOT NULL,
   `kata_sandi` varchar(255) NOT NULL,
   `alamat_email` varchar(60) NOT NULL,
-  `gambar` varchar(13) DEFAULT NULL
+  `gambar` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 

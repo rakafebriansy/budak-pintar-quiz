@@ -21,12 +21,11 @@ $db_kuis = $data['kuis'];
 <div class="container">
   <!-- NAVBAR START -->
   <nav class="navbar navbar-light fixed-top bg-white">
-    <div class="container">
-      <a class="navbar-brand" href="#">
-        <img src="<?=BASEURL;?>/img/logo.png" alt="" height="40" class="d-inline-block align-text-center">
-        <img src="<?=BASEURL;?>/img/name_brand.svg" alt="" height="20" class="d-inline-block align-text-center">
-      </a>
-    <!-- PROFILE -->
+    <a class="navbar-brand" href="#">
+      <img src="<?=BASEURL;?>/img/logo.png" alt="" height="40" class="d-inline-block align-text-center">
+      <img src="<?=BASEURL;?>/img/name_brand.svg" alt="" height="20" class="d-inline-block align-text-center">
+    </a>
+  <!-- PROFILE -->
     <div class="dropdown justify-content-start align-items-center text-center">
       <label for="tombol-profil">      
         <img src="<?=BASEURL;?>/img/<?=$tampilan_gambar?>" width="40" alt="">
@@ -105,9 +104,12 @@ $db_kuis = $data['kuis'];
               <?=ucfirst($nama_kuis);?>
             </div>
             <div class="card-body">
-              <h5 class="card-title"><?=$kuis['nama_kuis'];?></h5>
-              <p class="card-text"><?=$kuis['deksripsi_kuis'];?></p>
-              <a href="#" class="btn btn-primary">Mulai</a>
+              <form action="<?=BASEURL?>/attempt" method="post">
+                <input type="hidden" name="attempt" value="<?=$kuis['id_kuis']?>">
+                <h5 class="card-title"><?=$kuis['nama_kuis'];?></h5>
+                <p class="card-text"><?=$kuis['deksripsi_kuis'];?></p>
+                <button type="submit" class="btn btn-primary">Mulai</button>
+              </form>
             </div>
           </div>
         </div>
