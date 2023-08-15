@@ -1,5 +1,5 @@
 #after-body {
-    min-height:2000px;
+    min-height: 85vh !important;
 }
 /* Styling for desktop (min-width: 768px) */
 @media (min-width: 768px) {

@@ -4,8 +4,6 @@ const MODAL_TITLE = document.querySelector('#form-modal-2 .modal-title');
 const MODAL_FOOTER = document.querySelector('#form-modal-2 .modal-footer');
 const MODAL_FORM = document.querySelector('#form-modal-2 form');
 
-
-//dropdown
 BODY.addEventListener('click', function (e) {
   if (e.target.id == 'tombol-hapus-akun') {
     MODAL_TITLE.innerText = 'Hapus Akun';
@@ -67,7 +65,6 @@ BODY.addEventListener('click', function (e) {
 
 $('#tombol-cari').on('click',function(){
   const value = $('#kata-kunci').val();
-  console.log('mek')
   $.ajax({
       url: 'http://localhost/budakpintar/public/home/searching',
       data: {kata_kunci: value},

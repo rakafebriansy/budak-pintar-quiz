@@ -76,29 +76,45 @@ class Home extends Controller{
     public function searching(){
         $db_kuis = $this->model('Kuis_model')->getKuisLike('nama_kuis',$_POST['kata_kunci']);
         $db_genre = $this->model('Genre_model')->getGenreAll();
+        if(sizeof($db_kuis)>0){
+            if (!isset($_SESSION['login'])){
+                $tag_button = '<button type="button" class="btn btn-primary tombol-mulai" data-bs-toggle="modal" data-bs-target="#formModal1">Mulai</button>';
+                $tag_form = ['',''];
+            } else {
+                $tag_button = '<button type="submit" class="btn btn-primary">Mulai</button>';
+                $tag_form = ['<form action="' . BASEURL . '/attempt" method="post">','</form>'];
+            }
+        } else {
+            echo '
+            <div class="text-center pt-3">
+                <h5 class="card-title text-danger">Kuis Tidak Ditemukan.</h5>
+            </div>
+            ';
+        }
         foreach($db_kuis as $kuis){
             $id_genre = $kuis['genre_id_genre'];
             foreach($db_genre as $genre){
-              if($genre['id_genre'] == $id_genre){
+                if($genre['id_genre'] == $id_genre){
                 $nama_genre = $genre['nama_genre'];
                 echo '<div class="col-md-4 pt-3">
                         <div class="card">
-                        <div class="card-header">
+                            <div class="card-header">
                             ' . ucfirst($nama_genre) . '
-                        </div>
-                        <div class="card-body">
-                            <form action="' . BASEURL . '/attempt" method="post">
-                            <input type="hidden" name="attempt" value="' . $kuis['id_kuis'] . '">
-                            <h5 class="card-title">' . $kuis['nama_kuis'] .'</h5>
-                            <p class="card-text">' . $kuis['deksripsi_kuis'] . '</p>
-                            <button type="submit" class="btn btn-primary">Mulai</button>
-                            </form>
-                        </div>
+                            </div>
+                            <div class="card-body">
+                            ' . $tag_form[0] .'
+                                    <input type="hidden" name="attempt" value="' . $kuis['id_kuis'] . '">
+                                    <h5 class="card-title">' . $kuis['nama_kuis'] .'</h5>
+                                    <p class="card-text">' . $kuis['deksripsi_kuis'] . '</p>
+                                    ' . $tag_button . 
+                                $tag_form[1] .'
+                            </div>
                         </div>
                     </div>';
+                    
+                }
+            }
         }
     }
-    }
-}
 }
 ?>

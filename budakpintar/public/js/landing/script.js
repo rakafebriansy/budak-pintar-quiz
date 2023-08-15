@@ -12,7 +12,6 @@ const BODY = document.querySelector('body');
 BODY.addEventListener('click', function (e) {
     console.log(e.target);
 
-    //register
     if (e.target.id == 'tombol-daftar') {
         MODAL_TITLE1.innerText = 'Sign up';
         MODAL_FORM1.setAttribute('action', 'http://localhost/budakpintar/public/landing/register');
@@ -40,8 +39,6 @@ BODY.addEventListener('click', function (e) {
     <button type="submit" class="btn btn-primary px-3">Daftar</button>
     `;
     }
-
-    //login
     if (e.target.id == 'tombol-masuk') {
         MODAL_TITLE1.innerText = 'Sign in';
         MODAL_FORM1.setAttribute('action', 'http://localhost/budakpintar/public/landing/login');
@@ -65,8 +62,9 @@ BODY.addEventListener('click', function (e) {
             <button type="submit" class="btn btn-primary" style="padding-left: 1rem; padding-right: 1rem;">Masuk</button>
             `;
     }
-
-    //forgot password
+    if (e.target.classList.contains('tombol-mulai')) {
+        document.getElementById('tombol-masuk').click();
+    }
     if (e.target.classList.contains('lupa-kata-sandi')) {
         MODAL_TITLE2.innerText = 'Lupa kata sandi';
         MODAL_FORM2.setAttribute('action', 'http://localhost/budakpintar/public/landing/forgotPassword');
@@ -87,3 +85,14 @@ BODY.addEventListener('click', function (e) {
     }
 });
 
+$('#tombol-cari').on('click',function(){
+    const value = $('#kata-kunci').val();
+    $.ajax({
+        url: 'http://localhost/budakpintar/public/home/searching',
+        data: {kata_kunci: value},
+        method: 'post',
+        success: function(data){
+            $('#hasil-cari').html(data);
+        }
+    });
+  });

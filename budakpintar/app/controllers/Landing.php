@@ -5,8 +5,10 @@ class Landing extends Controller {
         if (isset($_SESSION['login'])) header('Location: ' . BASEURL . '/home');
         $data['judul'] = 'LANDING PAGE';
         $data['folder'] = 'landing';
+        $data['genre'] = $this->model('Genre_model')->getGenreAll();
+        $data['kuis'] = $this->model('Kuis_model')->getKuisAll();
         $this->view('templates/header',$data);
-        $this->view($data['folder'] . '/index');
+        $this->view($data['folder'] . '/index',$data);
         $this->view('templates/footer',$data);
     }
     public function register(){

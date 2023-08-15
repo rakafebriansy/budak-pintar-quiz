@@ -54,7 +54,7 @@ function cetakSoal($soal,$counter){
 ?>
 
 <body>
-<div class="container">
+<div id="after-body" class="container mt-1">
   <nav class="navbar navbar-light bg-white fixed-top">
     <div class="container">
       <a class="navbar-brand" href="#">
@@ -105,7 +105,7 @@ function cetakSoal($soal,$counter){
         <h5 class="card-title text-center">Navigasi</h5>
         <div id="wadah-navigasi" class="row justify-content-start">
             <?php for($i=0;$i<$jumlah_soal;$i++){ ?>
-                <div class="col-md-4 d-flex justify-content-center">
+            <div class="col-md-4 d-flex justify-content-center">
                 <a href="#awal-soal<?=$i+1?>" style="text-decoration: none;">
                     <div class="tombol-navigasi border border-info rounded mt-3 d-flex justify-content-center" style="width: 30px; height:30px; cursor:pointer;">
                         <p class="d-block text-info"><?= $i+1;?></p>
