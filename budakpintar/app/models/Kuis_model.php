@@ -22,6 +22,13 @@ class Kuis_model {
         return $this->db->single();
     }
 
+    public function getKuisLike($kolom,$nilai)
+    {
+        $query = "SELECT * FROM " . $this->table ." WHERE " . $kolom . " LIKE '%" . $nilai . "%'";
+        $this->db->query($query);
+        return $this->db->resultSet();
+    }
+
     public function tambahKuis($nama_kuis,$deskripsi_kuis,$id_genre)
     {
         $id_pengguna = $_SESSION['id_pengguna'];
@@ -38,5 +45,3 @@ class Kuis_model {
         return $this->db->single()['MAX(id_kuis)'];
     }
 }
-
-?>

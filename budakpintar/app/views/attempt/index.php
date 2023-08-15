@@ -10,41 +10,41 @@ function cetakSoal($soal,$counter){
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="jawaban[' . $counter . ']" id="jawabanA' . $counter . '"
                         value="a" />
-                    <label class="form-check-label" for="jawabanA' . $counter . '">' . $soal['opsi_a'] . '1</label>
+                    <label class="form-check-label" for="jawabanA' . $counter . '">a. ' . $soal['opsi_a'] . '</label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="jawaban[' . $counter . ']" id="jawabanB' . $counter . '"
                         value="b" />
-                    <label class="form-check-label" for="jawabanB' . $counter . '">' . $soal['opsi_b'] . '2</label>
+                    <label class="form-check-label" for="jawabanB' . $counter . '">b. ' . $soal['opsi_b'] . '</label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="jawaban[' . $counter . ']" id="jawabanC' . $counter . '"
                         value="c" />
-                    <label class="form-check-label" for="jawabanC' . $counter . '">' . $soal['opsi_c'] . '3</label>
+                    <label class="form-check-label" for="jawabanC' . $counter . '">c. ' . $soal['opsi_c'] . '</label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="jawaban[' . $counter . ']" id="jawabanD' . $counter . '"
                         value="d" />
-                    <label class="form-check-label" for="jawabanD' . $counter . '">' . $soal['opsi_d'] . '3</label>
+                    <label class="form-check-label" for="jawabanD' . $counter . '">d. ' . $soal['opsi_d'] . '</label>
                 </div>';
                 break;
         case 'multiple':
             echo '
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" name="jawaban[' . $counter . '][a]" id="jawabanA' . $counter . '"/>
-                <label class="form-check-label" for="jawabanA' . $counter . '">' . $soal['opsi_a'] . '1</label>
+                <label class="form-check-label" for="jawabanA' . $counter . '">a. ' . $soal['opsi_a'] . '1</label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" name="jawaban[' . $counter . '][b]" id="jawabanB' . $counter . '"/>
-                <label class="form-check-label" for="jawabanB' . $counter . '">' . $soal['opsi_b'] . '1</label>
+                <label class="form-check-label" for="jawabanB' . $counter . '">b. ' . $soal['opsi_b'] . '1</label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" name="jawaban[' . $counter . '][c]" id="jawabanC' . $counter . '"/>
-                <label class="form-check-label" for="jawabanC' . $counter . '">' . $soal['opsi_c'] . '1</label>
+                <label class="form-check-label" for="jawabanC' . $counter . '">c. ' . $soal['opsi_c'] . '1</label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" name="jawaban[' . $counter . '][d]" id="jawabanD' . $counter . '"/>
-                <label class="form-check-label" for="jawabanD' . $counter . '">' . $soal['opsi_d'] . '1</label>
+                <label class="form-check-label" for="jawabanD' . $counter . '">d. ' . $soal['opsi_d'] . '1</label>
             </div>';
             break;
 
@@ -77,7 +77,7 @@ function cetakSoal($soal,$counter){
         <div class="row mt-3">
             <div class="col-md-1 col-xl-1 d-flex justify-content-end align-items-start d-none d-md-flex" style="padding-left: 10px">
                 <div class="deks-number d-none d-md-inline">
-                    <?= $i+1 ?>
+                    <h5><?= $i+1 ?></h5>
                 </div>
             </div>
             <div class="col-md-8 col-xl-10">

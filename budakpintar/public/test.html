@@ -1,34 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
+
 <body>
-    <input class='acb' type='checkbox' name='acheckbox[]' value='1' onclick='deRequire("acb")' required> One
-<input class='acb' type='checkbox' name='acheckbox[]' value='2' onclick='deRequire("acb")' required> Two
-<script>
+  <input class='acb' type='checkbox' name='acheckbox[]' value='1' onclick='deRequire("acb")' required> One
+  <input class='acb' type='checkbox' name='acheckbox[]' value='2' onclick='deRequire("acb")' required> Two
+  <script>
     function deRequireCb(elClass) {
-  el = document.getElementsByClassName(elClass);
+      el = document.getElementsByClassName(elClass);
 
-  var atLeastOneChecked = false; //at least one cb is checked
-  for (i = 0; i < el.length; i++) {
-    if (el[i].checked === true) {
-      atLeastOneChecked = true;
-    }
-  }
+      var atLeastOneChecked = false; //at least one cb is checked
+      for (i = 0; i < el.length; i++) {
+        if (el[i].checked === true) {
+          atLeastOneChecked = true;
+        }
+      }
 
-  if (atLeastOneChecked === true) {
-    for (i = 0; i < el.length; i++) {
-      el[i].required = false;
+      if (atLeastOneChecked === true) {
+        for (i = 0; i < el.length; i++) {
+          el[i].required = false;
+        }
+      } else {
+        for (i = 0; i < el.length; i++) {
+          el[i].required = true;
+        }
+      }
     }
-  } else {
-    for (i = 0; i < el.length; i++) {
-      el[i].required = true;
-    }
-  }
-}
-</script>
+  </script>
 </body>
+
 </html>

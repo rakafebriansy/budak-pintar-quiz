@@ -21,28 +21,29 @@ $db_kuis = $data['kuis'];
 <div class="container">
   <!-- NAVBAR START -->
   <nav class="navbar navbar-light fixed-top bg-white">
-    <a class="navbar-brand" href="#">
-      <img src="<?=BASEURL;?>/img/logo.png" alt="" height="40" class="d-inline-block align-text-center">
-      <img src="<?=BASEURL;?>/img/name_brand.svg" alt="" height="20" class="d-inline-block align-text-center">
-    </a>
-  <!-- PROFILE -->
-    <div class="dropdown justify-content-start align-items-center text-center">
-      <label for="tombol-profil">      
-        <img src="<?=BASEURL;?>/img/<?=$tampilan_gambar?>" width="40" alt="">
-      </label>
-      <a id="dropdownMenuButton1" name="dropdownMenuButton1" class="btn ms-1 fs-5 dropdown-toggle"
-      data-bs-toggle="dropdown" aria-expanded="false"><?=ucfirst($nama_pengguna);?></a>
-      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-        <li><a class="dropdown-item" id="tombol-profil" name="tombol-profil" data-bs-toggle="modal" data-bs-target="#formModal1">Ubah Profil</a></li>
-        <li><a class="dropdown-item" id="tombol-ubah-sandi" name="tombol-ubah-sandi" data-bs-toggle="modal" data-bs-target="#formModal2">Ubah Sandi</a></li>
-        <li><a class="dropdown-item" id="tombol-keluar" name="tombol-keluar" data-bs-toggle="modal" data-bs-target="#formModal2">Keluar</a></li>
-      </ul>
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img src="<?=BASEURL;?>/img/logo.png" alt="" height="40" class="d-inline-block align-text-center">
+        <img src="<?=BASEURL;?>/img/name_brand.svg" alt="" height="20" class="d-inline-block align-text-center">
+      </a>
+    <!-- PROFILE -->
+      <div class="dropdown justify-content-start align-items-center text-center">
+        <div class="container"></div>
+        <label for="tombol-profil">      
+          <img src="<?=BASEURL;?>/img/<?=$tampilan_gambar?>" width="40" alt="">
+        </label>
+        <a id="dropdownMenuButton1" name="dropdownMenuButton1" class="btn ms-1 fs-5 dropdown-toggle"
+        data-bs-toggle="dropdown" aria-expanded="false"><?=ucfirst($nama_pengguna);?></a>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" id="tombol-profil" name="tombol-profil" data-bs-toggle="modal" data-bs-target="#formModal1">Ubah Profil</a></li>
+          <li><a class="dropdown-item" id="tombol-ubah-sandi" name="tombol-ubah-sandi" data-bs-toggle="modal" data-bs-target="#formModal2">Ubah Sandi</a></li>
+          <li><a class="dropdown-item" id="tombol-keluar" name="tombol-keluar" data-bs-toggle="modal" data-bs-target="#formModal2">Keluar</a></li>
+        </ul>
+      </div>
     </div>
   </nav>
   <!-- NAVBAR END -->
   
-
-
   <!-- HERO START -->
   <section id="hero" class="mb-5">
         <div id="flasher">
@@ -79,8 +80,8 @@ $db_kuis = $data['kuis'];
   <section id="search" class="mt-5 mb-3">
     <h2 class="">Temukan kuis yang kamu suka!</h2>
     <form class="d-flex mt-4">
-      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success" type="submit">Search</button>
+      <input id="kata-kunci" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+      <button id="tombol-cari" class="btn btn-outline-success" type="button" style="padding-right:1rem; padding-left:1rem;">Cari</button>
     </form>
   </section>
   <!-- SEARCH END -->
@@ -88,7 +89,7 @@ $db_kuis = $data['kuis'];
   <!-- CATEGORY START -->
   <section id="category">
     <div class="mathematics">
-      <div class="row ">
+      <div id="hasil-cari" class="row ">
         <?php foreach($db_kuis as $kuis){
           $id_genre = $kuis['genre_id_genre'];
           $nama_kuis;

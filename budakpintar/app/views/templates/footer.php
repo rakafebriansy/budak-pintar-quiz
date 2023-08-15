@@ -23,6 +23,7 @@
     <!-- Right -->
 </footer>
 <script src="<?=BASEURL;?>/js/bootstrap/bootstrap.bundle.min.js"></script>
+<script src="<?=BASEURL;?>/js/jquery/jquery-3.7.0.min.js"></script>
 <script src="<?=BASEURL;?>/js/<?= $data['folder'];?>/script.js"></script>
 </body>
 

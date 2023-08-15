@@ -2,16 +2,16 @@ const BODY = document.querySelector('body');
 const MODAL_BODY = document.querySelector('#form-modal-2 .modal-body');
 const MODAL_TITLE = document.querySelector('#form-modal-2 .modal-title');
 const MODAL_FOOTER = document.querySelector('#form-modal-2 .modal-footer');
-const MODAL_FORM = document.querySelector('#form-modal-2 form')
+const MODAL_FORM = document.querySelector('#form-modal-2 form');
 
 
 //dropdown
 BODY.addEventListener('click', function (e) {
-if (e.target.id == 'tombol-hapus-akun') {
+  if (e.target.id == 'tombol-hapus-akun') {
     MODAL_TITLE.innerText = 'Hapus Akun';
-    MODAL_FORM.setAttribute('action','http://localhost/budakpintar/public/home/deleteAccount');
-    if (MODAL_FOOTER.classList.contains('justify-content-center')){
-      MODAL_FOOTER.classList.replace('justify-content-center','justify-content-between');
+    MODAL_FORM.setAttribute('action', 'http://localhost/budakpintar/public/home/deleteAccount');
+    if (MODAL_FOOTER.classList.contains('justify-content-center')) {
+      MODAL_FOOTER.classList.replace('justify-content-center', 'justify-content-between');
     }
     MODAL_BODY.innerHTML = `
     Apakah anda yakin untuk menghapus akun anda?
@@ -21,12 +21,12 @@ if (e.target.id == 'tombol-hapus-akun') {
             data-bs-dismiss="modal" style="padding-left: 1rem; padding-right: 1rem;">Kembali ke Profil</button>
     <button type="submit" class="btn btn-danger" style="padding-left: 1rem; padding-right: 1rem;">Hapus</button>
     `;
-    }
+  }
   if (e.target.id == 'tombol-ubah-sandi') {
     MODAL_TITLE.innerText = 'Ubah Sandi';
-    MODAL_FORM.setAttribute('action','http://localhost/budakpintar/public/home/changePassword');
-    if (MODAL_FOOTER.classList.contains('justify-content-between')){
-      MODAL_FOOTER.classList.replace('justify-content-between','justify-content-center');
+    MODAL_FORM.setAttribute('action', 'http://localhost/budakpintar/public/home/changePassword');
+    if (MODAL_FOOTER.classList.contains('justify-content-between')) {
+      MODAL_FOOTER.classList.replace('justify-content-between', 'justify-content-center');
     }
     MODAL_BODY.innerHTML = `
         <input type="password" class="form-control form-control-lg mt-2" name="kata_sandi_lama"
@@ -38,11 +38,11 @@ if (e.target.id == 'tombol-hapus-akun') {
     <button type="submit" class="btn btn-primary px-3">Simpan</button>
     `;
   }
-  if (e.target.id == 'tombol-keluar'){
+  if (e.target.id == 'tombol-keluar') {
     MODAL_TITLE.innerText = 'Keluar';
-    MODAL_FORM.setAttribute('action','http://localhost/budakpintar/public/home/logout');
-    if (MODAL_FOOTER.classList.contains('justify-content-between')){
-      MODAL_FOOTER.classList.replace('justify-content-between','justify-content-center');
+    MODAL_FORM.setAttribute('action', 'http://localhost/budakpintar/public/home/logout');
+    if (MODAL_FOOTER.classList.contains('justify-content-between')) {
+      MODAL_FOOTER.classList.replace('justify-content-between', 'justify-content-center');
     }
     MODAL_BODY.innerHTML = `
       Apakah anda yakin?
@@ -51,16 +51,29 @@ if (e.target.id == 'tombol-hapus-akun') {
     <button type="submit" class="btn btn-danger px-3">Keluar</button>
     `;
   }
-  if (e.target.classList.contains('nama-nama-genre')){
+  if (e.target.classList.contains('nama-nama-genre')) {
     var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function(){
-        if (xhr.readyState == 4 && xhr.status == 200){
-          document.querySelector('#pilih-genre').innerText = (e.target.innerText);
-          document.querySelector('#nama-genre').setAttribute('value',e.target.innerText.toLowerCase());
-        }
-    };  
-    xhr.open('GET','http://localhost/budakpintar/public/home',true);
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        document.querySelector('#pilih-genre').innerText = (e.target.innerText);
+        document.querySelector('#nama-genre').setAttribute('value', e.target.innerText.toLowerCase());
+      }
+    };
+    xhr.open('GET', 'http://localhost/budakpintar/public/home', true);
     xhr.send();
   }
+  
+});
 
+$('#tombol-cari').on('click',function(){
+  const value = $('#kata-kunci').val();
+  console.log('mek')
+  $.ajax({
+      url: 'http://localhost/budakpintar/public/home/searching',
+      data: {kata_kunci: value},
+      method: 'post',
+      success: function(data){
+          $('#hasil-cari').html(data);
+      }
+  });
 });
