@@ -20,6 +20,20 @@ BODY.addEventListener('click', function (e) {
     <button type="submit" class="btn btn-danger" style="padding-left: 1rem; padding-right: 1rem;">Hapus</button>
     `;
   }
+  if (e.target.id == "tombol-mulai") {
+    MODAL_TITLE.innerText = 'Mulai Kuis';
+    MODAL_FORM.setAttribute('action', 'http://localhost/budakpintar/public/attempt');
+    if (MODAL_FOOTER.classList.contains('justify-content-between')) {
+      MODAL_FOOTER.classList.replace('justify-content-between', 'justify-content-center');
+    }
+    MODAL_BODY.innerHTML = `
+    <input type="hidden" name="attempt" value="${e.target.value}">
+    Apakah anda yakin untuk memulai kuis ini?
+    `;
+    MODAL_FOOTER.innerHTML = `
+    <button type="submit" class="btn btn-lg btn-primary">Mulai</button>
+    `;
+  }
   if (e.target.id == 'tombol-ubah-sandi') {
     MODAL_TITLE.innerText = 'Ubah Sandi';
     MODAL_FORM.setAttribute('action', 'http://localhost/budakpintar/public/home/changePassword');
@@ -60,17 +74,17 @@ BODY.addEventListener('click', function (e) {
     xhr.open('GET', 'http://localhost/budakpintar/public/home', true);
     xhr.send();
   }
-  
+
 });
 
-$('#tombol-cari').on('click',function(){
+$('#tombol-cari').on('click', function () {
   const value = $('#kata-kunci').val();
   $.ajax({
-      url: 'http://localhost/budakpintar/public/home/searching',
-      data: {kata_kunci: value},
-      method: 'post',
-      success: function(data){
-          $('#hasil-cari').html(data);
-      }
+    url: 'http://localhost/budakpintar/public/home/searching',
+    data: { kata_kunci: value },
+    method: 'post',
+    success: function (data) {
+      $('#hasil-cari').html(data);
+    }
   });
 });
