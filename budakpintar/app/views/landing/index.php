@@ -37,7 +37,7 @@ $db_kuis = $data['kuis'];
         </div>
         <div class="row">
           <div class="col-8 col-md-7">
-            <button type="button" class="btn btn-outline-primary btn-lg w-75">Buat Kuis</button>
+            <button type="button" class="btn btn-outline-primary btn-lg w-75 tombol-mulai">Buat Kuis</button>
           </div>
         </div>
       </div>

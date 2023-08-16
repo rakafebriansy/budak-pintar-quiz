@@ -46,12 +46,12 @@ class Kumpulansoal_model
 
             $query = "INSERT INTO " . $this->table . " VALUES('',:pertanyaan,:tipe_soal,:opsi_a,:opsi_b,:opsi_c,:opsi_d,:opsi_benar)";
             $this->db->query($query);
-            $this->db->bind('pertanyaan', $s['pertanyaan']);
+            $this->db->bind('pertanyaan', trim(strtolower(stripslashes(htmlspecialchars($s['pertanyaan'])))));
             $this->db->bind('tipe_soal', $tipe_soal);
-            $this->db->bind('opsi_a', $s['opsi_a']);
-            $this->db->bind('opsi_b', $s['opsi_b']);
-            $this->db->bind('opsi_c', $s['opsi_c']);
-            $this->db->bind('opsi_d', $s['opsi_d']);
+            $this->db->bind('opsi_a', trim(strtolower(stripslashes(htmlspecialchars($s['opsi_a'])))));
+            $this->db->bind('opsi_b', trim(strtolower(stripslashes(htmlspecialchars($s['opsi_b'])))));
+            $this->db->bind('opsi_c', trim(strtolower(stripslashes(htmlspecialchars($s['opsi_c'])))));
+            $this->db->bind('opsi_d', trim(strtolower(stripslashes(htmlspecialchars($s['opsi_d'])))));
             $this->db->bind('opsi_benar', $opsi_benar);
             $this->db->exec();
 

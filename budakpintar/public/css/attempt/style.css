@@ -27,3 +27,10 @@
     background-color: rgba(2,117,216,0.2);
 }
 
+body.finished {
+    background-color: #BFC7F2;
+}
+
+body.finished>div.container {
+    min-height: 84vh;
+}

@@ -31,16 +31,6 @@ class Pengguna_model {
 
         return $this->db->single();
     }
-    private function cekBerdasarkan($kolom,$nilai)
-    {
-        $query = "SELECT " . $kolom . " FROM " . $this->table . " WHERE " . $kolom . "=:" . $kolom;
-
-        $this->db->query($query);
-        $this->db->bind($kolom,$nilai);
-        $this->db->exec();
-
-        return $this->db->rowCount();
-    }
     private function autentikasiMasuk($data,$db_data)
     {
         $kata_sandi = stripslashes(htmlspecialchars($data['kata_sandi']));
@@ -97,7 +87,7 @@ class Pengguna_model {
     //PUBLIC
     public function masukAkun($data)
     {
-        $nama_pengguna = strtolower(stripslashes(htmlspecialchars($data['nama_pengguna'])));
+        $nama_pengguna = trim(strtolower(stripslashes(htmlspecialchars($data['nama_pengguna']))));
         $query = "SELECT * FROM " . $this->table . " WHERE nama_pengguna=:nama_pengguna";
 
         $this->db->query($query);
@@ -113,13 +103,13 @@ class Pengguna_model {
     }
     public function daftarAkun($new_data)
     {
-        $nama_pengguna = strtolower(stripslashes(htmlspecialchars($new_data['nama_pengguna'])));
+        $nama_pengguna = trim(strtolower(stripslashes(htmlspecialchars($new_data['nama_pengguna']))));
         $db_data = $this->getBerdasarkan('nama_pengguna',$nama_pengguna);
-        if ($db_data['nama_pengguna'] == strtolower($new_data['nama_pengguna'])){
+        if ($db_data['nama_pengguna'] == trim(strtolower($new_data['nama_pengguna']))){
             return -1;
         } else {
-            $hashed_kata_sandi = password_hash(htmlspecialchars($new_data['kata_sandi']),PASSWORD_DEFAULT);
-            $alamat_email = stripslashes(htmlspecialchars($new_data['alamat_email']));
+            $hashed_kata_sandi = password_hash(trim(htmlspecialchars($new_data['kata_sandi'])),PASSWORD_DEFAULT);
+            $alamat_email = trim(strtolower(stripslashes(htmlspecialchars($new_data['alamat_email']))));
             $query = "INSERT INTO " . $this->table . " VALUES('',:nama_pengguna,:kata_sandi,:alamat_email,'')";
             
             $this->db->query($query);        
@@ -139,21 +129,21 @@ class Pengguna_model {
         } else{
             $informasi_gambar = $new_data['gambar_default'];
         }
-
+        
+        $nama_pengguna_baru = trim(strtolower(stripslashes(htmlspecialchars($new_data['nama_pengguna']))));
+        $db_data = $this->getBerdasarkan('nama_pengguna',$nama_pengguna_baru);
         //cek nama sama
-        $db_data = $this->getBerdasarkan('nama_pengguna',strtolower($new_data['nama_pengguna']));
-        if ($db_data !== false && $db_data['nama_pengguna'] != $_SESSION['nama_pengguna']){
+        if ($db_data !== false && $db_data['nama_pengguna'] !== $_SESSION['nama_pengguna']){
                 return -1;
             }
 
         //exec db
-        $nama_pengguna =strtolower(stripslashes(htmlspecialchars($new_data['nama_pengguna'])));
-        $alamat_email = stripslashes(htmlspecialchars($new_data['alamat_email']));
+        $alamat_email_baru = trim(strtolower(stripslashes(htmlspecialchars($new_data['alamat_email']))));
         $query = "UPDATE " . $this->table . " SET nama_pengguna=:nama_pengguna, alamat_email=:alamat_email, gambar=:gambar WHERE id_pengguna=:id_pengguna";
         
         $this->db->query($query);
-        $this->db->bind('nama_pengguna',$nama_pengguna);
-        $this->db->bind('alamat_email',$alamat_email);
+        $this->db->bind('nama_pengguna',$nama_pengguna_baru);
+        $this->db->bind('alamat_email',$alamat_email_baru);
         $this->db->bind('gambar',$informasi_gambar);
         $this->db->bind('id_pengguna',$_SESSION['id_pengguna']);
         $this->db->exec();
@@ -161,13 +151,13 @@ class Pengguna_model {
 
         //set session variable
         if ($rowsAffected > 0){
-            $_SESSION['nama_pengguna'] = $new_data['nama_pengguna'];
+            $_SESSION['nama_pengguna'] = $nama_pengguna_baru;
             $_SESSION['alamat_email'] = $new_data['alamat_email'];
             if ($informasi_gambar != ''){
                 $_SESSION['gambar'] = $informasi_gambar;
             }
         }
-
+        
         return $rowsAffected;
     }    
     public function hapusAkun($id_pengguna)

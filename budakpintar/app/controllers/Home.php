@@ -18,7 +18,6 @@ class Home extends Controller{
         } else{
             $informasi_gambar = $_FILES['gambar'];
             $error_code  = $this->model('Pengguna_model')->ubahInformasiAkun($_POST,$informasi_gambar);
-
             if($error_code>0){
                 Flasher::setFlash('Akun anda','Berhasil','diperbarui','success');
                 header('Location: ' . BASEURL . '/home');

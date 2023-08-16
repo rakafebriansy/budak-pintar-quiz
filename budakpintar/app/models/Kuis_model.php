@@ -37,8 +37,8 @@ class Kuis_model {
         $this->db->query($query);   
         $this->db->bind('pengguna_id_pengguna',$id_pengguna);
         $this->db->bind('genre_id_genre',$id_genre);
-        $this->db->bind('nama_kuis',$nama_kuis);
-        $this->db->bind('deskripsi_kuis',$deskripsi_kuis);
+        $this->db->bind('nama_kuis',trim(strtolower(stripslashes(htmlspecialchars($nama_kuis)))));
+        $this->db->bind('deskripsi_kuis',trim(strtolower(stripslashes(htmlspecialchars($deskripsi_kuis)))));
         $this->db->exec();
         
         $this->db->query("SELECT MAX(id_kuis) FROM " . $this->table);
