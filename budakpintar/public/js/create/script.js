@@ -4,11 +4,11 @@ const TAMBAHSOAL_MULTIPLE = document.querySelector('#tambah-soal-multiple');
 const HAPUS_BTN = document.querySelector('#tombol-hapus');
 
 var counter = 1
-TAMBAHSOAL_SINGLE.addEventListener('click',function(){
-    const EL = document.createElement('div');
-    EL.id = `soal-${counter}`;
-    EL.classList = 'justify-content-center';
-    let template = `          
+TAMBAHSOAL_SINGLE.addEventListener('click', function () {
+  const EL = document.createElement('div');
+  EL.id = `soal-${counter}`;
+  EL.classList = 'justify-content-center';
+  let template = `          
     <h5 class="text-center">Soal ${counter}</h5>
     <div class="row">
       <div class="mb-3">
@@ -63,17 +63,17 @@ TAMBAHSOAL_SINGLE.addEventListener('click',function(){
         <hr>
       </div>
     </div>`;
-    EL.innerHTML = template;
-    TEMPLATEBODY.append(EL);
+  EL.innerHTML = template;
+  TEMPLATEBODY.append(EL);
 
-    counter+=1;
+  counter += 1;
 });
 
-TAMBAHSOAL_MULTIPLE.addEventListener('click',function(){
-    const EL = document.createElement('div');
-    EL.id = `soal-${counter}`;
-    EL.classList = 'justify-content-center';
-    let template = `          
+TAMBAHSOAL_MULTIPLE.addEventListener('click', function () {
+  const EL = document.createElement('div');
+  EL.id = `soal-${counter}`;
+  EL.classList = 'justify-content-center';
+  let template = `          
     <h5 class="text-center">Soal ${counter}</h5>
     <input type="hidden" name="soal[${counter}][tipe_soal]" value="multiple">
     <div class="row">
@@ -128,17 +128,17 @@ TAMBAHSOAL_MULTIPLE.addEventListener('click',function(){
         <hr>
       </div>
     </div>`;
-    EL.innerHTML = template;
-    TEMPLATEBODY.append(EL);
+  EL.innerHTML = template;
+  TEMPLATEBODY.append(EL);
 
-    counter+=1;
+  counter += 1;
 });
 
-HAPUS_BTN.addEventListener('click',function(){
-  if(document.querySelector('#soal-1')){
+HAPUS_BTN.addEventListener('click', function () {
+  if (document.querySelector('#soal-1')) {
     // console.log(counter)
     // console.log(document.querySelector(`#soal-${counter-1}`))
-    document.querySelector(`#soal-${counter-1}`).remove();
-    counter-=1;
+    document.querySelector(`#soal-${counter - 1}`).remove();
+    counter -= 1;
   }
 });

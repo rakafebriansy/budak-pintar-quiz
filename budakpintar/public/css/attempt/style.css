@@ -1,5 +1,5 @@
 #after-body {
-    min-height:2000px;
+    min-height: 85vh !important;
 }
 /* Styling for desktop (min-width: 768px) */
 @media (min-width: 768px) {
@@ -16,7 +16,7 @@
         /* Reset the width to auto for desktop */
         height: auto;
         /* Reset the height to auto for desktop */
-        padding: 30px;
+        padding: 20px;
         display: inline;
         /* Reset display to inline for desktop */
         border-radius: 10%;
@@ -27,3 +27,10 @@
     background-color: rgba(2,117,216,0.2);
 }
 
+body.finished {
+    background-color: #BFC7F2;
+}
+
+body.finished>div.container {
+    min-height: 84vh;
+}

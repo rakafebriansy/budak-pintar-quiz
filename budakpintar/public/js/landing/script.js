@@ -9,16 +9,15 @@ const MODAL_FORM2 = document.querySelector('#form-modal-2 form');
 const BODY = document.querySelector('body');
 
 
-BODY.addEventListener('click',function(e){
+BODY.addEventListener('click', function (e) {
     console.log(e.target);
 
-    //register
-    if(e.target.id == 'tombol-daftar'){
+    if (e.target.id == 'tombol-daftar') {
         MODAL_TITLE1.innerText = 'Sign up';
-        MODAL_FORM1.setAttribute('action','http://localhost/budakpintar/public/landing/register');
-        if (MODAL_FOOTER1.classList.contains('justify-content-between')){
-            MODAL_FOOTER1.classList.replace('justify-content-between','justify-content-center');
-          }
+        MODAL_FORM1.setAttribute('action', 'http://localhost/budakpintar/public/landing/register');
+        if (MODAL_FOOTER1.classList.contains('justify-content-between')) {
+            MODAL_FOOTER1.classList.replace('justify-content-between', 'justify-content-center');
+        }
         MODAL_BODY1.innerHTML = `                    
         
         <div class="form-outline mb-4 mt-3">
@@ -36,18 +35,16 @@ BODY.addEventListener('click',function(e){
                 placeholder="Masukkan kata sandi" required/>
         </div>
     `;
-    MODAL_FOOTER1.innerHTML = `
+        MODAL_FOOTER1.innerHTML = `
     <button type="submit" class="btn btn-primary px-3">Daftar</button>
     `;
     }
-
-    //login
-    if (e.target.id == 'tombol-masuk'){
+    if (e.target.id == 'tombol-masuk') {
         MODAL_TITLE1.innerText = 'Sign in';
-        MODAL_FORM1.setAttribute('action','http://localhost/budakpintar/public/landing/login');
-        if (MODAL_FOOTER1.classList.contains('justify-content-center')){
-            MODAL_FOOTER1.classList.replace('justify-content-center','justify-content-between');
-          }
+        MODAL_FORM1.setAttribute('action', 'http://localhost/budakpintar/public/landing/login');
+        if (MODAL_FOOTER1.classList.contains('justify-content-center')) {
+            MODAL_FOOTER1.classList.replace('justify-content-center', 'justify-content-between');
+        }
         MODAL_BODY1.innerHTML = `
         <input type="hidden" name="id" id="id">
         <div class="form-outline mb-4 mt-3">
@@ -65,14 +62,15 @@ BODY.addEventListener('click',function(e){
             <button type="submit" class="btn btn-primary" style="padding-left: 1rem; padding-right: 1rem;">Masuk</button>
             `;
     }
-
-    //forgot password
-    if(e.target.classList.contains('lupa-kata-sandi')){
+    if (e.target.classList.contains('tombol-mulai')) {
+        document.getElementById('tombol-masuk').click();
+    }
+    if (e.target.classList.contains('lupa-kata-sandi')) {
         MODAL_TITLE2.innerText = 'Lupa kata sandi';
-        MODAL_FORM2.setAttribute('action','http://localhost/budakpintar/public/landing/forgotPassword');
-        if (MODAL_FOOTER2.classList.contains('justify-content-between')){
-            MODAL_FOOTER2.classList.replace('justify-content-between','justify-content-center');
-          }
+        MODAL_FORM2.setAttribute('action', 'http://localhost/budakpintar/public/landing/forgotPassword');
+        if (MODAL_FOOTER2.classList.contains('justify-content-between')) {
+            MODAL_FOOTER2.classList.replace('justify-content-between', 'justify-content-center');
+        }
         MODAL_BODY2.innerHTML = `
         <input type="hidden" name="id" id="id">
         <p class="fs-4">Kami akan mengirimkan kata sandi baru ke alamat email anda.</p>
@@ -87,3 +85,14 @@ BODY.addEventListener('click',function(e){
     }
 });
 
+$('#tombol-cari').on('click',function(){
+    const value = $('#kata-kunci').val();
+    $.ajax({
+        url: 'http://localhost/budakpintar/public/home/searching',
+        data: {kata_kunci: value},
+        method: 'post',
+        success: function(data){
+            $('#hasil-cari').html(data);
+        }
+    });
+  });
