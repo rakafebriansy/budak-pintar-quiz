@@ -33,19 +33,19 @@ function cetakSoal($soal, $counter)
             echo '
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" name="jawaban[' . $counter . '][a]" id="jawabanA' . $counter . '"/>
-                <label class="form-check-label" for="jawabanA' . $counter . '">a. ' . $soal['opsi_a'] . '1</label>
+                <label class="form-check-label" for="jawabanA' . $counter . '">a. ' . $soal['opsi_a'] . '</label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" name="jawaban[' . $counter . '][b]" id="jawabanB' . $counter . '"/>
-                <label class="form-check-label" for="jawabanB' . $counter . '">b. ' . $soal['opsi_b'] . '1</label>
+                <label class="form-check-label" for="jawabanB' . $counter . '">b. ' . $soal['opsi_b'] . '</label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" name="jawaban[' . $counter . '][c]" id="jawabanC' . $counter . '"/>
-                <label class="form-check-label" for="jawabanC' . $counter . '">c. ' . $soal['opsi_c'] . '1</label>
+                <label class="form-check-label" for="jawabanC' . $counter . '">c. ' . $soal['opsi_c'] . '</label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" name="jawaban[' . $counter . '][d]" id="jawabanD' . $counter . '"/>
-                <label class="form-check-label" for="jawabanD' . $counter . '">d. ' . $soal['opsi_d'] . '1</label>
+                <label class="form-check-label" for="jawabanD' . $counter . '">d. ' . $soal['opsi_d'] . '</label>
             </div>';
             break;
     }
@@ -53,7 +53,7 @@ function cetakSoal($soal, $counter)
 
 ?>
 
-<body>
+<form id="form-jawaban" method="post">
     <div id="after-body" class="container mt-1">
         <nav class="navbar navbar-light bg-white fixed-top">
             <div class="container">
@@ -70,6 +70,7 @@ function cetakSoal($soal, $counter)
         <br><br>
 
         <section class="mt-5">
+            <input type="hidden" name="id_kuis" value="<?= $data['id_kuis'] ?>">
             <?php
             $jumlah_soal = sizeof($kumpulan_soal);
             for ($i = 0; $i < $jumlah_soal; $i++) {
@@ -88,7 +89,7 @@ function cetakSoal($soal, $counter)
                                     <p id="awal-soal<?= $i + 2 ?>" class="card-text">
                                         <?= $kumpulan_soal[$i]['pertanyaan']; ?>
                                     </p>
-                                    <?php cetakSoal($kumpulan_soal[$i], $i + 1) ?>
+                                    <?php cetakSoal($kumpulan_soal[$i], $i) ?>
                                 </div>
                             </div>
                         </div>
@@ -115,9 +116,27 @@ function cetakSoal($soal, $counter)
                 <?php } ?>
             </div>
             <div class="d-flex justify-content-evenly mt-3">
-                <button type="submit" class="btn btn-primary d-inline-block btn-sm" style="padding-right: 0.7rem; padding-left:0.7rem;">Kirim</button>
-                <button type="submit" class="btn btn-danger d-inline-block btn-sm">Keluar</button>
-            </div>
+                <button id="tombol-kirim" type="button" data-bs-target="#formModal2" data-bs-toggle="modal" data-bs-dismiss="modal" class="btn btn-primary d-inline-block btn-sm" style="padding-right: 0.7rem; padding-left:0.7rem;">Kirim</button>
 
+                <button id="tombol-keluar" type="button" data-bs-target="#formModal2" data-bs-toggle="modal" data-bs-dismiss="modal" class="btn btn-danger d-inline-block btn-sm" value="keluar">Keluar</button>
+            </div>
         </div>
     </div>
+
+
+    <!-- UTILTY MODAL -->
+    <div class="modal fade" id="formModal2" aria-hidden="true" aria-labelledby="formModalLabel2" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div id="form-modal-2" class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="formModalLabel2"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body fs-4">
+                    <p>Apakah anda yakin?</p>
+                </div>
+                <div class="modal-footer text-center text-lg-start d-flex justify-content-center align-items-center"></div>
+            </div>
+        </div>
+    </div>
+</form>

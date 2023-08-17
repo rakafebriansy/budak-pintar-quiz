@@ -16,11 +16,20 @@ class Attempt extends Controller{
             $data['nama_kuis'] = $db_kuis['nama_kuis'];
             $data['nama_genre'] = $db_genre['nama_genre'];
             $data['kumpulan_soal'] = $db_kumpulan_soal;
+            $data['id_kuis'] = $db_kuis['id_kuis'];
             $this->view('templates/header',$data);
             $this->view($data['folder'] . '/index',$data);
             $this->view('templates/footer',$data);
         }
     }
+    public function evaluation(){
+        if(isset($_POST['jawaban'])){
+            $db_detail_kuis = $this->model('Detailkuis_model')->getDetailkuisBy('kuis_id_kuis',$_POST['id_kuis']);
+            $db_kumpulan_soal = $this->model('Kumpulansoal_model')->getKumpulanSoalBy('id_kumpulan_soal',$db_detail_kuis);
+            $total_skor = $this->model('Kuis_model')->penilaianKuis($_POST['jawaban'],$db_kumpulan_soal);
+        } else {
+            $total_skor = 0;
+        }
+        var_dump($total_skor);die;
+    }
 }
-
-?>
