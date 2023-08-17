@@ -27,6 +27,8 @@ class Attempt extends Controller{
             $db_detail_kuis = $this->model('Detailkuis_model')->getDetailkuisBy('kuis_id_kuis',$_POST['id_kuis']);
             $db_kumpulan_soal = $this->model('Kumpulansoal_model')->getKumpulanSoalBy('id_kumpulan_soal',$db_detail_kuis);
             $total_skor = $this->model('Kuis_model')->penilaianKuis($_POST['jawaban'],$db_kumpulan_soal);
+
+
         } else {
             $total_skor = 0;
         }

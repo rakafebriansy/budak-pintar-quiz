@@ -5,20 +5,13 @@
 @media (min-width: 768px) {
     .deks-number {
         font-size: 1rem;
-        /* Adjust the font size for desktop */
         background-color: salmon;
-        /* Change the background color for desktop */
         color: white;
-        /* Change the text color for desktop */
         border-radius: 0;
-        /* Remove circular border for desktop */
         width: auto;
-        /* Reset the width to auto for desktop */
         height: auto;
-        /* Reset the height to auto for desktop */
         padding: 20px;
         display: inline;
-        /* Reset display to inline for desktop */
         border-radius: 10%;
     }
 }

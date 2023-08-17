@@ -14,7 +14,7 @@ class Create extends Controller{
     }
     public function createQuiz(){
         if(!isset($_POST['soal'])) {
-            Flasher::setFlash('Kuis','Tidak dapat dibuat','(tidak memuat soal)','danger');
+            Flasher::setFlash('Kuis','Tidak dapat','dibuat (tidak memuat soal)','danger');
             header('Location: ' . BASEURL . '/create');
             exit;
         }

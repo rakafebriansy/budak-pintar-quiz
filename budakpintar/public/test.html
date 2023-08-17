@@ -4,34 +4,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
   <title>Document</title>
 </head>
 
 <body>
-  <input class='acb' type='checkbox' name='acheckbox[]' value='1' onclick='deRequire("acb")' required> One
-  <input class='acb' type='checkbox' name='acheckbox[]' value='2' onclick='deRequire("acb")' required> Two
-  <script>
-    function deRequireCb(elClass) {
-      el = document.getElementsByClassName(elClass);
+  <button type="button" class="btn btn-primary" id="liveToastBtn">Show live toast</button>
 
-      var atLeastOneChecked = false; //at least one cb is checked
-      for (i = 0; i < el.length; i++) {
-        if (el[i].checked === true) {
-          atLeastOneChecked = true;
-        }
-      }
-
-      if (atLeastOneChecked === true) {
-        for (i = 0; i < el.length; i++) {
-          el[i].required = false;
-        }
-      } else {
-        for (i = 0; i < el.length; i++) {
-          el[i].required = true;
-        }
-      }
-    }
-  </script>
+  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <strong class="me-auto">Bootstrap</strong>
+        <small>11 mins ago</small>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+        Hello, world! This is a toast message.
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>

@@ -101,7 +101,7 @@ function cetakSoal($soal, $counter)
             ?>
         </section>
     </div>
-    <div class="card position-fixed d-none d-md-block" style="top:96px; right:0; z-index:1050; width:10rem;">
+    <div class="card position-fixed d-none d-md-block" style="top:100px; right:0; z-index:1050; width:10rem;">
         <div class="card-body">
             <h5 class="card-title text-center">Navigasi</h5>
             <div id="wadah-navigasi" class="row justify-content-start">
@@ -116,11 +116,15 @@ function cetakSoal($soal, $counter)
                 <?php } ?>
             </div>
             <div class="d-flex justify-content-evenly mt-3">
-                <button id="tombol-kirim" type="button" data-bs-target="#formModal2" data-bs-toggle="modal" data-bs-dismiss="modal" class="btn btn-primary d-inline-block btn-sm" style="padding-right: 0.7rem; padding-left:0.7rem;">Kirim</button>
+                <button type="button" data-bs-target="#formModal2" data-bs-toggle="modal" data-bs-dismiss="modal" class="tombol-kirim btn btn-primary d-inline-block btn-sm" style="padding-right: 0.7rem; padding-left:0.7rem;">Kirim</button>
 
-                <button id="tombol-keluar" type="button" data-bs-target="#formModal2" data-bs-toggle="modal" data-bs-dismiss="modal" class="btn btn-danger d-inline-block btn-sm" value="keluar">Keluar</button>
+                <button type="button" data-bs-target="#formModal2" data-bs-toggle="modal" data-bs-dismiss="modal" class="tombol-keluar btn btn-danger d-inline-block btn-sm" value="keluar">Keluar</button>
             </div>
         </div>
+    </div>
+    <div class="card position-fixed d-block d-md-none" style="top:100px; right:0; z-index:1050; padding:12px !important; border-radius: 0.375rem !important">
+            <a href="#offcanvasExample" class="text-primary fs-2 fw-bold" data-bs-toggle="offcanvas" role="button" aria-controls="offcanvasExample" style="text-decoration: none;">
+                <</a>
     </div>
 
 
@@ -137,6 +141,35 @@ function cetakSoal($soal, $counter)
                 </div>
                 <div class="modal-footer text-center text-lg-start d-flex justify-content-center align-items-center"></div>
             </div>
+        </div>
+    </div>
+
+    <!-- OFFCANVAS -->
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasExampleLabel">Navigasi</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="d-flex">
+                <?php for ($i = 0; $i < $jumlah_soal; $i++) { ?>
+                    <div class="col-md-4 d-flex justify-content-center me-2">
+                        <a href="#awal-soal<?= $i + 1 ?>" style="text-decoration: none;">
+                            <div class="tombol-navigasi border border-info rounded mt-3 d-flex justify-content-center" style="width: 30px; height:30px; cursor:pointer;">
+                                <p class="d-block text-info"><?= $i + 1; ?></p>
+                            </div>
+                        </a>
+                    </div>
+                <?php } ?>
+            </div>
+            <div class="row">
+                <div class="col-6 d-flex justify-content-start mt-3">
+                    <button type="button" data-bs-target="#formModal2" data-bs-toggle="modal" data-bs-dismiss="modal" class="btn btn-primary d-inline-block btn-sm me-3 tombol-kirim" style="padding-right: 0.7rem; padding-left:0.7rem;">Kirim</button>
+
+                    <button type="button" data-bs-target="#formModal2" data-bs-toggle="modal" data-bs-dismiss="modal" class="btn btn-danger d-inline-block btn-sm tombol-keluar" value="keluar">Keluar</button>
+                </div>
+            </div>
+
         </div>
     </div>
 </form>

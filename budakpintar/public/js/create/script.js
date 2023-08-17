@@ -2,8 +2,8 @@ const TEMPLATEBODY = document.querySelector('#template-body');
 const TAMBAHSOAL_SINGLE = document.querySelector('#tambah-soal-single');
 const TAMBAHSOAL_MULTIPLE = document.querySelector('#tambah-soal-multiple');
 const HAPUS_BTN = document.querySelector('#tombol-hapus');
-
 var counter = 1
+
 TAMBAHSOAL_SINGLE.addEventListener('click', function () {
   const EL = document.createElement('div');
   EL.id = `soal-${counter}`;
@@ -30,28 +30,28 @@ TAMBAHSOAL_SINGLE.addEventListener('click', function () {
             <div class="d-inline-block">Pilihlah opsi yang benar</div>
             <div class="d-inline-block">
               <div class="form-check d-inline-block">
-                <input class="form-check-input" type="radio" id="jawabanA${counter}"
+                <input class="form-check-input jawaban" type="radio" id="jawabanA${counter}"
                   name="soal[${counter}][jawaban]" value="a">
                 <label class="form-check-label" for="jawabanA${counter}">
                   A
                 </label>
               </div>
               <div class="form-check d-inline-block">
-                <input class="form-check-input" type="radio" id="jawabanB${counter}"
+                <input class="form-check-input jawaban" type="radio" id="jawabanB${counter}"
                   name="soal[${counter}][jawaban]" value="b">
                 <label class="form-check-label" for="jawabanB${counter}">
                   B
                 </label>
               </div>
               <div class="form-check d-inline-block">
-                <input class="form-check-input" type="radio" id="jawabanC${counter}"
+                <input class="form-check-input jawaban" type="radio" id="jawabanC${counter}"
                   name="soal[${counter}][jawaban]" value="c">
                 <label class="form-check-label" for="jawabanC${counter}">
                   C
                 </label>
               </div>
               <div class="form-check d-inline-block">
-                <input class="form-check-input" type="radio" id="jawabanD${counter}"
+                <input class="form-check-input jawaban" type="radio" id="jawabanD${counter}"
                   name="soal[${counter}][jawaban]" value="d"> 
                 <label class="form-check-label" for="jawabanD${counter}">
                   D
@@ -65,7 +65,6 @@ TAMBAHSOAL_SINGLE.addEventListener('click', function () {
     </div>`;
   EL.innerHTML = template;
   TEMPLATEBODY.append(EL);
-
   counter += 1;
 });
 
@@ -95,28 +94,28 @@ TAMBAHSOAL_MULTIPLE.addEventListener('click', function () {
             <div class="d-inline-block">Pilihlah opsi yang benar</div>
             <div class="d-inline-block">
               <div class="form-check d-inline-block">
-                <input class="form-check-input" type="checkbox" id="jawabanA${counter}"
+                <input class="form-check-input jawaban" type="checkbox" id="jawabanA${counter}"
                   name="soal[${counter}][jawaban_a]">
                 <label class="form-check-label" for="jawabanA${counter}">
                   A
                 </label>
               </div>
               <div class="form-check d-inline-block">
-                <input class="form-check-input" type="checkbox" id="jawabanB${counter}"
+                <input class="form-check-input jawaban" type="checkbox" id="jawabanB${counter}"
                   name="soal[${counter}][jawaban_b]">
                 <label class="form-check-label" for="jawabanB${counter}">
                   B
                 </label>
               </div>
               <div class="form-check d-inline-block">
-                <input class="form-check-input" type="checkbox" id="jawabanC${counter}"
+                <input class="form-check-input jawaban" type="checkbox" id="jawabanC${counter}"
                   name="soal[${counter}][jawaban_c]">
                 <label class="form-check-label" for="jawabanC${counter}">
                   C
                 </label>
               </div>
               <div class="form-check d-inline-block">
-                <input class="form-check-input" type="checkbox" id="jawabanD${counter}"
+                <input class="form-check-input jawaban" type="checkbox" id="jawabanD${counter}"
                   name="soal[${counter}][jawaban_d]">
                 <label class="form-check-label" for="jawabanD${counter}">
                   D
@@ -136,8 +135,6 @@ TAMBAHSOAL_MULTIPLE.addEventListener('click', function () {
 
 HAPUS_BTN.addEventListener('click', function () {
   if (document.querySelector('#soal-1')) {
-    // console.log(counter)
-    // console.log(document.querySelector(`#soal-${counter-1}`))
     document.querySelector(`#soal-${counter - 1}`).remove();
     counter -= 1;
   }
