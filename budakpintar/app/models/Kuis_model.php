@@ -9,13 +9,6 @@ class Kuis_model
         $this->db = new Database;
     }
 
-    public function getKuisAll()
-    {
-        $query = "SELECT * FROM " . $this->table;
-        $this->db->query($query);
-        return $this->db->resultSet();
-    }
-
     public function getKuisBy($kolom, $nilai)
     {
         $query = "SELECT * FROM " . $this->table . " WHERE " . $kolom . "=:" . $kolom;
@@ -27,6 +20,13 @@ class Kuis_model
     public function getKuisLike($kolom, $nilai)
     {
         $query = "SELECT * FROM " . $this->table . " WHERE " . $kolom . " LIKE '%" . $nilai . "%'";
+        $this->db->query($query);
+        return $this->db->resultSet();
+    }
+
+    public function getKuisOrder($nilai = 'ASC')
+    {
+        $query = "SELECT * FROM " . $this->table . " ORDER BY nama_kuis " . $nilai;
         $this->db->query($query);
         return $this->db->resultSet();
     }

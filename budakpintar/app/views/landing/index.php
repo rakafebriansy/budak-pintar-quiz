@@ -54,7 +54,7 @@ $db_kuis = $data['kuis'];
     <h2 class="">Temukan kuis yang kamu suka!</h2>
     <form class="d-flex mt-4">
       <input id="kata-kunci" class="form-control me-2" type="search" placeholder="Masukkan kata kunci" aria-label="Cari">
-      <button id="tombol-cari" class="btn btn-outline-success" type="button" style="padding-right:1rem; padding-left:1rem;">Cari</button>
+      <button id="tombol-urut" class="btn btn-outline-success fw-bold descending" type="button" style="padding-right:1rem; padding-left:1rem;">↑</button>
     </form>
   </section>
 

@@ -6,7 +6,7 @@ class Home extends Controller{
         $data['judul'] = 'HOME';
         $data['folder'] = 'home';
         $data['genre'] = $this->model('Genre_model')->getGenreAll();
-        $data['kuis'] = $this->model('Kuis_model')->getKuisAll();
+        $data['kuis'] = $this->model('Kuis_model')->getKuisOrder();
         $this->view('templates/header',$data);
         $this->view($data['folder'] . '/index',$data);
         $this->view('templates/footer',$data);
@@ -115,5 +115,47 @@ class Home extends Controller{
             }
         }
     }
+    public function orderBy(){
+        $db_kuis = $this->model('Kuis_model')->getKuisOrder($_POST['kata_kunci']);
+        $db_genre = $this->model('Genre_model')->getGenreAll();
+        if(sizeof($db_kuis)>0){
+            if (!isset($_SESSION['login'])){
+                $tag_button = '<button type="button" class="btn btn-primary tombol-mulai" data-bs-toggle="modal" data-bs-target="#formModal1">Mulai</button>';
+                $tag_form = ['',''];
+            } else {
+                $tag_button = '<button type="submit" class="btn btn-primary">Mulai</button>';
+                $tag_form = ['<form action="' . BASEURL . '/attempt" method="post">','</form>'];
+            }
+        } else {
+            echo '
+            <div class="text-center pt-3">
+                <h5 class="card-title text-danger">Kuis Tidak Ditemukan.</h5>
+            </div>
+            ';
+        }
+        foreach($db_kuis as $kuis){
+            $id_genre = $kuis['genre_id_genre'];
+            foreach($db_genre as $genre){
+                if($genre['id_genre'] == $id_genre){
+                $nama_genre = $genre['nama_genre'];
+                echo '<div class="col-md-4 pt-3">
+                        <div class="card">
+                            <div class="card-header">
+                            ' . ucfirst($nama_genre) . '
+                            </div>
+                            <div class="card-body">
+                            ' . $tag_form[0] .'
+                                    <input type="hidden" name="attempt" value="' . $kuis['id_kuis'] . '">
+                                    <h5 class="card-title">' . $kuis['nama_kuis'] .'</h5>
+                                    <p class="card-text">' . $kuis['deksripsi_kuis'] . '</p>
+                                    ' . $tag_button . 
+                                $tag_form[1] .'
+                            </div>
+                        </div>
+                    </div>';
+                    
+                }
+            }
+        }
+    }
 }
-?>

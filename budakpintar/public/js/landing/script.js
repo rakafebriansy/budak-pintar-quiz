@@ -10,7 +10,6 @@ const BODY = document.querySelector('body');
 
 
 BODY.addEventListener('click', function (e) {
-    console.log(e.target);
 
     if (e.target.id == 'tombol-daftar') {
         MODAL_TITLE1.innerText = 'Sign up';
@@ -85,8 +84,8 @@ BODY.addEventListener('click', function (e) {
     }
 });
 
-$('#tombol-cari').on('click',function(){
-    const value = $('#kata-kunci').val();
+$('#kata-kunci').on('keyup',function(){
+    const value = $(this).val();
     $.ajax({
         url: 'http://localhost/budakpintar/public/home/searching',
         data: {kata_kunci: value},
@@ -95,4 +94,30 @@ $('#tombol-cari').on('click',function(){
             $('#hasil-cari').html(data);
         }
     });
+  });
+
+  $('#tombol-urut').on('click', function () {
+    if (this.classList.contains('descending')) {
+      $.ajax({
+        url: 'http://localhost/budakpintar/public/home/orderby',
+        data: { kata_kunci: 'DESC' },
+        method: 'post',
+        success: function (data) {
+          $('#hasil-cari').html(data);
+        }
+      });
+      $(this).text('↑');
+      $(this).addClass('ascending').removeClass('descending');
+    } else if (this.classList.contains('ascending')) {
+      $.ajax({
+        url: 'http://localhost/budakpintar/public/home/orderby',
+        data: { kata_kunci: 'ASC' },
+        method: 'post',
+        success: function (data) {
+          $('#hasil-cari').html(data);
+        }
+      });
+      $(this).text('↓')
+      $(this).addClass('descending').removeClass('ascending');
+    }
   });
