@@ -15,10 +15,10 @@ if ($gambar != '') {
 $db_genre = $data['genre'];
 $db_kuis = $data['kuis'];
 
-
 ?>
 
 <div class="container">
+<div class="confetti-container"></div>
   <nav class="navbar navbar-light fixed-top bg-white">
     <div class="container">
       <a class="navbar-brand" href="#">
@@ -100,7 +100,7 @@ $db_kuis = $data['kuis'];
             </div>
           </div>
         </div>
-      <?php } ?>center
+      <?php } ?>
     </div>
   </section>
 
@@ -131,6 +131,51 @@ $db_kuis = $data['kuis'];
             <button type="submit" class="btn btn-primary" style="padding-left: 1rem; padding-right: 1rem;">Simpan</button>
           </div>
         </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- POP UP -->
+  <div class="popup" id="resultPopup">
+    <div class="popup-content">
+      <button id="closeBtn" class="btn-close float-end" type="button" aria-label="Close"></button>
+      <img src="<?=BASEURL?>/img/bg.png" alt="bg" style="
+            position: absolute;
+            height: 239px;
+            width: 393px;
+            margin-left: -190px;
+            z-index: -1;
+          " />
+      <h3 class="fw-bold" style="margin-left: 20px; margin-bottom: 50px;">Your Final Score</h3>
+      <div class="bintang">
+        <div class="star-group">
+          <input type="radio" class="star" id="two" name="star_rating" />
+          <input type="radio" class="star" id="three" name="star_rating" />
+          <input type="radio" class="star" id="four" name="star_rating" />
+        </div>
+      </div>
+      <div class="btn btn-light border border-2 border-black pe-5 ps-5 pb-4 position-absolute top-50 start-50 rounded-5"
+        style="
+            margin-left: -50px;
+            margin-top: 47px;
+            padding-bottom: 20px;
+            z-index: -1;
+            padding-left: 10px;
+          "></div>
+      <div class="row mt-2 position-relative" style="padding: 5px; border-color: #95a2e9">
+        <div class="col text-end">
+          <img src="<?=BASEURL?>/img/bedge.png" alt="lencana" style="height: 30px; width: 30px; margin-top: 2px" />
+        </div>
+        <div class="col text-start">
+          <h4 class="pt-1 fw-bold" style="margin-left: -15px">
+            <span id="score" class="">Error Database</span>
+          </h4>
+        </div>
+      </div>
+      <div class="container text-center mt-2">
+        <button type="button" class="btn fw-bold" style="background-color: #8897e7">
+          Home
+        </button>
       </div>
     </div>
   </div>
@@ -184,3 +229,65 @@ $db_kuis = $data['kuis'];
     </div>
   </div>
 </div>
+<?php
+
+if(isset($data['total_skor'])){
+  $totalskor = $data['total_skor'];
+  echo '
+    <script>const submitBtn = document.getElementById("submitBtn");
+    const resultPopup = document.getElementById("resultPopup");
+    const closeBtn = document.getElementById("closeBtn");
+    const scoreSpan = document.getElementById("score");
+    const starTwo = document.getElementById("two");
+    const starThree = document.getElementById("three");
+    const starFour = document.getElementById("four");
+    
+    function createConfetti() {
+      const confettiContainer = document.querySelector(".confetti-container");
+      const confettiElement = document.createElement("div");
+      confettiElement.classList.add("confetti");
+      confettiContainer.appendChild(confettiElement);
+    }
+    
+    function animateScore(targetScore) {
+      let currentScore = 0;
+      const animationDuration = 100000; // Animation duration in milliseconds
+      const interval = 30; // Interval between each animation step
+      const increment = Math.ceil(targetScore / (animationDuration / interval));
+    
+      const scoreAnimation = setInterval(() => {
+        currentScore += increment;
+        if (currentScore >= targetScore) {
+          clearInterval(scoreAnimation);
+          currentScore = targetScore;
+        }
+        scoreSpan.textContent = currentScore;
+        if (currentScore >= 50) {
+          starTwo.checked = true;
+        }
+        if (currentScore >= 75) {
+          starThree.checked = true;
+        }
+        if (currentScore >= 100) {
+          starFour.checked = true;
+        }
+      }, interval);
+    }
+    
+    for (let i = 0; i < 10; i++) {
+        createConfetti();
+    }
+    
+    const targetScore = ' . $totalskor . ';
+    animateScore(targetScore);
+    
+    resultPopup.style.display = "block";
+    
+    closeBtn.addEventListener("click", function () {
+      resultPopup.style.display = "none";
+    });
+    </script>
+    ';
+}
+
+?>

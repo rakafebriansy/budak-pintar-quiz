@@ -7,6 +7,10 @@ class Home extends Controller{
         $data['folder'] = 'home';
         $data['genre'] = $this->model('Genre_model')->getGenreAll();
         $data['kuis'] = $this->model('Kuis_model')->getKuisOrder();
+        if(isset($_SESSION['total_skor'])){
+            $data['total_skor'] = $_SESSION['total_skor'];
+            unset($_SESSION['total_skor']);
+        }
         $this->view('templates/header',$data);
         $this->view($data['folder'] . '/index',$data);
         $this->view('templates/footer',$data);
@@ -94,8 +98,7 @@ class Home extends Controller{
                                         <button type="button" class="btn btn-primary tombol-mulai" data-bs-toggle="modal" data-bs-target="#formModal1">Mulai</button>
                                     </div>
                                 </div>
-                            </div>';
-                            
+                            </div>';                            
                         }
                     }
                 }
@@ -120,7 +123,6 @@ class Home extends Controller{
                                     </div>
                                 </div>
                             </div>';
-                            
                         }
                     }
                 }

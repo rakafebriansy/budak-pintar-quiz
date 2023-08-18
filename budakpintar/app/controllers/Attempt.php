@@ -27,10 +27,13 @@ class Attempt extends Controller{
             $db_detail_kuis = $this->model('Detailkuis_model')->getDetailkuisBy('kuis_id_kuis',$_POST['id_kuis']);
             $db_kumpulan_soal = $this->model('Kumpulansoal_model')->getKumpulanSoalBy('id_kumpulan_soal',$db_detail_kuis);
             $total_skor = $this->model('Kuis_model')->penilaianKuis($_POST['jawaban'],$db_kumpulan_soal);
-
-
+            $_SESSION['total_skor'] = $total_skor;
+            header('Location: ' . BASEURL . '/home');
+            exit;
         } else {
-            $total_skor = 0;
+            Flasher::setFlash('Hasil kuis anda','Gagal','diproses','danger');
+            header('Location: ' . BASEURL . '/home');
+            exit;
         }
     }
 }

@@ -167,9 +167,9 @@ function cetakSoal($soal, $counter)
             </div>
             <div class="row">
                 <div class="col-6 d-flex justify-content-start mt-3">
-                    <button type="button" data-bs-target="#formModal2" data-bs-toggle="modal" data-bs-dismiss="modal" class="btn btn-primary d-inline-block btn-sm me-3 tombol-kirim" style="padding-right: 0.7rem; padding-left:0.7rem;">Kirim</button>
+                    <button type="button" data-bs-dismiss="offcanvas" data-bs-target="#formModal2" data-bs-toggle="modal" data-bs-dismiss="modal" class="btn btn-primary d-inline-block btn-sm me-3 tombol-kirim" style="padding-right: 0.7rem; padding-left:0.7rem;">Kirim</button>
 
-                    <button type="button" data-bs-target="#formModal2" data-bs-toggle="modal" data-bs-dismiss="modal" class="btn btn-danger d-inline-block btn-sm tombol-keluar" value="keluar">Keluar</button>
+                    <button type="button" data-bs-dismiss="offcanvas" data-bs-target="#formModal2" data-bs-toggle="modal" data-bs-dismiss="modal" class="btn btn-danger d-inline-block btn-sm tombol-keluar" value="keluar">Keluar</button>
                 </div>
             </div>
 
