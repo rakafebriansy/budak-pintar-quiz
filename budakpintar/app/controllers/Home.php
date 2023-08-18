@@ -12,11 +12,11 @@ class Home extends Controller{
         $this->view('templates/footer',$data);
     }
     public function editProfile(){
-        if(strtolower($_POST['nama_pengguna']) == $_SESSION['nama_pengguna'] && $_POST['alamat_email'] == $_SESSION['alamat_email'] && $_FILES['gambar']['error'] == 4){
+        if(strtolower($_POST['nama_pengguna']) == $_SESSION['nama_pengguna'] && $_POST['alamat_email'] == $_SESSION['alamat_email'] && $_FILES['gambar_profil']['error'] == 4){
             header('Location: ' . BASEURL . '/home');
             exit;
         } else{
-            $informasi_gambar = $_FILES['gambar'];
+            $informasi_gambar = $_FILES['gambar_profil'];
             $error_code  = $this->model('Pengguna_model')->ubahInformasiAkun($_POST,$informasi_gambar);
             if($error_code>0){
                 Flasher::setFlash('Akun anda','Berhasil','diperbarui','success');
@@ -77,11 +77,53 @@ class Home extends Controller{
         $db_genre = $this->model('Genre_model')->getGenreAll();
         if(sizeof($db_kuis)>0){
             if (!isset($_SESSION['login'])){
-                $tag_button = '<button type="button" class="btn btn-primary tombol-mulai" data-bs-toggle="modal" data-bs-target="#formModal1">Mulai</button>';
-                $tag_form = ['',''];
+                foreach($db_kuis as $kuis){
+                    $id_genre = $kuis['genre_id_genre'];
+                    foreach($db_genre as $genre){
+                        if($genre['id_genre'] == $id_genre){
+                        $nama_genre = $genre['nama_genre'];
+                        echo '<div class="col-md-4 pt-3">
+                                <div class="card">
+                                    <div class="card-header">
+                                    ' . ucfirst($nama_genre) . '
+                                    </div>
+                                    <div class="card-body">
+                                        <input type="hidden" name="attempt" value="' . $kuis['id_kuis'] . '">
+                                        <h5 class="card-title">' . ucfirst($kuis['nama_kuis']) .'</h5>
+                                        <p class="card-text">' . ucfirst($kuis['deksripsi_kuis']) . '</p>
+                                        <button type="button" class="btn btn-primary tombol-mulai" data-bs-toggle="modal" data-bs-target="#formModal1">Mulai</button>
+                                    </div>
+                                </div>
+                            </div>';
+                            
+                        }
+                    }
+                }
             } else {
-                $tag_button = '<button type="submit" class="btn btn-primary">Mulai</button>';
-                $tag_form = ['<form action="' . BASEURL . '/attempt" method="post">','</form>'];
+                foreach($db_kuis as $kuis){
+                    $id_genre = $kuis['genre_id_genre'];
+                    foreach($db_genre as $genre){
+                        if($genre['id_genre'] == $id_genre){
+                        $nama_genre = $genre['nama_genre'];
+                        echo '<div class="col-md-4 pt-3">
+                                <div class="card">
+                                    <div class="card-header">
+                                    ' . ucfirst($nama_genre) . '
+                                    </div>
+                                    <div class="card-body">
+                                        <form action="' . BASEURL . '/attempt" method="post">','</form>
+                                                <input type="hidden" name="attempt" value="' . $kuis['id_kuis'] . '">
+                                                <h5 class="card-title">' . ucfirst($kuis['nama_kuis']) .'</h5>
+                                                <p class="card-text">' .ucfirst($kuis['deksripsi_kuis']) . '</p>
+                                                <button value="' . $kuis['id_kuis'] . '" id="tombol-mulai" type="button" class="btn btn-primary" data-bs-target="#formModal2" data-bs-toggle="modal" data-bs-dismiss="modal">Mulai</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>';
+                            
+                        }
+                    }
+                }
             }
         } else {
             echo '
@@ -89,30 +131,6 @@ class Home extends Controller{
                 <h5 class="card-title text-danger">Kuis Tidak Ditemukan.</h5>
             </div>
             ';
-        }
-        foreach($db_kuis as $kuis){
-            $id_genre = $kuis['genre_id_genre'];
-            foreach($db_genre as $genre){
-                if($genre['id_genre'] == $id_genre){
-                $nama_genre = $genre['nama_genre'];
-                echo '<div class="col-md-4 pt-3">
-                        <div class="card">
-                            <div class="card-header">
-                            ' . ucfirst($nama_genre) . '
-                            </div>
-                            <div class="card-body">
-                            ' . $tag_form[0] .'
-                                    <input type="hidden" name="attempt" value="' . $kuis['id_kuis'] . '">
-                                    <h5 class="card-title">' . $kuis['nama_kuis'] .'</h5>
-                                    <p class="card-text">' . $kuis['deksripsi_kuis'] . '</p>
-                                    ' . $tag_button . 
-                                $tag_form[1] .'
-                            </div>
-                        </div>
-                    </div>';
-                    
-                }
-            }
         }
     }
     public function orderBy(){
@@ -120,11 +138,53 @@ class Home extends Controller{
         $db_genre = $this->model('Genre_model')->getGenreAll();
         if(sizeof($db_kuis)>0){
             if (!isset($_SESSION['login'])){
-                $tag_button = '<button type="button" class="btn btn-primary tombol-mulai" data-bs-toggle="modal" data-bs-target="#formModal1">Mulai</button>';
-                $tag_form = ['',''];
+                foreach($db_kuis as $kuis){
+                    $id_genre = $kuis['genre_id_genre'];
+                    foreach($db_genre as $genre){
+                        if($genre['id_genre'] == $id_genre){
+                        $nama_genre = $genre['nama_genre'];
+                        echo '<div class="col-md-4 pt-3">
+                                <div class="card">
+                                    <div class="card-header">
+                                    ' . ucfirst($nama_genre) . '
+                                    </div>
+                                    <div class="card-body">
+                                        <input type="hidden" name="attempt" value="' . $kuis['id_kuis'] . '">
+                                        <h5 class="card-title">' . ucfirst($kuis['nama_kuis']) .'</h5>
+                                        <p class="card-text">' . ucfirst($kuis['deksripsi_kuis']) . '</p>
+                                        <button type="button" class="btn btn-primary tombol-mulai" data-bs-toggle="modal" data-bs-target="#formModal1">Mulai</button>
+                                    </div>
+                                </div>
+                            </div>';
+                            
+                        }
+                    }
+                }
             } else {
-                $tag_button = '<button type="submit" class="btn btn-primary">Mulai</button>';
-                $tag_form = ['<form action="' . BASEURL . '/attempt" method="post">','</form>'];
+                foreach($db_kuis as $kuis){
+                    $id_genre = $kuis['genre_id_genre'];
+                    foreach($db_genre as $genre){
+                        if($genre['id_genre'] == $id_genre){
+                        $nama_genre = $genre['nama_genre'];
+                        echo '<div class="col-md-4 pt-3">
+                                <div class="card">
+                                    <div class="card-header">
+                                    ' . ucfirst($nama_genre) . '
+                                    </div>
+                                    <div class="card-body">
+                                        <form action="' . BASEURL . '/attempt" method="post">','</form>
+                                                <input type="hidden" name="attempt" value="' . $kuis['id_kuis'] . '">
+                                                <h5 class="card-title">' . ucfirst($kuis['nama_kuis']) .'</h5>
+                                                <p class="card-text">' . ucfirst($kuis['deksripsi_kuis']) . '</p>
+                                                <button value="' . $kuis['id_kuis'] . '" id="tombol-mulai" type="button" class="btn btn-primary" data-bs-target="#formModal2" data-bs-toggle="modal" data-bs-dismiss="modal">Mulai</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>';
+                            
+                        }
+                    }
+                }
             }
         } else {
             echo '
@@ -132,30 +192,6 @@ class Home extends Controller{
                 <h5 class="card-title text-danger">Kuis Tidak Ditemukan.</h5>
             </div>
             ';
-        }
-        foreach($db_kuis as $kuis){
-            $id_genre = $kuis['genre_id_genre'];
-            foreach($db_genre as $genre){
-                if($genre['id_genre'] == $id_genre){
-                $nama_genre = $genre['nama_genre'];
-                echo '<div class="col-md-4 pt-3">
-                        <div class="card">
-                            <div class="card-header">
-                            ' . ucfirst($nama_genre) . '
-                            </div>
-                            <div class="card-body">
-                            ' . $tag_form[0] .'
-                                    <input type="hidden" name="attempt" value="' . $kuis['id_kuis'] . '">
-                                    <h5 class="card-title">' . $kuis['nama_kuis'] .'</h5>
-                                    <p class="card-text">' . $kuis['deksripsi_kuis'] . '</p>
-                                    ' . $tag_button . 
-                                $tag_form[1] .'
-                            </div>
-                        </div>
-                    </div>';
-                    
-                }
-            }
         }
     }
 }

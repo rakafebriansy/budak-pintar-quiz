@@ -12,6 +12,8 @@ TAMBAHSOAL_SINGLE.addEventListener('click', function () {
     <h5 class="text-center">Soal ${counter}</h5>
     <div class="row">
       <div class="mb-3">
+        <label for="gambar_pendukung[${counter}]" class="mt-3">Gambar</label>
+        <input type="file" name="gambar_pendukung[${counter}]" class="form-control mt-2">
         <label for="pertanyaan" class="form-label">Pertanyaan</label>
         <input type="hidden" name="soal[${counter}][tipe_soal]" value="single">
         <textarea rows="3" type="text" class="form-control" name="soal[${counter}][pertanyaan]" required></textarea>
@@ -77,6 +79,8 @@ TAMBAHSOAL_MULTIPLE.addEventListener('click', function () {
     <input type="hidden" name="soal[${counter}][tipe_soal]" value="multiple">
     <div class="row">
       <div class="mb-3">
+        <label for="gambar_pendukung[${counter}]" class="mt-3">Gambar</label>
+        <input type="file" name="gambar_pendukung[${counter}]" class="form-control mt-2">
         <label for="pertanyaan" class="form-label">Pertanyaan</label>
         <textarea rows="3" type="text" class="form-control" name="soal[${counter}][pertanyaan]" required></textarea>
       </div>

@@ -20,7 +20,7 @@ class Create extends Controller{
         }
         $db_genre = $this->model('Genre_model')->getGenreBy('nama_genre',$_POST['nama_genre']);
         $id_kuis = $this->model('Kuis_model')->tambahKuis($_POST['nama_kuis'],$_POST['deskripsi_kuis'],$db_genre['id_genre']);
-        $ids_kumpulan_soal = $this->model('Kumpulansoal_model')->tambahSoal($_POST['soal']);
+        $ids_kumpulan_soal = $this->model('Kumpulansoal_model')->tambahSoal($_POST['soal'],$_FILES['gambar_pendukung']);
         if ($this->model('Detailkuis_model')->tambahDetailKuis($id_kuis,$ids_kumpulan_soal)>0){
             Flasher::setFlash('Kuis anda telah','Berhasil','dibuat','primary');
             header('Location: ' . BASEURL . '/home');

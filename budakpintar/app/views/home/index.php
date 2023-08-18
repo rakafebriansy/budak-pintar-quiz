@@ -5,8 +5,8 @@ $alamat_email = $_SESSION['alamat_email'];
 $id_pengguna = $_SESSION['id_pengguna'];
 $gambar = '';
 $tampilan_gambar = 'user.png';
-if (isset($_SESSION['gambar'])) {
-  $gambar = $_SESSION['gambar'];
+if (isset($_SESSION['gambar_profil'])) {
+  $gambar = $_SESSION['gambar_profil'];
 }
 if ($gambar != '') {
   $tampilan_gambar = $gambar;
@@ -28,7 +28,7 @@ $db_kuis = $data['kuis'];
       <div class="dropdown justify-content-start align-items-center text-center">
         <div class="container"></div>
         <label for="tombol-profil">
-          <img src="<?= BASEURL; ?>/img/<?= $tampilan_gambar ?>" width="40" alt="">
+          <img src="<?= BASEURL; ?>/img/profile/<?= $tampilan_gambar ?>" width="40" alt="">
         </label>
         <a id="dropdownMenuButton1" name="dropdownMenuButton1" class="btn ms-1 fs-5 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><?= ucfirst($nama_pengguna); ?></a>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -81,26 +81,26 @@ $db_kuis = $data['kuis'];
     <div id="hasil-cari" class="row ">
       <?php foreach ($db_kuis as $kuis) {
         $id_genre = $kuis['genre_id_genre'];
-        $nama_kuis;
+        $nama_genre;
         foreach ($db_genre as $genre) {
           if ($genre['id_genre'] == $id_genre) {
-            $nama_kuis = $genre['nama_genre'];
+            $nama_genre = $genre['nama_genre'];
           }
         }
       ?>
         <div class="col-md-4 pt-3">
           <div class="card">
             <div class="card-header">
-              <?= ucfirst($nama_kuis); ?>
+              <?= ucfirst($nama_genre); ?>
             </div>
             <div class="card-body">
-              <h5 class="card-title"><?= $kuis['nama_kuis']; ?></h5>
-              <p class="card-text"><?= $kuis['deksripsi_kuis']; ?></p>
+              <h5 class="card-title"><?= ucfirst($kuis['nama_kuis']); ?></h5>
+              <p class="card-text"><?=ucfirst($kuis['deksripsi_kuis']); ?></p>
               <button value="<?= $kuis['id_kuis'] ?>" id="tombol-mulai" type="button" class="btn btn-primary" data-bs-target="#formModal2" data-bs-toggle="modal" data-bs-dismiss="modal">Mulai</button>
             </div>
           </div>
         </div>
-      <?php } ?>
+      <?php } ?>center
     </div>
   </section>
 
@@ -115,15 +115,15 @@ $db_kuis = $data['kuis'];
         <form action="<?= BASEURL ?>/home/editProfile" method="post" enctype="multipart/form-data">
           <div class="modal-body">
             <div class="container d-flex justify-content-center">
-              <img src="<?= BASEURL ?>/img/<?= $tampilan_gambar ?>" width="100" alt="" class="img-thumbnail">
+              <img src="<?= BASEURL ?>/img/profile/<?= $tampilan_gambar ?>" width="100" alt="" class="img-thumbnail">
             </div>
             <input type="hidden" name="gambar_default" value="<?= $gambar ?>">
             <label for="nama_pengguna" class="mt-4">Nama Pengguna</label>
             <input type="text" class="form-control form-control-lg mt-2" name="nama_pengguna" value="<?= ucfirst($nama_pengguna) ?>" placeholder="Masukkan nama pengguna" required />
             <label for="alamat_email" class="mt-3">Email</label>
             <input type="email" class="form-control form-control-lg mt-2" name="alamat_email" value="<?= $alamat_email ?>" placeholder="Masukkan alamat email yang valid" required />
-            <label for="gambar" class="mt-3">Foto Profil</label>
-            <input type="file" name="gambar" class="form-control form-control-lg mt-2">
+            <label for="gambar_profil" class="mt-3">Foto Profil</label>
+            <input type="file" name="gambar_profil" class="form-control form-control-lg mt-2">
           </div>
           <div class="modal-footer text-center text-lg-start d-flex justify-content-between align-items-center">
             <button id="tombol-hapus-akun" type="button" class="btn btn-danger text-white" data-bs-target="#formModal2" data-bs-toggle="modal" data-bs-dismiss="modal" style="padding-left: 1rem; padding-right: 1rem;">Hapus

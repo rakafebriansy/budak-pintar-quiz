@@ -32,6 +32,5 @@ class Attempt extends Controller{
         } else {
             $total_skor = 0;
         }
-        var_dump($total_skor);die;
     }
 }

@@ -3,7 +3,7 @@ $nama_kuis = $data['nama_kuis'];
 
 ?>
 
-<form action="<?= BASEURL ?>/create/createQuiz" method="post">
+<form action="<?= BASEURL ?>/create/createQuiz" method="post" enctype="multipart/form-data">
   <div class="container">
     <nav class="navbar navbar-light fixed-top bg-white">
       <div class="container d-flex justify-content-center px-4">

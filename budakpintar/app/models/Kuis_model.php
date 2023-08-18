@@ -33,11 +33,8 @@ class Kuis_model
 
     public function tambahKuis($nama_kuis, $deskripsi_kuis, $id_genre)
     {
-        $id_pengguna = $_SESSION['id_pengguna'];
-
-        $query = "INSERT INTO " . $this->table . " VALUES('',:pengguna_id_pengguna,:genre_id_genre,:nama_kuis,:deskripsi_kuis)";
+        $query = "INSERT INTO " . $this->table . " VALUES('',:genre_id_genre,:nama_kuis,:deskripsi_kuis)";
         $this->db->query($query);
-        $this->db->bind('pengguna_id_pengguna', $id_pengguna);
         $this->db->bind('genre_id_genre', $id_genre);
         $this->db->bind('nama_kuis', trim(strtolower(stripslashes(htmlspecialchars($nama_kuis)))));
         $this->db->bind('deskripsi_kuis', trim(strtolower(stripslashes(htmlspecialchars($deskripsi_kuis)))));

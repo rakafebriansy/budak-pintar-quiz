@@ -86,6 +86,9 @@ function cetakSoal($soal, $counter)
                             <div class="card">
                                 <div class="card-header"><?= ucfirst($nama_genre) ?></div>
                                 <div class="card-body">
+                                <?php if(strlen($kumpulan_soal[$i]['gambar_pendukung'])>1){ ?>
+                                    <img src="<?=BASEURL;?>/img/soal/<?= $kumpulan_soal[$i]['gambar_pendukung']; ?>" alt="" height="200">
+                                <?php } ?>    
                                     <p id="awal-soal<?= $i + 2 ?>" class="card-text">
                                         <?= $kumpulan_soal[$i]['pertanyaan']; ?>
                                     </p>

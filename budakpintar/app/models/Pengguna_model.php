@@ -39,7 +39,7 @@ class Pengguna_model {
             $_SESSION['id_pengguna'] = $db_data['id_pengguna'];
             $_SESSION['nama_pengguna'] = $db_data['nama_pengguna'];
             $_SESSION['alamat_email'] = $db_data['alamat_email'];
-            $_SESSION['gambar'] = $db_data['gambar'];
+            $_SESSION['gambar_profil'] = $db_data['gambar_profil'];
             return 1;
         } else {
             return 0;
@@ -65,7 +65,7 @@ class Pengguna_model {
         $nama_baru = uniqid();
         $nama_baru.= '.';
         $nama_baru.= $ekstensi_gambar;
-        move_uploaded_file($data['tmp_name'],'img/'.$nama_baru);
+        move_uploaded_file($data['tmp_name'],'img/profile/'.$nama_baru);
     
         return $nama_baru;
     }
@@ -139,12 +139,12 @@ class Pengguna_model {
 
         //exec db
         $alamat_email_baru = trim(strtolower(stripslashes(htmlspecialchars($new_data['alamat_email']))));
-        $query = "UPDATE " . $this->table . " SET nama_pengguna=:nama_pengguna, alamat_email=:alamat_email, gambar=:gambar WHERE id_pengguna=:id_pengguna";
+        $query = "UPDATE " . $this->table . " SET nama_pengguna=:nama_pengguna, alamat_email=:alamat_email, gambar_profil=:gambar_profil WHERE id_pengguna=:id_pengguna";
         
         $this->db->query($query);
         $this->db->bind('nama_pengguna',$nama_pengguna_baru);
         $this->db->bind('alamat_email',$alamat_email_baru);
-        $this->db->bind('gambar',$informasi_gambar);
+        $this->db->bind('gambar_profil',$informasi_gambar);
         $this->db->bind('id_pengguna',$_SESSION['id_pengguna']);
         $this->db->exec();
         $rowsAffected = $this->db->rowCount();
@@ -154,7 +154,7 @@ class Pengguna_model {
             $_SESSION['nama_pengguna'] = $nama_pengguna_baru;
             $_SESSION['alamat_email'] = $new_data['alamat_email'];
             if ($informasi_gambar != ''){
-                $_SESSION['gambar'] = $informasi_gambar;
+                $_SESSION['gambar_profil'] = $informasi_gambar;
             }
         }
         
