@@ -60,14 +60,13 @@ submitBtn.addEventListener("click", function () {
   animateScore(targetScore);
 
   resultPopup.style.display = "block";
-
-  // Start the interval for stopping the confetti animation after 5 seconds
-  confettiAnimationInterval = setTimeout(() => {
-    stopConfetti();
-    clearInterval(confettiAnimationInterval); 
-  }, 10000);
 });
 
 closeBtn.addEventListener("click", function () {
   resultPopup.style.display = "none";
+  starTwo.checked = false;
+  starThree.checked = false;
+  starFour.checked = false;
+  stopConfetti();
+  clearInterval(confettiAnimationInterval);
 });
