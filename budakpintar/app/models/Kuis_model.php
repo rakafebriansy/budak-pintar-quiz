@@ -8,23 +8,32 @@ class Kuis_model
     {
         $this->db = new Database;
     }
+ 
+    public function getBanyakKuis($params){
+        $query = "SELECT * FROM " . $this->table . " WHERE " . $params['kolom'] . " LIKE '%" . $params['nilai'] . "%'";
+        $this->db->query($query);
+        $this->db->exec();
+        return $this->db->rowCount();
+    }
 
-
-    public function getKuis($output,$order_by,$data_awal,$params = null)
+    public function getKuisSet($params,$urut_berdasarkan,$data_awal = 0)
     {
         $jumlah_data = 3;
-        if (isset($params)){
-            $query = "SELECT * FROM " . $this->table . " WHERE " . $params['kolom'] . " LIKE '%" . $params['nilai'] . "%' ORDER BY nama_kuis " . $order_by; //. " LIMIT " . $data_awal . "," . $jumlah_data;
-        } else {
-            $query = "SELECT * FROM " . $this->table . " ORDER BY nama_kuis " . $order_by;// . " LIMIT " . $data_awal . "," . $jumlah_data;
-        }
+        $query = "SELECT * FROM " . $this->table . " WHERE " . $params['kolom'] . " LIKE '%" . $params['nilai'] . "%' ORDER BY nama_kuis " . $urut_berdasarkan . " LIMIT " . $data_awal . "," . $jumlah_data;
 
         $this->db->query($query);
-        if ($output == 'set'){
-            return $this->db->resultSet();
+        return $this->db->resultSet();
+    }
+
+    public function getKuisSingle($condition,$params = null)
+    {
+        if($condition == 'like'){
+            $query = "SELECT * FROM " . $this->table . " WHERE " . $params['kolom'] . " LIKE '%" . $params['nilai'] . "%'";
         } else {
-            return $this->db->single();
+            $query = "SELECT * FROM " . $this->table . " WHERE " . $params['kolom'] . "=" . $params['nilai'];
         }
+        $this->db->query($query);
+        return $this->db->single();
     }
 
     public function tambahKuis($nama_kuis, $deskripsi_kuis, $id_genre)

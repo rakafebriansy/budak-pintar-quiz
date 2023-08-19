@@ -6,7 +6,9 @@ class Home extends Controller{
         $data['judul'] = 'HOME';
         $data['folder'] = 'home';
         $data['genre'] = $this->model('Genre_model')->getGenreAll();
-        $data['kuis'] = $this->model('Kuis_model')->getKuis('set','ASC',0);
+        $params['kolom'] = 'id_kuis';
+        $params['nilai'] = '';
+        $data['kuis'] = $this->model('Kuis_model')->getKuisSet($params,'ASC');
         if(isset($_SESSION['total_skor'])){
             $data['total_skor'] = $_SESSION['total_skor'];
             unset($_SESSION['total_skor']);
@@ -77,15 +79,23 @@ class Home extends Controller{
         }
     }
     public function searching(){
-        if(isset($_POST['urut_berdasar'])){
-            $params['kolom'] = 'nama_kuis';
-            $params['nilai'] = $_POST['kata_kunci'];
-            $db_kuis = $this->model('Kuis_model')->getKuis('set',$_POST['urut_berdasar'],0,$params);
-        } else{
-            $params['kolom'] = 'nama_kuis';
-            $params['nilai'] = $_POST['kata_kunci'];
-            $db_kuis = $this->model('Kuis_model')->getKuis('set','ASC',0,$params);
+        $params['kolom'] = 'nama_kuis';
+        $params['nilai'] = $_POST['kata_kunci'];
+        $jumlah_data_perhalaman = 3;
+        $banyak_kuis = $this->model('Kuis_model')->getBanyakKuis($params);
+        $banyak_pagination = ceil($banyak_kuis/$jumlah_data_perhalaman);
+        if(isset($halaman_aktif)){
+            $halaman_aktif = $_POST['halaman_aktif'];
+        } else {
+            $halaman_aktif = 1;
         }
+        $data_awal = ($halaman_aktif * $jumlah_data_perhalaman) -  $jumlah_data_perhalaman;
+        if(isset($_POST['urut_berdasar'])){
+            $urut_berdasarkan = $_POST['urut_berdasar'];
+        } else{
+            $urut_berdasarkan = 'ASC';
+        }
+        $db_kuis = $this->model('Kuis_model')->getKuisSet($params,$urut_berdasarkan,$data_awal);
         $db_genre = $this->model('Genre_model')->getGenreAll();
         if(sizeof($db_kuis)>0){
             if (!isset($_SESSION['login'])){

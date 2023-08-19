@@ -8,7 +8,7 @@ class Attempt extends Controller{
         } else{
             $params['kolom'] = 'id_kuis';
             $params['nilai'] = $_POST['attempt'];
-            $db_kuis = $this->model('Kuis_model')->getKuis('single','ASC',0,$params);
+            $db_kuis = $this->model('Kuis_model')->getKuisSingle('=',$params);
             $db_genre = $this->model('Genre_model')->getGenreBy('id_genre',$db_kuis['genre_id_genre']);
             $db_detail_kuis = $this->model('Detailkuis_model')->getDetailkuisBy('kuis_id_kuis',$_POST['attempt']);
             $db_kumpulan_soal = $this->model('Kumpulansoal_model')->getKumpulanSoalBy('id_kumpulan_soal',$db_detail_kuis);

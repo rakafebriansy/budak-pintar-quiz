@@ -6,7 +6,9 @@ class Landing extends Controller {
         $data['judul'] = 'LANDING PAGE';
         $data['folder'] = 'landing';
         $data['genre'] = $this->model('Genre_model')->getGenreAll();
-        $data['kuis'] = $this->model('Kuis_model')->getKuis('set','ASC',0);
+        $params['kolom'] = 'id_kuis';
+        $params['nilai'] = '';
+        $data['kuis'] = $this->model('Kuis_model')->getKuisSet($params,'ASC');
         $this->view('templates/header',$data);
         $this->view($data['folder'] . '/index',$data);
         $this->view('templates/footer',$data);
