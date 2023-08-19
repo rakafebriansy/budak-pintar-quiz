@@ -62,17 +62,17 @@ $db_kuis = $data['kuis'];
     <div id="hasil-cari" class="row ">
       <?php foreach ($db_kuis as $kuis) {
         $id_genre = $kuis['genre_id_genre'];
-        $nama_kuis;
+        $nama_genre;
         foreach ($db_genre as $genre) {
           if ($genre['id_genre'] == $id_genre) {
-            $nama_kuis = $genre['nama_genre'];
+            $nama_genre = $genre['nama_genre'];
           }
         }
       ?>
         <div class="col-md-4 pt-3">
           <div class="card">
             <div class="card-header">
-              <?= ucfirst($nama_kuis); ?>
+              <?= ucfirst($nama_genre); ?>
             </div>
             <div class="card-body">
               <input type="hidden" name="attempt" value="<?= $kuis['id_kuis'] ?>">

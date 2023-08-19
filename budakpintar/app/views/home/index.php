@@ -94,6 +94,7 @@ $db_kuis = $data['kuis'];
               <?= ucfirst($nama_genre); ?>
             </div>
             <div class="card-body">
+              <input type="hidden" name="attempt" value="<?= $kuis['id_kuis'] ?>">
               <h5 class="card-title"><?= ucfirst($kuis['nama_kuis']); ?></h5>
               <p class="card-text"><?=ucfirst($kuis['deksripsi_kuis']); ?></p>
               <button value="<?= $kuis['id_kuis'] ?>" id="tombol-mulai" type="button" class="btn btn-primary" data-bs-target="#formModal2" data-bs-toggle="modal" data-bs-dismiss="modal">Mulai</button>

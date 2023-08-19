@@ -9,26 +9,26 @@ class Kuis_model
         $this->db = new Database;
     }
 
-    public function getKuisBy($kolom, $nilai)
+    public function getKuisWhere($kolom, $nilai, $single, $order = 'ASC')
     {
-        $query = "SELECT * FROM " . $this->table . " WHERE " . $kolom . "=:" . $kolom;
+        $query = "SELECT * FROM " . $this->table . " WHERE " . $kolom . " LIKE '%" . $nilai . "%' ORDER BY nama_kuis " . $order;
         $this->db->query($query);
-        $this->db->bind($kolom, $nilai);
-        return $this->db->single();
+        // $this->db->bind($kolom, $nilai);
+        if ($single == true){
+            return $this->db->single();
+        } else {
+            return $this->db->resultSet();
+        }
     }
 
-    public function getKuisLike($kolom, $nilai)
-    {
-        $query = "SELECT * FROM " . $this->table . " WHERE " . $kolom . " LIKE '%" . $nilai . "%'";
+    public function getKuisAll($single, $order = 'ASC'){
+        $query = "SELECT * FROM " . $this->table . " ORDER BY nama_kuis " . $order;
         $this->db->query($query);
-        return $this->db->resultSet();
-    }
-
-    public function getKuisOrder($nilai = 'ASC')
-    {
-        $query = "SELECT * FROM " . $this->table . " ORDER BY nama_kuis " . $nilai;
-        $this->db->query($query);
-        return $this->db->resultSet();
+        if ($single == true){
+            return $this->db->single();
+        } else {
+            return $this->db->resultSet();
+        }
     }
 
     public function tambahKuis($nama_kuis, $deskripsi_kuis, $id_genre)

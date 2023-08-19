@@ -90,27 +90,34 @@ $('#kata-kunci').on('keyup', function () {
 });
 
 $('#tombol-urut').on('click', function () {
+  const value = $('#kata-kunci').val();
   if (this.classList.contains('descending')) {
-    $.ajax({
-      url: 'http://localhost/budakpintar/public/home/orderby',
-      data: { kata_kunci: 'DESC' },
-      method: 'post',
-      success: function (data) {
-        $('#hasil-cari').html(data);
-      }
-    });
-    $(this).text('↑');
-    $(this).addClass('ascending').removeClass('descending');
+      $.ajax({
+          url: 'http://localhost/budakpintar/public/home/searching',
+          data: {
+              kata_kunci:value,
+              urut_berdasar: 'DESC' 
+          },
+          method: 'post',
+          success: function (data) {
+              $('#hasil-cari').html(data);
+          }
+      });
+      $(this).text('↑');
+      $(this).addClass('ascending').removeClass('descending');
   } else if (this.classList.contains('ascending')) {
-    $.ajax({
-      url: 'http://localhost/budakpintar/public/home/orderby',
-      data: { kata_kunci: 'ASC' },
-      method: 'post',
-      success: function (data) {
-        $('#hasil-cari').html(data);
-      }
-    });
-    $(this).text('↓')
-    $(this).addClass('descending').removeClass('ascending');
+      $.ajax({
+          url: 'http://localhost/budakpintar/public/home/searching',
+          data: {
+              kata_kunci:value,
+              urut_berdasar: 'ASC' 
+          },
+          method: 'post',
+          success: function (data) {
+              $('#hasil-cari').html(data);
+          }
+      });
+      $(this).text('↓')
+      $(this).addClass('descending').removeClass('ascending');
   }
 });
