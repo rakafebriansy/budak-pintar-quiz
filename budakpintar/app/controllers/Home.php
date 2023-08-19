@@ -6,7 +6,7 @@ class Home extends Controller{
         $data['judul'] = 'HOME';
         $data['folder'] = 'home';
         $data['genre'] = $this->model('Genre_model')->getGenreAll();
-        $data['kuis'] = $this->model('Kuis_model')->getKuisAll(false);
+        $data['kuis'] = $this->model('Kuis_model')->getKuis('set','ASC',0);
         if(isset($_SESSION['total_skor'])){
             $data['total_skor'] = $_SESSION['total_skor'];
             unset($_SESSION['total_skor']);
@@ -78,9 +78,13 @@ class Home extends Controller{
     }
     public function searching(){
         if(isset($_POST['urut_berdasar'])){
-            $db_kuis = $this->model('Kuis_model')->getKuisWhere('nama_kuis',$_POST['kata_kunci'],false,$_POST['urut_berdasar']);
+            $params['kolom'] = 'nama_kuis';
+            $params['nilai'] = $_POST['kata_kunci'];
+            $db_kuis = $this->model('Kuis_model')->getKuis('set',$_POST['urut_berdasar'],0,$params);
         } else{
-            $db_kuis = $this->model('Kuis_model')->getKuisWhere('nama_kuis',$_POST['kata_kunci'],false);
+            $params['kolom'] = 'nama_kuis';
+            $params['nilai'] = $_POST['kata_kunci'];
+            $db_kuis = $this->model('Kuis_model')->getKuis('set','ASC',0,$params);
         }
         $db_genre = $this->model('Genre_model')->getGenreAll();
         if(sizeof($db_kuis)>0){

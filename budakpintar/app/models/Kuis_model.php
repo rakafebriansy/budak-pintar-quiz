@@ -9,25 +9,21 @@ class Kuis_model
         $this->db = new Database;
     }
 
-    public function getKuisWhere($kolom, $nilai, $single, $order = 'ASC')
-    {
-        $query = "SELECT * FROM " . $this->table . " WHERE " . $kolom . " LIKE '%" . $nilai . "%' ORDER BY nama_kuis " . $order;
-        $this->db->query($query);
-        // $this->db->bind($kolom, $nilai);
-        if ($single == true){
-            return $this->db->single();
-        } else {
-            return $this->db->resultSet();
-        }
-    }
 
-    public function getKuisAll($single, $order = 'ASC'){
-        $query = "SELECT * FROM " . $this->table . " ORDER BY nama_kuis " . $order;
-        $this->db->query($query);
-        if ($single == true){
-            return $this->db->single();
+    public function getKuis($output,$order_by,$data_awal,$params = null)
+    {
+        $jumlah_data = 3;
+        if (isset($params)){
+            $query = "SELECT * FROM " . $this->table . " WHERE " . $params['kolom'] . " LIKE '%" . $params['nilai'] . "%' ORDER BY nama_kuis " . $order_by; //. " LIMIT " . $data_awal . "," . $jumlah_data;
         } else {
+            $query = "SELECT * FROM " . $this->table . " ORDER BY nama_kuis " . $order_by;// . " LIMIT " . $data_awal . "," . $jumlah_data;
+        }
+
+        $this->db->query($query);
+        if ($output == 'set'){
             return $this->db->resultSet();
+        } else {
+            return $this->db->single();
         }
     }
 
