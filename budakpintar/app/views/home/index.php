@@ -14,11 +14,13 @@ if ($gambar != '') {
 
 $db_genre = $data['genre'];
 $db_kuis = $data['kuis'];
+$banyak_pagination = $data['banyak_pagination'];
+
 
 ?>
 
 <div class="container">
-<div class="confetti-container"></div>
+  <div class="confetti-container"></div>
   <nav class="navbar navbar-light fixed-top bg-white">
     <div class="container">
       <a class="navbar-brand" href="#">
@@ -79,6 +81,23 @@ $db_kuis = $data['kuis'];
 
   <section id="category">
     <div id="hasil-cari" class="row ">
+      <nav aria-label="Page navigation example">
+        <input type="hidden" value="1" id="halaman-sekarang">
+        <ul class="pagination">
+          <?php for ($i = 1; $i <= $banyak_pagination; $i++) { ?>
+            <?php if($i == 1){ ?>
+              <li class="page-item"><a class="page-link halaman-ke bg-primary text-white" role="button" type="button"><?= $i; ?></a></li>
+              <?php } else {?>
+                <li class="page-item"><a class="page-link halaman-ke" role="button" type="button"><?= $i; ?></a></li>
+              <?php } ?>
+          <?php } ?>
+          <li class="page-item">
+            <a class="page-link" id="halaman-next" role="button" type="button" aria-label="Next">
+              &raquo;
+            </a>
+          </li>
+        </ul>
+      </nav>
       <?php foreach ($db_kuis as $kuis) {
         $id_genre = $kuis['genre_id_genre'];
         $nama_genre;
@@ -88,7 +107,7 @@ $db_kuis = $data['kuis'];
           }
         }
       ?>
-        <div class="col-md-4 pt-3">
+        <div class="col-md-4">
           <div class="card">
             <div class="card-header">
               <?= ucfirst($nama_genre); ?>
@@ -96,7 +115,7 @@ $db_kuis = $data['kuis'];
             <div class="card-body">
               <input type="hidden" name="attempt" value="<?= $kuis['id_kuis'] ?>">
               <h5 class="card-title"><?= ucfirst($kuis['nama_kuis']); ?></h5>
-              <p class="card-text"><?=ucfirst($kuis['deksripsi_kuis']); ?></p>
+              <p class="card-text"><?= ucfirst($kuis['deksripsi_kuis']); ?></p>
               <button value="<?= $kuis['id_kuis'] ?>" id="tombol-mulai" type="button" class="btn btn-primary" data-bs-target="#formModal2" data-bs-toggle="modal" data-bs-dismiss="modal">Mulai</button>
             </div>
           </div>
@@ -140,7 +159,7 @@ $db_kuis = $data['kuis'];
   <div class="popup" id="resultPopup">
     <div class="popup-content">
       <button id="closeBtn" class="btn-close float-end" type="button" aria-label="Close"></button>
-      <img src="<?=BASEURL?>/img/bg.png" alt="bg" style="
+      <img src="<?= BASEURL ?>/img/bg.png" alt="bg" style="
             position: absolute;
             height: 239px;
             width: 393px;
@@ -155,8 +174,7 @@ $db_kuis = $data['kuis'];
           <input type="radio" class="star" id="four" name="star_rating" />
         </div>
       </div>
-      <div class="btn btn-light border border-2 border-black pe-5 ps-5 pb-4 position-absolute top-50 start-50 rounded-5"
-        style="
+      <div class="btn btn-light border border-2 border-black pe-5 ps-5 pb-4 position-absolute top-50 start-50 rounded-5" style="
             margin-left: -50px;
             margin-top: 47px;
             padding-bottom: 20px;
@@ -165,7 +183,7 @@ $db_kuis = $data['kuis'];
           "></div>
       <div class="row mt-2 position-relative" style="padding: 5px; border-color: #95a2e9">
         <div class="col text-end">
-          <img src="<?=BASEURL?>/img/bedge.png" alt="lencana" style="height: 30px; width: 30px; margin-top: 2px" />
+          <img src="<?= BASEURL ?>/img/bedge.png" alt="lencana" style="height: 30px; width: 30px; margin-top: 2px" />
         </div>
         <div class="col text-start">
           <h4 class="pt-1 fw-bold" style="margin-left: -15px">
@@ -232,7 +250,7 @@ $db_kuis = $data['kuis'];
 </div>
 <?php
 
-if(isset($data['total_skor'])){
+if (isset($data['total_skor'])) {
   $totalskor = $data['total_skor'];
   echo '
     <script>const submitBtn = document.getElementById("submitBtn");

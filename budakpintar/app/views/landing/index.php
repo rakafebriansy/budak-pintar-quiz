@@ -2,6 +2,7 @@
 
 $db_genre = $data['genre'];
 $db_kuis = $data['kuis'];
+$banyak_pagination = $data['banyak_pagination'];
 
 ?>
 
@@ -60,6 +61,23 @@ $db_kuis = $data['kuis'];
 
   <section id="category">
     <div id="hasil-cari" class="row ">
+      <nav aria-label="Page navigation example">
+        <input type="hidden" value="1" id="halaman-sekarang">
+        <ul class="pagination">
+          <?php for ($i = 1; $i <= $banyak_pagination; $i++) { ?>
+            <?php if ($i == 1) { ?>
+              <li class="page-item"><a class="page-link halaman-ke bg-primary text-white" role="button" type="button"><?= $i; ?></a></li>
+            <?php } else { ?>
+              <li class="page-item"><a class="page-link halaman-ke" role="button" type="button"><?= $i; ?></a></li>
+            <?php } ?>
+          <?php } ?>
+          <li class="page-item">
+            <a class="page-link" id="halaman-next" role="button" type="button" aria-label="Next">
+              &raquo;
+            </a>
+          </li>
+        </ul>
+      </nav>
       <?php foreach ($db_kuis as $kuis) {
         $id_genre = $kuis['genre_id_genre'];
         $nama_genre;
@@ -69,7 +87,7 @@ $db_kuis = $data['kuis'];
           }
         }
       ?>
-        <div class="col-md-4 pt-3">
+        <div class="col-md-4">
           <div class="card">
             <div class="card-header">
               <?= ucfirst($nama_genre); ?>

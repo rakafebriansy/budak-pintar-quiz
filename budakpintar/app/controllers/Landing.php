@@ -3,12 +3,15 @@
 class Landing extends Controller {
     public function index() {
         if (isset($_SESSION['login'])) header('Location: ' . BASEURL . '/home');
+        $params['kolom'] = 'id_kuis';
+        $params['nilai'] = '';
+        $jumlah_data_perhalaman = 3;
+        $banyak_kuis = $this->model('Kuis_model')->getBanyakKuis($params);
         $data['judul'] = 'LANDING PAGE';
         $data['folder'] = 'landing';
         $data['genre'] = $this->model('Genre_model')->getGenreAll();
-        $params['kolom'] = 'id_kuis';
-        $params['nilai'] = '';
         $data['kuis'] = $this->model('Kuis_model')->getKuisSet($params,'ASC');
+        $data['banyak_pagination'] = ceil($banyak_kuis/$jumlah_data_perhalaman);
         $this->view('templates/header',$data);
         $this->view($data['folder'] . '/index',$data);
         $this->view('templates/footer',$data);
