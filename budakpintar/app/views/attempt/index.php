@@ -61,15 +61,12 @@ function cetakSoal($soal, $counter)
                     <img src="<?= BASEURL; ?>/img/logo.png" alt="" height="40" class="d-inline-block align-text-center">
                     <img src="<?= BASEURL; ?>/img/name_brand.svg" alt="" height="20" class="d-inline-block align-text-center">
                 </a>
-                <div class="d-flex justify-content-start">
-                    <h3 class="text-info"><?= $nama_kuis ?></h3>
-                </div>
             </div>
         </nav>
         <div id="awal-soal1"></div>
         <br><br>
-
-        <section class="mt-5">
+        <h1 class="text-center text-info mt-2"><?= ucfirst($nama_kuis);?></h1>
+        <section class="mt-2">
             <input type="hidden" name="id_kuis" value="<?= $data['id_kuis'] ?>">
             <?php
             $jumlah_soal = sizeof($kumpulan_soal);

@@ -85,11 +85,11 @@ $banyak_pagination = $data['banyak_pagination'];
         <input type="hidden" value="1" id="halaman-sekarang">
         <ul class="pagination">
           <?php for ($i = 1; $i <= $banyak_pagination; $i++) { ?>
-            <?php if($i == 1){ ?>
+            <?php if ($i == 1) { ?>
               <li class="page-item"><a class="page-link halaman-ke bg-primary text-white" role="button" type="button"><?= $i; ?></a></li>
-              <?php } else {?>
-                <li class="page-item"><a class="page-link halaman-ke" role="button" type="button"><?= $i; ?></a></li>
-              <?php } ?>
+            <?php } else { ?>
+              <li class="page-item"><a class="page-link halaman-ke" role="button" type="button"><?= $i; ?></a></li>
+            <?php } ?>
           <?php } ?>
           <li class="page-item">
             <a class="page-link" id="halaman-next" role="button" type="button" aria-label="Next">
@@ -168,32 +168,22 @@ $banyak_pagination = $data['banyak_pagination'];
             margin-left: -190px;
             z-index: -1;
           " />
-      <h3 class="fw-bold" style="margin-left: 20px; margin-bottom: 50px;">Your Final Score</h3>
+      <h3 class="fw-bold">Your Final Score</h3>
       <div class="bintang">
         <div class="star-group">
-          <input type="radio" class="star" id="two" name="star_rating" disabled/>
-          <input type="radio" class="star" id="three" name="star_rating" disabled/>
-          <input type="radio" class="star" id="four" name="star_rating" disabled/>
+          <input type="radio" class="star" id="two" name="star_rating" disabled />
+          <input type="radio" class="star" id="three" name="star_rating" disabled />
+          <input type="radio" class="star" id="four" name="star_rating" disabled />
         </div>
       </div>
-      <!-- <div class="btn btn-light border border-2 border-black pe-5 ps-5 pb-4 position-absolute top-50 start-50 rounded-5" style="
-            margin-left: -50px;
-            margin-top: 47px;
-            padding-bottom: 20px;
-            z-index: -1;
-            padding-left: 10px;
-          ">
-          </div> -->
       <div class="row mt-2 justify-content-center" style="padding: 5px; border-color: #95a2e9">
-        <div class="btn btn-light col-md-3 text-end d-flex justify-content-around">
-          <img src="<?= BASEURL ?>/img/bedge.png" alt="lencana" class="d-inline-block" style="height: 30px; width: 30px; margin-top: 2px; margin-left:5px;" />
-          <h4 class="pt-1 fw-bold d-inline-block" style="margin-left: -15px">
-            <span id="score" class="">0</span>
-          </h4>
+        <div class="btn btn-light border border-dark col-md-3 text-end d-flex justify-content-center" style="padding: 0; border-radius: 85px;">
+          <img src="<?= BASEURL ?>/img/bedge.png" alt="lencana" style="height: 23px; width: 23px; margin-top: 5px;" />
+          <span id="score" class="fw-bold ps-1 fs-5">0</span>
         </div>
       </div>
       <div class="container text-center mt-2">
-        <button type="button" id="closeBtn" class="btn btn-secondary" aria-label="Close">
+        <button type="button" id="closeBtn" class="btn btn-primary" aria-label="Close">
           Kembali
         </button>
       </div>
