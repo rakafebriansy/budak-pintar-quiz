@@ -45,30 +45,24 @@ $banyak_pagination = $data['banyak_pagination'];
     <div id="flasher">
       <?php Flasher::flash(); ?>
     </div>
-    <div class="row">
+    <div class="row mt">
       <div class="col-md-6">
         <h2 class="fs-1 text-start  mb-5 pt-md-5">Kerjakan kuis, kapan dan di mana saja!
         </h2>
         <p class="fs-4 text-start mb-5">Pilih kuis sesuai keinginan kamu, agar menambah pengetahuan dan mengasah
           kemampuan.
         </p>
-        <div class="row mb-2">
-          <div class="col-8 col-md-7">
-            <a href="#category-linked" class="btn btn-primary btn-lg w-75">Jelajahi Kuis</a>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-8 col-md-7">
-            <button id="tombol-buat-kuis" type="button" class="btn btn-outline-primary btn-lg w-75" data-bs-toggle="modal" data-bs-target="#formModal3">Buat Kuis</button>
-          </div>
+        <div>
+            <a href="#category-linked" role="button" class="btn btn-primary btn-lg d-inline-block me-3 mt-3 px-3">Jelajahi Kuis</a>
+            <button id="tombol-buat-kuis" type="button" class="btn btn-outline-primary btn-lg d-inline-block mt-3 px-4" data-bs-toggle="modal" data-bs-target="#formModal3">Buat Kuis</button>
         </div>
       </div>
-      <div class="col-md-6">
-        <img src="<?= BASEURL; ?>/img/hero.png" alt="" class="img-fluid">
+      <div class="col-md-6 mt-5">
+        <img src="<?= BASEURL; ?>/img/hero.jpg" alt="" class="img-fluid">
       </div>
     </div>
   </section>
-  <br>
+  <br><br><br>
   <div id="category-linked"></div><br>
   <section id="search" class="mt-5 mb-3">
     <h2 class="">Temukan kuis yang kamu suka!</h2>
@@ -117,7 +111,7 @@ $banyak_pagination = $data['banyak_pagination'];
               <p class="card-text"><?= ucfirst($kuis['deksripsi_kuis']); ?></p>
               <div class="d-flex justify-content-between">
                 <button value="<?= $kuis['id_kuis'] ?>" id="tombol-mulai" type="button" class="btn btn-primary" data-bs-target="#formModal2" data-bs-toggle="modal" data-bs-dismiss="modal">Mulai</button>
-                <button value="<?=$kuis['id_kuis']?>" type="button" class="tombol-peringkat btn btn-outline-warning px-2" data-bs-toggle="modal" data-bs-target="#formModal4">🏆</button>
+                <button value="<?= $kuis['id_kuis'] ?>" type="button" class="tombol-peringkat btn btn-outline-warning px-2" data-bs-toggle="modal" data-bs-target="#formModal4">🏆</button>
               </div>
             </div>
           </div>
@@ -176,7 +170,7 @@ $banyak_pagination = $data['banyak_pagination'];
         </div>
       </div>
       <div class="row mt-2 justify-content-center" style="padding: 5px; border-color: #95a2e9">
-        <div class="btn btn-light border border-dark col-md-3 text-end d-flex justify-content-center" style="padding: 0; border-radius: 85px;">
+        <div class="btn btn-light border border-dark col-3 text-end d-flex justify-content-center" style="padding: 0; border-radius: 85px;">
           <img src="<?= BASEURL ?>/img/bedge.png" alt="lencana" style="height: 23px; width: 23px; margin-top: 5px;" />
           <span id="score" class="fw-bold ps-1 fs-5">0</span>
         </div>

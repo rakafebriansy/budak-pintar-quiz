@@ -31,24 +31,18 @@ $banyak_pagination = $data['banyak_pagination'];
         <p class="fs-4 text-start mb-5">Pilih kuis sesuai keinginan kamu, agar menambah pengetahuan dan mengasah
           kemampuan.
         </p>
-        <div class="row mb-2">
-          <div class="col-8 col-md-7">
-            <a href="#category-linked" class="btn btn-primary btn-lg w-75">Jelajahi Kuis</a>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-8 col-md-7">
-            <button type="button" class="btn btn-outline-primary btn-lg w-75 tombol-mulai">Buat Kuis</button>
-          </div>
+        <div>
+            <a href="#category-linked" role="button" class="btn btn-primary btn-lg d-inline-block me-3 mt-3 px-3">Jelajahi Kuis</a>
+            <button id="tombol-buat-kuis" type="button" class="btn btn-outline-primary btn-lg d-inline-block mt-3 px-4" data-bs-toggle="modal" data-bs-target="#formModal3">Buat Kuis</button>
         </div>
       </div>
-      <div class="col-md-6">
-        <img src="<?= BASEURL; ?>/img/hero.png" alt="" class="img-fluid">
+      <div class="col-md-6 mt-5">
+        <img src="<?= BASEURL; ?>/img/hero.jpg" alt="" class="img-fluid">
       </div>
     </div>
   </section>
 
-  <br>
+  <br><br><br>
   <div id="category-linked"></div><br>
 
   <section id="search" class="mt-5 mb-3">

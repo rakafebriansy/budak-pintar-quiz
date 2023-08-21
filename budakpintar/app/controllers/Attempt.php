@@ -35,9 +35,10 @@ class Attempt extends Controller
         } else {
             $total_skor = 0;
         }
-        if ($this->model('Peringkat_model')->tambahSkor($db_detail_kuis[0]['kuis_id_kuis'], $total_skor) > 0) {
+        try {
+            $this->model('Peringkat_model')->tambahSkor($db_detail_kuis[0]['kuis_id_kuis'], $total_skor);
             $_SESSION['total_skor'] = $total_skor;
-        } else {
+        } catch(Exception $e) {
             $_SESSION['total_skor'] = 404;
         }
         header('Location: ' . BASEURL . '/home');

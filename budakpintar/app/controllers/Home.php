@@ -151,8 +151,8 @@ class Home extends Controller
                                         <h5 class="card-title">' . ucfirst($kuis['nama_kuis']) . '</h5>
                                         <p class="card-text">' . ucfirst($kuis['deksripsi_kuis']) . '</p>
                                         <div class="d-flex justify-content-between">
-                                            <button value="' . $kuis['id_kuis'] .'" id="tombol-mulai" type="button" class="btn btn-primary" data-bs-target="#formModal2" data-bs-toggle="modal" data-bs-dismiss="modal">Mulai</button>
-                                            <button value="' . $kuis['id_kuis'] . '" type="button" class="tombol-peringkat btn btn-outline-warning px-2" data-bs-toggle="modal" data-bs-target="#formModal4">🏆</button>
+                                            <button type="button" class="btn btn-primary tombol-mulai" data-bs-toggle="modal" data-bs-target="#formModal1">Mulai</button>
+                                            <button type="button" class="btn btn-outline-warning tombol-mulai px-2" data-bs-toggle="modal" data-bs-target="#formModal1">🏆</button>
                                         </div>
                                     </div>
                                 </div>
