@@ -158,7 +158,6 @@ $banyak_pagination = $data['banyak_pagination'];
   <!-- POP UP -->
   <div class="popup" id="resultPopup">
     <div class="popup-content">
-      <button id="closeBtn" class="btn-close float-end" type="button" aria-label="Close"></button>
       <img src="<?= BASEURL ?>/img/bg.png" alt="bg" style="
             position: absolute;
             height: 239px;
@@ -169,31 +168,30 @@ $banyak_pagination = $data['banyak_pagination'];
       <h3 class="fw-bold" style="margin-left: 20px; margin-bottom: 50px;">Your Final Score</h3>
       <div class="bintang">
         <div class="star-group">
-          <input type="radio" class="star" id="two" name="star_rating" />
-          <input type="radio" class="star" id="three" name="star_rating" />
-          <input type="radio" class="star" id="four" name="star_rating" />
+          <input type="radio" class="star" id="two" name="star_rating" disabled/>
+          <input type="radio" class="star" id="three" name="star_rating" disabled/>
+          <input type="radio" class="star" id="four" name="star_rating" disabled/>
         </div>
       </div>
-      <div class="btn btn-light border border-2 border-black pe-5 ps-5 pb-4 position-absolute top-50 start-50 rounded-5" style="
+      <!-- <div class="btn btn-light border border-2 border-black pe-5 ps-5 pb-4 position-absolute top-50 start-50 rounded-5" style="
             margin-left: -50px;
             margin-top: 47px;
             padding-bottom: 20px;
             z-index: -1;
             padding-left: 10px;
-          "></div>
-      <div class="row mt-2 position-relative" style="padding: 5px; border-color: #95a2e9">
-        <div class="col text-end">
-          <img src="<?= BASEURL ?>/img/bedge.png" alt="lencana" style="height: 30px; width: 30px; margin-top: 2px" />
-        </div>
-        <div class="col text-start">
-          <h4 class="pt-1 fw-bold" style="margin-left: -15px">
-            <span id="score" class="">Error Database</span>
+          ">
+          </div> -->
+      <div class="row mt-2 justify-content-center" style="padding: 5px; border-color: #95a2e9">
+        <div class="btn btn-light col-md-3 text-end d-flex justify-content-around">
+          <img src="<?= BASEURL ?>/img/bedge.png" alt="lencana" class="d-inline-block" style="height: 30px; width: 30px; margin-top: 2px; margin-left:5px;" />
+          <h4 class="pt-1 fw-bold d-inline-block" style="margin-left: -15px">
+            <span id="score" class="">0</span>
           </h4>
         </div>
       </div>
       <div class="container text-center mt-2">
-        <button type="button" class="btn fw-bold" style="background-color: #8897e7">
-          Home
+        <button type="button" id="closeBtn" class="btn btn-secondary" aria-label="Close">
+          Kembali
         </button>
       </div>
     </div>
@@ -254,57 +252,75 @@ if (isset($data['total_skor'])) {
   $totalskor = $data['total_skor'];
   echo '
     <script>const submitBtn = document.getElementById("submitBtn");
-    const resultPopup = document.getElementById("resultPopup");
-    const closeBtn = document.getElementById("closeBtn");
-    const scoreSpan = document.getElementById("score");
-    const starTwo = document.getElementById("two");
-    const starThree = document.getElementById("three");
-    const starFour = document.getElementById("four");
-    
-    function createConfetti() {
-      const confettiContainer = document.querySelector(".confetti-container");
-      const confettiElement = document.createElement("div");
-      confettiElement.classList.add("confetti");
-      confettiContainer.appendChild(confettiElement);
+const resultPopup = document.getElementById("resultPopup");
+const closeBtn = document.getElementById("closeBtn");
+const scoreSpan = document.getElementById("score");
+const starTwo = document.getElementById("two");
+const starThree = document.getElementById("three");
+const starFour = document.getElementById("four");
+
+let confettiAnimationInterval;
+function stopConfetti() {
+  const confettiContainer = document.querySelector(".confetti-container");
+  confettiContainer.innerHTML = "";
+}
+
+function createConfetti() {
+  const confettiContainer = document.querySelector(".confetti-container");
+  const confettiElement = document.createElement("div");
+  confettiElement.classList.add("confetti");
+  confettiContainer.appendChild(confettiElement);
+
+  // Set the animation duration and delay dynamically
+  const animationDuration = Math.random() * 3 + 2; // Random duration between 2 and 5 seconds
+  const animationDelay = Math.random() * 2; // Random delay between 0 and 2 seconds
+  confettiElement.style.animationDuration = `${animationDuration}s`;
+  confettiElement.style.animationDelay = `${animationDelay}s`;
+}
+
+function animateScore(targetScore) {
+  let currentScore = 0;
+  const animationDuration = 100000; // Animation duration in milliseconds
+  const interval = 30; // Interval between each animation step
+  const increment = Math.ceil(targetScore / (animationDuration / interval));
+
+  const scoreAnimation = setInterval(() => {
+    currentScore += increment;
+    if (currentScore >= targetScore) {
+      clearInterval(scoreAnimation);
+      currentScore = targetScore;
     }
-    
-    function animateScore(targetScore) {
-      let currentScore = 0;
-      const animationDuration = 100000; // Animation duration in milliseconds
-      const interval = 30; // Interval between each animation step
-      const increment = Math.ceil(targetScore / (animationDuration / interval));
-    
-      const scoreAnimation = setInterval(() => {
-        currentScore += increment;
-        if (currentScore >= targetScore) {
-          clearInterval(scoreAnimation);
-          currentScore = targetScore;
-        }
-        scoreSpan.textContent = currentScore;
-        if (currentScore >= 50) {
-          starTwo.checked = true;
-        }
-        if (currentScore >= 75) {
-          starThree.checked = true;
-        }
-        if (currentScore >= 100) {
-          starFour.checked = true;
-        }
-      }, interval);
+    scoreSpan.textContent = currentScore;
+
+    // Automatically check stars based on score
+    if (currentScore >= 50) {
+      starTwo.checked = true;
     }
-    
-    for (let i = 0; i < 10; i++) {
-        createConfetti();
+    if (currentScore >= 75) {
+      starThree.checked = true;
     }
-    
-    const targetScore = ' . $totalskor . ';
-    animateScore(targetScore);
-    
-    resultPopup.style.display = "block";
-    
-    closeBtn.addEventListener("click", function () {
-      resultPopup.style.display = "none";
-    });
+    if (currentScore >= 100) {
+      starFour.checked = true;
+    }
+  }, interval);
+}
+  for (let i = 0; i < 10; i++) {
+    createConfetti();
+  }
+  const targetScore = ' . $totalskor  . ';
+  animateScore(targetScore);
+
+  resultPopup.style.display = "block";
+
+closeBtn.addEventListener("click", function () {
+  resultPopup.style.display = "none";
+  starTwo.checked = false;
+  starThree.checked = false;
+  starFour.checked = false;
+  stopConfetti();
+  clearInterval(confettiAnimationInterval);
+});
+
     </script>
     ';
 }

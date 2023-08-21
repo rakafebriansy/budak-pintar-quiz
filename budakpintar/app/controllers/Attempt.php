@@ -33,7 +33,7 @@ class Attempt extends Controller{
             header('Location: ' . BASEURL . '/home');
             exit;
         } else {
-            Flasher::setFlash('Hasil kuis anda','Gagal','diproses','danger');
+            $_SESSION['total_skor'] = 0;
             header('Location: ' . BASEURL . '/home');
             exit;
         }
