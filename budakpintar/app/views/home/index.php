@@ -74,7 +74,7 @@ $banyak_pagination = $data['banyak_pagination'];
   <section id="search" class="mt-5 mb-3">
     <h2 class="">Temukan kuis yang kamu suka!</h2>
     <div class="d-flex mt-4">
-      <input id="kata-kunci" class="form-control me-2" type="search" placeholder="Masukkan kata kunci" aria-label="Cari">
+      <input id="kata-kunci" class="form-control me-2" type="search" placeholder="Masukkan judul kuis" aria-label="Cari">
       <button id="tombol-urut" class="btn btn-outline-success fw-bold descending" type="button" style="padding-right:1rem; padding-left:1rem;">↓</button>
     </div>
   </section>
@@ -165,7 +165,7 @@ $banyak_pagination = $data['banyak_pagination'];
             margin-left: -190px;
             z-index: -1;
           " />
-      <h3 class="fw-bold" style="margin-left: 20px; margin-bottom: 50px;">Your Final Score</h3>
+      <h3 class="fw-bold text-center">Your Final Score</h3>
       <div class="bintang">
         <div class="star-group">
           <input type="radio" class="star" id="two" name="star_rating" disabled/>
@@ -182,15 +182,13 @@ $banyak_pagination = $data['banyak_pagination'];
           ">
           </div> -->
       <div class="row mt-2 justify-content-center" style="padding: 5px; border-color: #95a2e9">
-        <div class="btn btn-light col-md-3 text-end d-flex justify-content-around">
-          <img src="<?= BASEURL ?>/img/bedge.png" alt="lencana" class="d-inline-block" style="height: 30px; width: 30px; margin-top: 2px; margin-left:5px;" />
-          <h4 class="pt-1 fw-bold d-inline-block" style="margin-left: -15px">
-            <span id="score" class="">0</span>
-          </h4>
+        <div class="btn btn-light border border-dark col-md-3 text-end d-flex justify-content-center position-relative" style="padding: 0; border-radius:85px">
+          <img src="<?= BASEURL ?>/img/bedge.png" alt="lencana" style="height:22px; width:22px; margin-top:2px;" />
+          <span id="score" class="fw-bold ps-1">0</span>
         </div>
       </div>
       <div class="container text-center mt-2">
-        <button type="button" id="closeBtn" class="btn btn-secondary" aria-label="Close">
+        <button type="button" id="closeBtn" class="btn btn-primary" aria-label="Close">
           Kembali
         </button>
       </div>
