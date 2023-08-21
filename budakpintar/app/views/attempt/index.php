@@ -61,13 +61,15 @@ function cetakSoal($soal, $counter)
                     <img src="<?= BASEURL; ?>/img/logo.png" alt="" height="40" class="d-inline-block align-text-center">
                     <img src="<?= BASEURL; ?>/img/name_brand.svg" alt="" height="20" class="d-inline-block align-text-center">
                 </a>
+                <div class="d-flex justify-content-start">
+                    <h3 class="text-info"><?= $nama_kuis ?></h3>
+                </div>
             </div>
         </nav>
         <div id="awal-soal1"></div>
         <br><br>
 
         <section class="mt-5">
-            <h1 class="text-info text-center"><?= $nama_kuis ?></h1>
             <input type="hidden" name="id_kuis" value="<?= $data['id_kuis'] ?>">
             <?php
             $jumlah_soal = sizeof($kumpulan_soal);
@@ -84,9 +86,9 @@ function cetakSoal($soal, $counter)
                             <div class="card">
                                 <div class="card-header"><?= ucfirst($nama_genre) ?></div>
                                 <div class="card-body">
-                                    <?php if (strlen($kumpulan_soal[$i]['gambar_pendukung']) > 1) { ?>
-                                        <img src="<?= BASEURL; ?>/img/soal/<?= $kumpulan_soal[$i]['gambar_pendukung']; ?>" alt="" height="200">
-                                    <?php } ?>
+                                <?php if(strlen($kumpulan_soal[$i]['gambar_pendukung'])>1){ ?>
+                                    <img src="<?=BASEURL;?>/img/soal/<?= $kumpulan_soal[$i]['gambar_pendukung']; ?>" alt="" height="200">
+                                <?php } ?>    
                                     <p id="awal-soal<?= $i + 2 ?>" class="card-text">
                                         <?= $kumpulan_soal[$i]['pertanyaan']; ?>
                                     </p>
@@ -124,8 +126,8 @@ function cetakSoal($soal, $counter)
         </div>
     </div>
     <div class="card position-fixed d-block d-md-none" style="top:100px; right:0; z-index:1050; padding:12px !important; border-radius: 0.375rem !important">
-        <a href="#offcanvasExample" class="text-primary fs-2 fw-bold" data-bs-toggle="offcanvas" role="button" aria-controls="offcanvasExample" style="text-decoration: none;">
-            << /a>
+            <a href="#offcanvasExample" class="text-primary fs-2 fw-bold" data-bs-toggle="offcanvas" role="button" aria-controls="offcanvasExample" style="text-decoration: none;">
+                <</a>
     </div>
 
 

@@ -54,7 +54,7 @@ $banyak_pagination = $data['banyak_pagination'];
   <section id="search" class="mt-5 mb-3">
     <h2 class="">Temukan kuis yang kamu suka!</h2>
     <form class="d-flex mt-4">
-      <input id="kata-kunci" class="form-control me-2" type="search" placeholder="Masukkan judul kuis" aria-label="Cari">
+      <input id="kata-kunci" class="form-control me-2" type="search" placeholder="Masukkan kata kunci" aria-label="Cari">
       <button id="tombol-urut" class="btn btn-outline-success fw-bold descending" type="button" style="padding-right:1rem; padding-left:1rem;">↑</button>
     </form>
   </section>
@@ -96,7 +96,10 @@ $banyak_pagination = $data['banyak_pagination'];
               <input type="hidden" name="attempt" value="<?= $kuis['id_kuis'] ?>">
               <h5 class="card-title"><?= ucfirst($kuis['nama_kuis']); ?></h5>
               <p class="card-text"><?= ucfirst($kuis['deksripsi_kuis']); ?></p>
-              <button type="button" class="btn btn-primary tombol-mulai" data-bs-toggle="modal" data-bs-target="#formModal1">Mulai</button>
+              <div class="d-flex justify-content-between">
+                <button type="button" class="btn btn-primary tombol-mulai" data-bs-toggle="modal" data-bs-target="#formModal1">Mulai</button>
+                <button type="button" class="btn btn-outline-warning tombol-mulai px-2" data-bs-toggle="modal" data-bs-target="#formModal1">🏆</button>
+              </div>
             </div>
           </div>
         </div>

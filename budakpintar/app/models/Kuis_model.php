@@ -70,7 +70,7 @@ class Kuis_model
                     }
             }
         }
-        $total_skor = round($total_benar / $jumlah_soal * 100);
+        $total_skor = (int)round($total_benar / $jumlah_soal * 100);
         return $total_skor;
     }
 }

@@ -1,7 +1,3 @@
 #after-body {
     min-height: 63vh !important;
 }
-@font-face {
-    font-family: KaushanScript;
-    src: url(http://localhost/budakpintar/public/fonts/KaushanScript-Regular.ttf);
-}

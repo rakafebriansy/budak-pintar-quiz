@@ -27,7 +27,3 @@ body.finished {
 body.finished>div.container {
     min-height: 84vh;
 }
-@font-face {
-    font-family: KaushanScript;
-    src: url(http://localhost/budakpintar/public/fonts/KaushanScript-Regular.ttf);
-}
