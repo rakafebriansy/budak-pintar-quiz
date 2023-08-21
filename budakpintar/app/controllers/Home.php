@@ -150,7 +150,10 @@ class Home extends Controller
                                         <input type="hidden" name="attempt" value="' . $kuis['id_kuis'] . '">
                                         <h5 class="card-title">' . ucfirst($kuis['nama_kuis']) . '</h5>
                                         <p class="card-text">' . ucfirst($kuis['deksripsi_kuis']) . '</p>
-                                        <button type="button" class="btn btn-primary tombol-mulai" data-bs-toggle="modal" data-bs-target="#formModal1">Mulai</button>
+                                        <div class="d-flex justify-content-between">
+                                            <button value="' . $kuis['id_kuis'] .'" id="tombol-mulai" type="button" class="btn btn-primary" data-bs-target="#formModal2" data-bs-toggle="modal" data-bs-dismiss="modal">Mulai</button>
+                                            <button value="' . $kuis['id_kuis'] . '" type="button" class="tombol-peringkat btn btn-outline-warning px-2" data-bs-toggle="modal" data-bs-target="#formModal4">🏆</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>';
@@ -197,10 +200,13 @@ class Home extends Controller
                                     </div>
                                     <div class="card-body">
                                         <form action="' . BASEURL . '/attempt" method="post">', '</form>
-                                                <input type="hidden" name="attempt" value="' . $kuis['id_kuis'] . '">
-                                                <h5 class="card-title">' . ucfirst($kuis['nama_kuis']) . '</h5>
-                                                <p class="card-text">' . ucfirst($kuis['deksripsi_kuis']) . '</p>
-                                                <button value="' . $kuis['id_kuis'] . '" id="tombol-mulai" type="button" class="btn btn-primary" data-bs-target="#formModal2" data-bs-toggle="modal" data-bs-dismiss="modal">Mulai</button>
+                                            <input type="hidden" name="attempt" value="' . $kuis['id_kuis'] . '">
+                                            <h5 class="card-title">' . ucfirst($kuis['nama_kuis']) . '</h5>
+                                            <p class="card-text">' . ucfirst($kuis['deksripsi_kuis']) . '</p>
+                                            <div class="d-flex justify-content-between">
+                                                <button value="' . $kuis['id_kuis'] .'" id="tombol-mulai" type="button" class="btn btn-primary" data-bs-target="#formModal2" data-bs-toggle="modal" data-bs-dismiss="modal">Mulai</button>
+                                                <button value="' . $kuis['id_kuis'] . '" type="button" class="tombol-peringkat btn btn-outline-warning px-2" data-bs-toggle="modal" data-bs-target="#formModal4">🏆</button>
+                                            </div>
                                         </form>
                                     </div>
                                 </div>
@@ -216,5 +222,30 @@ class Home extends Controller
             </div>
             ';
         }
+    }
+    public function showLeaderboard(){
+        $db_skor = $this->model('Peringkat_model')->getSkor($_POST['id_kuis']);
+        $banyak_skor = sizeof($db_skor);
+        $db_pengguna = $this->model('Pengguna_model')->getPenggunaAll();
+        echo '
+        <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nama Pengguna</th>
+            <th scope="col">Skor</th>
+          </tr>
+        </thead>
+        <tbody>';
+        for($i=0;$i<$banyak_skor;$i++){
+        echo  ' <tr>
+                    <th scope="row">' . $i+1 .'</th>
+                    <td>' . ucfirst($db_pengguna[$i]['nama_pengguna']) . '</td>
+                    <td>' . $db_skor[$i]['total_skor'] .'</td>
+                </tr>';
+        }
+        echo '</tbody>
+            </table>
+        ';
     }
 }

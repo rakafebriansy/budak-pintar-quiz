@@ -16,7 +16,6 @@ $db_genre = $data['genre'];
 $db_kuis = $data['kuis'];
 $banyak_pagination = $data['banyak_pagination'];
 
-
 ?>
 
 <div class="container">
@@ -118,7 +117,7 @@ $banyak_pagination = $data['banyak_pagination'];
               <p class="card-text"><?= ucfirst($kuis['deksripsi_kuis']); ?></p>
               <div class="d-flex justify-content-between">
                 <button value="<?= $kuis['id_kuis'] ?>" id="tombol-mulai" type="button" class="btn btn-primary" data-bs-target="#formModal2" data-bs-toggle="modal" data-bs-dismiss="modal">Mulai</button>
-                <button type="button" id="tombol-peringkat" class="btn btn-outline-warning px-2" data-bs-toggle="modal" data-bs-target="#formModal2">🏆</button>
+                <button value="<?=$kuis['id_kuis']?>" type="button" class="tombol-peringkat btn btn-outline-warning px-2" data-bs-toggle="modal" data-bs-target="#formModal4">🏆</button>
               </div>
             </div>
           </div>
@@ -219,6 +218,20 @@ $banyak_pagination = $data['banyak_pagination'];
             <button type="submit" class="btn btn-primary px-3">Buat</button>
           </div>
         </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- LEADERBOARD -->
+  <div class="modal fade" id="formModal4" aria-hidden="true" aria-labelledby="formModalLabel4" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div id="form-modal-4" class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="formModalLabel4">Papan Peringkat</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div id="leaderboard" class="modal-body fs-6">
+        </div>
       </div>
     </div>
   </div>

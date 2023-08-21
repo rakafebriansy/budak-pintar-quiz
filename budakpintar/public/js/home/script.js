@@ -174,3 +174,19 @@ $('#tombol-urut').on('click', function () {
     $(this).addClass('descending').removeClass('ascending');
   }
 });
+
+$('body').on('click',function(e){
+  console.log(e.target);
+  if($(e.target).hasClass('tombol-peringkat')){
+    $.ajax({
+      url: 'http://localhost/budakpintar/public/home/showLeaderboard',
+      method: 'post',
+      data:{
+        id_kuis: $(e.target).val()
+      },
+      success: function(data){
+        $('#leaderboard').html(data);
+      }
+    });
+  }
+});

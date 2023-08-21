@@ -22,7 +22,7 @@ class Pengguna_model {
     
         return $randomString;
     }
-    private function getBerdasarkan($kolom,$nilai)
+    private function getPenggunaBerdasarkan($kolom,$nilai)
     {
         $query = "SELECT * FROM " . $this->table . " WHERE " . $kolom . "=:" . $kolom;
 
@@ -85,6 +85,12 @@ class Pengguna_model {
 
 
     //PUBLIC
+    public function getPenggunaAll()
+    {
+        $query = "SELECT * FROM " . $this->table;
+        $this->db->query($query);
+        return $this->db->resultSet();
+    }
     public function masukAkun($data)
     {
         $nama_pengguna = trim(strtolower(stripslashes(htmlspecialchars($data['nama_pengguna']))));
@@ -104,7 +110,7 @@ class Pengguna_model {
     public function daftarAkun($new_data)
     {
         $nama_pengguna = trim(strtolower(stripslashes(htmlspecialchars($new_data['nama_pengguna']))));
-        $db_data = $this->getBerdasarkan('nama_pengguna',$nama_pengguna);
+        $db_data = $this->getPenggunaBerdasarkan('nama_pengguna',$nama_pengguna);
         if ($db_data['nama_pengguna'] == trim(strtolower($new_data['nama_pengguna']))){
             return -1;
         } else {
@@ -131,7 +137,7 @@ class Pengguna_model {
         }
         
         $nama_pengguna_baru = trim(strtolower(stripslashes(htmlspecialchars($new_data['nama_pengguna']))));
-        $db_data = $this->getBerdasarkan('nama_pengguna',$nama_pengguna_baru);
+        $db_data = $this->getPenggunaBerdasarkan('nama_pengguna',$nama_pengguna_baru);
         //cek nama sama
         if ($db_data !== false && $db_data['nama_pengguna'] !== $_SESSION['nama_pengguna']){
                 return -1;
@@ -173,7 +179,7 @@ class Pengguna_model {
 
     public function ubahKataSandi($data)
     {
-        $db_data = $this->getBerdasarkan('id_pengguna',$_SESSION['id_pengguna']);
+        $db_data = $this->getPenggunaBerdasarkan('id_pengguna',$_SESSION['id_pengguna']);
         $kata_sandi_baru = password_hash($data['kata_sandi_baru'],PASSWORD_DEFAULT);
 
         if (password_verify($data['kata_sandi_lama'],$db_data['kata_sandi'])){
@@ -196,7 +202,7 @@ class Pengguna_model {
 
     public function lupaKataSandi($data)
     {
-        $db_data = $this->getBerdasarkan('nama_pengguna',strtolower($data['nama_pengguna']));
+        $db_data = $this->getPenggunaBerdasarkan('nama_pengguna',strtolower($data['nama_pengguna']));
 
         if(!$db_data){
             return 0;
