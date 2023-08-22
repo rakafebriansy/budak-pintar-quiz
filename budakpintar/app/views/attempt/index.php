@@ -65,7 +65,7 @@ function cetakSoal($soal, $counter)
         </nav>
         <div id="awal-soal1"></div>
         <br><br>
-        <h1 class="text-center text-info mt-2"><?= ucfirst($nama_kuis);?></h1>
+        <h1 class="text-center text-info mt-2"><?= ucfirst($nama_kuis); ?></h1>
         <section class="mt-2">
             <input type="hidden" name="id_kuis" value="<?= $data['id_kuis'] ?>">
             <?php
@@ -83,9 +83,9 @@ function cetakSoal($soal, $counter)
                             <div class="card">
                                 <div class="card-header"><?= ucfirst($nama_genre) ?></div>
                                 <div class="card-body">
-                                <?php if(strlen($kumpulan_soal[$i]['gambar_pendukung'])>1){ ?>
-                                    <img src="<?=BASEURL;?>/img/soal/<?= $kumpulan_soal[$i]['gambar_pendukung']; ?>" alt="" height="200">
-                                <?php } ?>    
+                                    <?php if (strlen($kumpulan_soal[$i]['gambar_pendukung']) > 1) { ?>
+                                        <img src="<?= BASEURL; ?>/img/soal/<?= $kumpulan_soal[$i]['gambar_pendukung']; ?>" alt="" height="200">
+                                    <?php } ?>
                                     <p id="awal-soal<?= $i + 2 ?>" class="card-text">
                                         <?= $kumpulan_soal[$i]['pertanyaan']; ?>
                                     </p>
@@ -107,13 +107,22 @@ function cetakSoal($soal, $counter)
             <div id="wadah-navigasi" class="row justify-content-start">
                 <?php for ($i = 0; $i < $jumlah_soal; $i++) { ?>
                     <div class="col-md-4 d-flex justify-content-center">
-                        <a href="#awal-soal<?= $i + 1 ?>" style="text-decoration: none;">
-                            <div class="tombol-navigasi border border-info rounded mt-3 d-flex justify-content-center" style="width: 30px; height:30px; cursor:pointer;">
-                                <p class="d-block text-info"><?= $i + 1; ?></p>
-                            </div>
-                        </a>
+                        <?php if ($i == 8) { ?>
+                            <a data-bs-toggle="offcanvas" role="button" aria-controls="offcanvasNavigasi" style="text-decoration: none;" href="#offcanvasNavigasi">
+                                <div class="tombol-navigasi border border-info rounded mt-3 d-flex justify-content-center">
+                                    <p class="d-block text-info">...</p>
+                                </div>
+                            </a>
+                        <?php
+                        } else { ?>
+                            <a href="#awal-soal<?= $i + 1 ?>" style="text-decoration: none;">
+                                <div class="tombol-navigasi border border-info rounded mt-3 d-flex justify-content-center">
+                                    <p class="d-block text-info"><?= $i + 1; ?></p>
+                                </div>
+                            </a>
+                        <?php } ?>
                     </div>
-                <?php } ?>
+                <?php if ($i == 8){break;}} ?>
             </div>
             <div class="d-flex justify-content-evenly mt-3">
                 <button type="button" data-bs-target="#formModal2" data-bs-toggle="modal" data-bs-dismiss="modal" class="tombol-kirim btn btn-primary d-inline-block btn-sm" style="padding-right: 0.7rem; padding-left:0.7rem;">Kirim</button>
@@ -123,8 +132,8 @@ function cetakSoal($soal, $counter)
         </div>
     </div>
     <div class="card position-fixed d-block d-md-none" style="top:100px; right:0; z-index:1050; padding:12px !important; border-radius: 0.375rem !important">
-            <a href="#offcanvasExample" class="text-primary fs-2 fw-bold" data-bs-toggle="offcanvas" role="button" aria-controls="offcanvasExample" style="text-decoration: none;">
-                <</a>
+        <a href="#offcanvasNavigasi" class="text-primary fs-2 fw-bold" data-bs-toggle="offcanvas" role="button" aria-controls="offcanvasNavigasi" style="text-decoration: none;">
+            &lt;</a>
     </div>
 
 
@@ -145,21 +154,19 @@ function cetakSoal($soal, $counter)
     </div>
 
     <!-- OFFCANVAS -->
-    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavigasi" aria-labelledby="offcanvasNavigasiLabel">
         <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasExampleLabel">Navigasi</h5>
+            <h5 class="offcanvas-title" id="offcanvasNavigasiLabel">Navigasi</h5>
             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
-            <div class="d-flex">
+            <div>
                 <?php for ($i = 0; $i < $jumlah_soal; $i++) { ?>
-                    <div class="col-md-4 d-flex justify-content-center me-2">
                         <a href="#awal-soal<?= $i + 1 ?>" style="text-decoration: none;">
-                            <div class="tombol-navigasi border border-info rounded mt-3 d-flex justify-content-center" style="width: 30px; height:30px; cursor:pointer;">
+                            <div class="tombol-navigasi border border-info rounded mt-3 d-inline-block text-center">
                                 <p class="d-block text-info"><?= $i + 1; ?></p>
                             </div>
                         </a>
-                    </div>
                 <?php } ?>
             </div>
             <div class="row">

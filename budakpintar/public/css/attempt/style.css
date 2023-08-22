@@ -19,6 +19,9 @@
 .tombol-navigasi:hover {
     background-color: rgba(2,117,216,0.2);
 }
+.tombol-navigasi {
+    width: 30px; height:30px; cursor:pointer;
+}
 
 body.finished {
     background-color: #BFC7F2;

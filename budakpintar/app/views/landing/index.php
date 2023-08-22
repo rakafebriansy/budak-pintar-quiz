@@ -33,7 +33,7 @@ $banyak_pagination = $data['banyak_pagination'];
         </p>
         <div>
             <a href="#category-linked" role="button" class="btn btn-primary btn-lg d-inline-block me-3 mt-3 px-3">Jelajahi Kuis</a>
-            <button id="tombol-buat-kuis" type="button" class="btn btn-outline-primary btn-lg d-inline-block mt-3 px-4" data-bs-toggle="modal" data-bs-target="#formModal3">Buat Kuis</button>
+            <button type="button" class="btn btn-outline-primary btn-lg d-inline-block mt-3 px-4 tombol-mulai">Buat Kuis</button>
         </div>
       </div>
       <div class="col-md-6 mt-5">
