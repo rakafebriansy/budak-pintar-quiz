@@ -15,7 +15,6 @@ if ($gambar != '') {
 $db_genre = $data['genre'];
 $db_kuis = $data['kuis'];
 $banyak_pagination = $data['banyak_pagination'];
-
 ?>
 
 <div class="container">
@@ -46,15 +45,15 @@ $banyak_pagination = $data['banyak_pagination'];
       <?php Flasher::flash(); ?>
     </div>
     <div class="row mt">
-      <div class="col-md-6">
+      <div class="col-md-6 animate__animated animate__fadeInLeft animate__duration-1600">
         <h2 class="fs-1 text-start  mb-5 pt-md-5">Kerjakan kuis, kapan dan di mana saja!
         </h2>
         <p class="fs-4 text-start mb-5">Pilih kuis sesuai keinginan kamu, agar menambah pengetahuan dan mengasah
           kemampuan.
         </p>
         <div>
-            <a href="#category-linked" role="button" class="btn btn-primary btn-lg d-inline-block me-3 mt-3 px-3">Jelajahi Kuis</a>
-            <button id="tombol-buat-kuis" type="button" class="btn btn-outline-primary btn-lg d-inline-block mt-3 px-4" data-bs-toggle="modal" data-bs-target="#formModal3">Buat Kuis</button>
+            <a href="#category-linked" role="button" class="btn btn-primary btn-lg d-inline-block me-3 mt-3 px-3 animate__animated animate__fadeInDown animate__duration-2300">Jelajahi Kuis</a>
+            <button id="tombol-buat-kuis" type="button" class="btn btn-outline-primary btn-lg d-inline-block mt-3 px-4 animate__animated animate__fadeInDown animate__duration-2300" data-bs-toggle="modal" data-bs-target="#formModal3">Buat Kuis</button>
         </div>
       </div>
       <div class="col-md-6 mt-5">
@@ -101,7 +100,7 @@ $banyak_pagination = $data['banyak_pagination'];
         }
       ?>
         <div class="col-md-4">
-          <div class="card">
+          <div class="card animate__animated animate__fadeInUp animate__duration-2000">
             <div class="card-header">
               <?= ucfirst($nama_genre); ?>
             </div>

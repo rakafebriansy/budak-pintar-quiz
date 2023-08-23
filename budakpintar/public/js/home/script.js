@@ -1,3 +1,4 @@
+
 const BODY = document.querySelector('body');
 const MODAL_BODY = document.querySelector('#form-modal-2 .modal-body');
 const MODAL_TITLE = document.querySelector('#form-modal-2 .modal-title');

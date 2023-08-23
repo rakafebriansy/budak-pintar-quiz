@@ -1,11 +1,6 @@
 #hero {
   padding-top: 6rem;
 }
-@media (max-width: 576px) {
-  #kalimat-awal {
-    margin-top: 50px;
-  }
-}
 
 .popup {
   display: none;
@@ -355,4 +350,13 @@
 
 #shaking-image {
   animation: shake 4s infinite;
+}
+
+.fade {
+  opacity: 0;
+  transition: opacity 10s;
+}
+
+.fade.show {
+  opacity: 1;
 }
