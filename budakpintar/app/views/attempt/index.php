@@ -1,5 +1,6 @@
 <?php
 $nama_kuis = $data['nama_kuis'];
+$nama_genre = $data['nama_genre'];
 $kumpulan_soal = $data['kumpulan_soal'];
 
 function cetakSoal($soal, $counter)
@@ -80,12 +81,13 @@ function cetakSoal($soal, $counter)
                     <div class="col-md-8 col-xl-10">
                         <div id="soal1">
                             <div class="card">
+                                <div class="card-header"><?= ucfirst($nama_genre) ?></div>
                                 <div class="card-body">
                                     <?php if (strlen($kumpulan_soal[$i]['gambar_pendukung']) > 1) { ?>
                                         <img src="<?= BASEURL; ?>/img/soal/<?= $kumpulan_soal[$i]['gambar_pendukung']; ?>" alt="" height="200">
                                     <?php } ?>
                                     <p id="awal-soal<?= $i + 2 ?>" class="card-text">
-                                        <?= ucfirst($kumpulan_soal[$i]['pertanyaan']); ?>
+                                        <?= $kumpulan_soal[$i]['pertanyaan']; ?>
                                     </p>
                                     <?php cetakSoal($kumpulan_soal[$i], $i) ?>
                                 </div>
