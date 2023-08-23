@@ -38,7 +38,7 @@ class Attempt extends Controller
         try {
             $this->model('Peringkat_model')->tambahSkor($db_detail_kuis[0]['kuis_id_kuis'], $total_skor);
             $_SESSION['total_skor'] = $total_skor;
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             $_SESSION['total_skor'] = 404;
         }
         header('Location: ' . BASEURL . '/home');

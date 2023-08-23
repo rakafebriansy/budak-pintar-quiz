@@ -13,7 +13,7 @@ class Peringkat_model extends Controller
         $query = "SELECT * FROM " . $this->table . " WHERE pengguna_id_pengguna=" . $_SESSION['id_pengguna'] . " AND kuis_id_kuis=" . $id_kuis;
         $this->db->query($query);
         $this->db->exec();
-        return $this->db->rowCount();
+        return $this->db->single();
     }
 
     public function getSkor($id_kuis)
@@ -26,7 +26,7 @@ class Peringkat_model extends Controller
     public function tambahSkor($id_kuis, $total_skor)
     {
         $db_peringkat = $this->cekPenggunaKuis($id_kuis);
-        if ($db_peringkat > 0) {
+        if ($this->cekPenggunaKuis($id_kuis) > 0) {
             if ($db_peringkat['total_skor'] < $total_skor) {
                 $query = "UPDATE " . $this->table . " SET total_skor=" . $total_skor . " WHERE pengguna_id_pengguna=" . $_SESSION['id_pengguna'] . " AND kuis_id_kuis=" . $id_kuis;
                 $this->db->query($query);
