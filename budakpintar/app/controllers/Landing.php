@@ -5,7 +5,7 @@ class Landing extends Controller {
         if (isset($_SESSION['login'])) header('Location: ' . BASEURL . '/home');
         $params['kolom'] = 'id_kuis';
         $params['nilai'] = '';
-        $jumlah_data_perhalaman = 3;
+        $jumlah_data_perhalaman = 6;
         $banyak_kuis = $this->model('Kuis_model')->getBanyakKuis($params);
         $data['judul'] = 'LANDING PAGE';
         $data['folder'] = 'landing';
@@ -63,5 +63,3 @@ class Landing extends Controller {
         }
     }
 }
-
-?>

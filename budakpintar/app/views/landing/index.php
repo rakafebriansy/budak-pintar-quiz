@@ -82,18 +82,18 @@ $banyak_pagination = $data['banyak_pagination'];
         }
       ?>
         <div class="col-md-4">
-          <div class="card">
+          <div class="card mb-4">
             <div class="card-header">
               <?= ucfirst($nama_genre); ?>
             </div>
-            <div class="card-body">
+            <div class="card-body" style="min-height:136px !important;">
               <input type="hidden" name="attempt" value="<?= $kuis['id_kuis'] ?>">
               <h5 class="card-title"><?= ucfirst($kuis['nama_kuis']); ?></h5>
               <p class="card-text"><?= ucfirst($kuis['deksripsi_kuis']); ?></p>
-              <div class="d-flex justify-content-between">
-                <button type="button" class="btn btn-primary tombol-mulai" data-bs-toggle="modal" data-bs-target="#formModal1">Mulai</button>
-                <button type="button" class="btn btn-outline-warning tombol-mulai px-2" data-bs-toggle="modal" data-bs-target="#formModal1">🏆</button>
-              </div>
+            </div>
+            <div class="card-footer d-flex justify-content-between">
+              <button type="button" class="btn btn-primary tombol-mulai" data-bs-toggle="modal" data-bs-target="#formModal1">Mulai</button>
+              <button type="button" class="btn btn-outline-warning tombol-mulai px-2" data-bs-toggle="modal" data-bs-target="#formModal1">🏆</button>
             </div>
           </div>
         </div>
