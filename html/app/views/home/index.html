@@ -6,105 +6,160 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../../../public/css/bootstrap/bootstrap.min.css">
   <title>Budak Pintar</title>
-  <link rel="stylesheet" href="../../../public/css/home/style.css">
+
+  <style>
+    @keyframes shake {
+      0% {
+        transform: translate(0, 0);
+      }
+
+      25% {
+        transform: translate(-5px, 5px);
+      }
+
+      50% {
+        transform: translate(-5px, -5px);
+      }
+
+      75% {
+        transform: translate(5px, -5px);
+      }
+
+      100% {
+        transform: translate(0, 0);
+      }
+    }
+
+    #shaking-image {
+      animation: shake 4s infinite;
+    }
+  </style>
+
 </head>
 
 <body class="container">
 
-  <!-- NAVBAR START -->
-  <nav class="navbar navbar-light bg-white fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="#">
-        <img src="../../../public/img/logo.png" alt="" height="40" class="d-inline-block align-text-center">
-        <img src="../../../public/img/name_brand.svg" alt="" height="20" class="d-inline-block align-text-center">
-      </a>
-    <!-- LOGIN -->
-    <div class="d-flex justify-content-start align-items-center bg-danger text-center">
-      <label for="">
-      </label><img src="../../../public/img/user.png" width="40" alt="">
-      <button type="button" class="btn btn-link">Ummunada_</button>
-    </div>
-    </div>
-  </nav>
-  <!-- NAVBAR END -->
-
   <!-- HERO START -->
   <section id="hero" class="mb-5">
-    <div class="row">
-      <div class="col-md-6">
-        <h2 class="fs-1 text-start  mb-5 pt-md-5">Kerjakan kuis, kapan dan di mana saja!
-        </h2>
-        <p class="fs-4 text-start mb-5">Pilih kuis sesuai keinginan kamu, agar menambah pengetahuan dan mengasah
-          kemampuan.
-        </p>
-        <div class="row mb-2">
-          <div class="col-8 col-md-7">
-            <button type="button" class="btn btn-primary btn-lg w-75">Jelajahi Kuis</button>
+    <!-- <div id="flasher">
+      <?php Flasher::flash(); ?>
+    </div> -->
+    <div class="container max-width-1200">
+      <div class="row position-relative">
+        <div class="col-md-6">
+          <h2 class="fs-1 text-start mb-5 pt-md-5">Kerjakan kuis, kapan dan di mana saja!</h2>
+          <p class="fs-4 text-start mb-5 description">Pilih kuis sesuai keinginan kamu, agar menambah pengetahuan dan mengasah
+            kemampuan.</p>
+          <div class="row mb-2">
+            <div class="col-12 col-md-7">
+              <a href="#category-linked" class="btn btn-primary btn-lg w-100">Jelajahi Kuis</a>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-7">
+              <button id="tombol-buat-kuis" type="button" class="btn btn-outline-primary btn-lg w-100"
+                data-bs-toggle="modal" data-bs-target="#formModal3">Buat Kuis</button>
+            </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-8 col-md-7">
-            <button type="button" class="btn btn-outline-primary btn-lg w-75">Buat Kuis</button>
-          </div>
+        <div class="col-md-6">
+          <img id="shaking-image" src="../../../public/img/hero-1.png" alt="" class="img-fluid">
         </div>
-      </div>
-      <div class="col-md-6">
-        <img src="../../../public/img/hero.png" alt="" class="img-fluid">
       </div>
     </div>
   </section>
   <!-- HERO END -->
+
+
   <br><br><br>
   <!-- SEARCH START -->
-  <section id="search" class="mt-5 mb-5">
-    <h2 class="">Temukan kuis yang kamu suka!</h2>
-    <form class="d-flex mt-4">
-      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success" type="submit">Search</button>
-    </form>
-  </section>
   <!-- SEARCH END -->
-<br><br>
+  <br><br>
+
   <!-- CATEGORY START -->
-  <section id="category">
-    <div class="mathematics">
-      <h3 class="fs-4">Matematika</h3>
-      <div class="row ">
-        <div class="col-md-4">
-          <div class="card">
-            <img src="../../../public/img/probabilitas.jpeg" class="card-img-top" height="200" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Judul Kuis</h5>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, necessitatibus.</p>
-              <a href="#" class="btn btn-primary">Mulai</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card">
-            <img src="../../../public/img/statistika.jpeg" class="card-img-top" height="200" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Judul Kuis</h5>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, necessitatibus.</p>
-              <a href="#" class="btn btn-primary">Mulai</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card">
-            <img src="../../../public/img/spldv.jpg" class="card-img-top" height="200" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Judul Kuis</h5>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, necessitatibus.</p>
-              <a href="#" class="btn btn-primary">Mulai</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
   <!-- CATEGORY END -->
 
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    var quotes = [
+      {
+        description: "Pilih kuis sesuai keinginan kamu, agar menambah pengetahuan dan mengasah kemampuan.",
+        image: "../../../public/img/hero-2.png",
+        paddingTop: "0",
+        paddingBottom: "0"
+      },
+      {
+        description: "Seperti Albert Einstein mengatakan, 'Tantang Diri Anda dengan Pertanyaan-Pertanyaan Baru!'",
+        image: "../../../public/img/hero-3.jpg",
+        paddingTop: "100px",
+        paddingBottom: "120.9px"
+      },
+      {
+        description: "Sama seperti Elon Musk berkata, 'Setiap Masalah adalah Peluang untuk Belajar.'",
+        image: "../../../public/img/hero-3.png",
+        paddingTop: "100px",
+        paddingBottom: "120.9px"
+      },
+      {
+        description: "Sebagaimana Steve Jobs pernah berkata, 'Inovasi Datang dari Memecahkan Masalah.'",
+        image: "../../../public/img/hero-4.png",
+        paddingTop: "100px",
+        paddingBottom: "120.9px"
+      },
+      {
+        description: "Seperti Thomas Edison pernah mengatakan, 'Saya Tidak Pernah Gagal, Saya Hanya Menemukan 10,000 Cara yang Tidak Bekerja.'",
+        image: "../../../public/img/hero-5.png",
+        paddingTop: "100px",
+        paddingBottom: "120.9px"
+      }
+      // Tambahkan kutipan dan gambar tambahan di sini
+    ];
+
+
+
+    var currentQuoteIndex = 0;
+
+    function changeQuoteAndImage() {
+      $("#shaking-image").fadeOut(1000, function () {
+        $(this).attr("src", quotes[currentQuoteIndex].image).css({
+          "padding-top": quotes[currentQuoteIndex].paddingTop,
+          "padding-bottom": quotes[currentQuoteIndex].paddingBottom // Tambahkan properti padding bottom
+        }).fadeIn(1000);
+      });
+
+      $(".description").fadeOut(1000, function () {
+        $(this).text(quotes[currentQuoteIndex].description).fadeIn(1000);
+      });
+
+      currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length;
+    }
+
+
+    $(document).ready(function () {
+      changeQuoteAndImage();
+      setInterval(changeQuoteAndImage, 7000);
+    });
+
+    function getRandomNumber(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+
+    function getRandomTranslation() {
+      const x = getRandomNumber(-10, 10);
+      const y = getRandomNumber(-10, 10);
+      return `translate(${x}px, ${y}px)`;
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const shakingImage = document.getElementById("shaking-image");
+      shakingImage.style.animationDuration = `${getRandomNumber(4, 5)}s`;
+      shakingImage.style.animationTimingFunction = "ease-in-out";
+
+      shakingImage.addEventListener("animationiteration", () => {
+        shakingImage.style.transform = getRandomTranslation();
+      });
+    });
+  </script>
   <script src="../../../public/js/bootstrap/bootstrap.bundle.min.js"></script>
   <script src="../../../public/js/script.js"></script>
 </body>
