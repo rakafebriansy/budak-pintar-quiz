@@ -37,7 +37,7 @@ $banyak_pagination = $data['banyak_pagination'];
         </div>
       </div>
       <div class="col-md-6 mt-5">
-        <img src="<?= BASEURL; ?>/img/hero.jpg" alt="" class="img-fluid">
+        <img id="shaking-image" src="<?= BASEURL; ?>/img/hero.jpg" alt="" class="img-fluid">
       </div>
     </div>
   </section>
