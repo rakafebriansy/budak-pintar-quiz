@@ -18,7 +18,7 @@ class Kuis_model
 
     public function getKuisSet($params,$urut_berdasarkan,$data_awal = 0)
     {
-        $jumlah_data = 6;
+        $jumlah_data = 3;
         $query = "SELECT * FROM " . $this->table . " WHERE " . $params['kolom'] . " LIKE '%" . $params['nilai'] . "%' ORDER BY nama_kuis " . $urut_berdasarkan . " LIMIT " . $data_awal . "," . $jumlah_data;
 
         $this->db->query($query);

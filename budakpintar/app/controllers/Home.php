@@ -7,7 +7,7 @@ class Home extends Controller
         if (!isset($_SESSION['login'])) header('Location: ' . BASEURL . '/landing');
         $params['kolom'] = 'id_kuis';
         $params['nilai'] = '';
-        $jumlah_data_perhalaman = 6;
+        $jumlah_data_perhalaman = 3;
         $banyak_kuis = $this->model('Kuis_model')->getBanyakKuis($params);
         $data['judul'] = 'HOME';
         $data['folder'] = 'home';
@@ -91,7 +91,7 @@ class Home extends Controller
     {
         $params['kolom'] = 'nama_kuis';
         $params['nilai'] = $_POST['kata_kunci'];
-        $jumlah_data_perhalaman = 6;
+        $jumlah_data_perhalaman = 3;
         $banyak_kuis = $this->model('Kuis_model')->getBanyakKuis($params);
         $banyak_pagination = ceil($banyak_kuis / $jumlah_data_perhalaman);
         if (isset($_POST['halaman_aktif'])) {
@@ -142,18 +142,18 @@ class Home extends Controller
                         if ($genre['id_genre'] == $id_genre) {
                             $nama_genre = $genre['nama_genre'];
                             echo '<div class="col-md-4">
-                                <div class="card mb-4">
+                                <div class="card">
                                     <div class="card-header">
                                     ' . ucfirst($nama_genre) . '
                                     </div>
-                                    <div class="card-body" style="min-height:136px !important;">
+                                    <div class="card-body">
                                         <input type="hidden" name="attempt" value="' . $kuis['id_kuis'] . '">
                                         <h5 class="card-title">' . ucfirst($kuis['nama_kuis']) . '</h5>
                                         <p class="card-text">' . ucfirst($kuis['deksripsi_kuis']) . '</p>
-                                    </div>
-                                    <div class="card-footer d-flex justify-content-between">
-                                        <button type="button" class="btn btn-primary tombol-mulai" data-bs-toggle="modal" data-bs-target="#formModal1">Mulai</button>
-                                        <button type="button" class="btn btn-outline-warning tombol-mulai px-2" data-bs-toggle="modal" data-bs-target="#formModal1">🏆</button>
+                                        <div class="d-flex justify-content-between">
+                                            <button type="button" class="btn btn-primary tombol-mulai" data-bs-toggle="modal" data-bs-target="#formModal1">Mulai</button>
+                                            <button type="button" class="btn btn-outline-warning tombol-mulai px-2" data-bs-toggle="modal" data-bs-target="#formModal1">🏆</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>';
@@ -194,21 +194,21 @@ class Home extends Controller
                         if ($genre['id_genre'] == $id_genre) {
                             $nama_genre = $genre['nama_genre'];
                             echo '<div class="col-md-4">
-                                <div class="card mb-4">
+                                <div class="card">
                                     <div class="card-header">
                                     ' . ucfirst($nama_genre) . '
                                     </div>
-                                    <form action="' . BASEURL . '/attempt" method="post">', '</form>
-                                        <div class="card-body" style="min-height:136px !important;">
+                                    <div class="card-body">
+                                        <form action="' . BASEURL . '/attempt" method="post">', '</form>
                                             <input type="hidden" name="attempt" value="' . $kuis['id_kuis'] . '">
                                             <h5 class="card-title">' . ucfirst($kuis['nama_kuis']) . '</h5>
                                             <p class="card-text">' . ucfirst($kuis['deksripsi_kuis']) . '</p>
-                                        </div>
-                                        <div class="card-footer d-flex justify-content-between">
-                                            <button value="' . $kuis['id_kuis'] . '" id="tombol-mulai" type="button" class="btn btn-primary" data-bs-target="#formModal2" data-bs-toggle="modal" data-bs-dismiss="modal">Mulai</button>
-                                            <button value="' . $kuis['id_kuis'] . '" type="button" class="tombol-peringkat btn btn-outline-warning px-2" data-bs-toggle="modal" data-bs-target="#formModal4">🏆</button>
-                                        </div>
-                                    </form>
+                                            <div class="d-flex justify-content-between">
+                                                <button value="' . $kuis['id_kuis'] . '" id="tombol-mulai" type="button" class="btn btn-primary" data-bs-target="#formModal2" data-bs-toggle="modal" data-bs-dismiss="modal">Mulai</button>
+                                                <button value="' . $kuis['id_kuis'] . '" type="button" class="tombol-peringkat btn btn-outline-warning px-2" data-bs-toggle="modal" data-bs-target="#formModal4">🏆</button>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>';
                         }

@@ -32,12 +32,32 @@ $banyak_pagination = $data['banyak_pagination'];
           kemampuan.
         </p>
         <div>
-            <a href="#category-linked" role="button" class="btn btn-primary btn-lg d-inline-block me-3 mt-3 px-3">Jelajahi Kuis</a>
-            <button type="button" class="btn btn-outline-primary btn-lg d-inline-block mt-3 px-4 tombol-mulai">Buat Kuis</button>
+          <a href="#category-linked" role="button" class="btn btn-primary btn-lg d-inline-block me-3 mt-3 px-3">Jelajahi Kuis</a>
+          <button type="button" class="btn btn-outline-primary btn-lg d-inline-block mt-3 px-4 tombol-mulai">Buat Kuis</button>
         </div>
       </div>
       <div class="col-md-6 mt-5">
-        <img id="shaking-image" src="<?= BASEURL; ?>/img/hero.jpg" alt="" class="img-fluid">
+        <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active" data-bs-interval="4000">
+              <img src="<?= BASEURL; ?>/img/hero.jpg" alt="" class="img-fluid">
+            </div>
+            <div class="carousel-item" data-bs-interval="4000">
+              <img src="<?= BASEURL; ?>/img/math.jpeg" alt="" class="img-fluid">
+            </div>
+            <div class="carousel-item" data-bs-interval="4000">
+              <img src="<?= BASEURL; ?>/img/statistika.jpeg" alt="" class="img-fluid">
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
       </div>
     </div>
   </section>
@@ -82,18 +102,18 @@ $banyak_pagination = $data['banyak_pagination'];
         }
       ?>
         <div class="col-md-4">
-          <div class="card mb-4">
+          <div class="card">
             <div class="card-header">
               <?= ucfirst($nama_genre); ?>
             </div>
-            <div class="card-body" style="min-height:136px !important;">
+            <div class="card-body">
               <input type="hidden" name="attempt" value="<?= $kuis['id_kuis'] ?>">
               <h5 class="card-title"><?= ucfirst($kuis['nama_kuis']); ?></h5>
               <p class="card-text"><?= ucfirst($kuis['deksripsi_kuis']); ?></p>
-            </div>
-            <div class="card-footer d-flex justify-content-between">
-              <button type="button" class="btn btn-primary tombol-mulai" data-bs-toggle="modal" data-bs-target="#formModal1">Mulai</button>
-              <button type="button" class="btn btn-outline-warning tombol-mulai px-2" data-bs-toggle="modal" data-bs-target="#formModal1">🏆</button>
+              <div class="d-flex justify-content-between">
+                <button type="button" class="btn btn-primary tombol-mulai" data-bs-toggle="modal" data-bs-target="#formModal1">Mulai</button>
+                <button type="button" class="btn btn-outline-warning tombol-mulai px-2" data-bs-toggle="modal" data-bs-target="#formModal1">🏆</button>
+              </div>
             </div>
           </div>
         </div>
