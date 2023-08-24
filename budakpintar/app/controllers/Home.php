@@ -142,19 +142,19 @@ class Home extends Controller
                         if ($genre['id_genre'] == $id_genre) {
                             $nama_genre = $genre['nama_genre'];
                             echo '<div class="col-md-4">
-                                <div class="card">
+                                <div class="card mb-3">
                                     <div class="card-header">
                                     ' . ucfirst($nama_genre) . '
                                     </div>
-                                    <div class="card-body">
+                                    <div class="card-body" style="min-height:190px;">
                                         <input type="hidden" name="attempt" value="' . $kuis['id_kuis'] . '">
                                         <h5 class="card-title">' . ucfirst($kuis['nama_kuis']) . '</h5>
                                         <p class="card-text">' . ucfirst($kuis['deksripsi_kuis']) . '</p>
-                                        <div class="d-flex justify-content-between">
-                                            <button type="button" class="btn btn-primary tombol-mulai" data-bs-toggle="modal" data-bs-target="#formModal1">Mulai</button>
-                                            <button type="button" class="btn btn-outline-warning tombol-mulai px-2" data-bs-toggle="modal" data-bs-target="#formModal1">🏆</button>
-                                        </div>
                                     </div>
+                                    <div class="card-footer d-flex justify-content-between">
+                                        <button type="button" class="btn btn-primary tombol-mulai" data-bs-toggle="modal" data-bs-target="#formModal1">Mulai</button>
+                                        <button type="button" class="btn btn-outline-warning tombol-mulai px-2" data-bs-toggle="modal" data-bs-target="#formModal1">🏆</button>
+                                    </div>                    
                                 </div>
                             </div>';
                         }
@@ -198,17 +198,17 @@ class Home extends Controller
                                     <div class="card-header">
                                     ' . ucfirst($nama_genre) . '
                                     </div>
-                                    <div class="card-body">
-                                        <form action="' . BASEURL . '/attempt" method="post">', '</form>
-                                            <input type="hidden" name="attempt" value="' . $kuis['id_kuis'] . '">
-                                            <h5 class="card-title">' . ucfirst($kuis['nama_kuis']) . '</h5>
-                                            <p class="card-text">' . ucfirst($kuis['deksripsi_kuis']) . '</p>
-                                            <div class="d-flex justify-content-between">
-                                                <button value="' . $kuis['id_kuis'] . '" id="tombol-mulai" type="button" class="btn btn-primary" data-bs-target="#formModal2" data-bs-toggle="modal" data-bs-dismiss="modal">Mulai</button>
-                                                <button value="' . $kuis['id_kuis'] . '" type="button" class="tombol-peringkat btn btn-outline-warning px-2" data-bs-toggle="modal" data-bs-target="#formModal4">🏆</button>
-                                            </div>
-                                        </form>
-                                    </div>
+                                    <form action="' . BASEURL . '/attempt" method="post">', '</form>
+                                        <div class="card-body" style="min-height:190px;">
+                                                <input type="hidden" name="attempt" value="' . $kuis['id_kuis'] . '">
+                                                <h5 class="card-title">' . ucfirst($kuis['nama_kuis']) . '</h5>
+                                                <p class="card-text">' . ucfirst($kuis['deksripsi_kuis']) . '</p>
+                                        </div>
+                                        <div class="card-footer d-flex justify-content-between">
+                                            <button type="button" class="btn btn-primary tombol-mulai" data-bs-toggle="modal" data-bs-target="#formModal1">Mulai</button>
+                                            <button type="button" class="btn btn-outline-warning tombol-mulai px-2" data-bs-toggle="modal" data-bs-target="#formModal1">🏆</button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>';
                         }
