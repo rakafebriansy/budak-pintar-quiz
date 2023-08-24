@@ -131,8 +131,8 @@ $banyak_pagination = $data['banyak_pagination'];
               <p class="card-text"><?= ucfirst($kuis['deksripsi_kuis']); ?></p>
             </div>
             <div class="card-footer d-flex justify-content-between">
-                <button type="button" class="btn btn-primary tombol-mulai" data-bs-toggle="modal" data-bs-target="#formModal1">Mulai</button>
-                <button type="button" class="btn btn-outline-warning tombol-mulai px-2" data-bs-toggle="modal" data-bs-target="#formModal1">🏆</button>
+              <button value="<?= $kuis['id_kuis'] ?>" id="tombol-mulai" type="button" class="btn btn-primary" data-bs-target="#formModal2" data-bs-toggle="modal" data-bs-dismiss="modal">Mulai</button>
+              <button value="<?= $kuis['id_kuis'] ?>" type="button" class="tombol-peringkat btn btn-outline-warning px-2" data-bs-toggle="modal" data-bs-target="#formModal4">🏆</button>
             </div>
           </div>
         </div>
@@ -215,7 +215,7 @@ $banyak_pagination = $data['banyak_pagination'];
           <div class="modal-body fs-4">
             <input type="hidden" value="on" name="buat">
             <input type="text" class="form-control form-control-lg mt-2" name="nama_kuis" placeholder="Masukkan nama kuis anda" maxlength="40" required />
-            <input type="text" class="form-control form-control-lg mt-2" name="deskripsi_kuis" placeholder="Masukkan deskripsi kuis anda" maxlength="140" required />
+            <input type="text" class="form-control form-control-lg mt-2" name="deskripsi_kuis" placeholder="Masukkan deskripsi kuis anda" maxlength="150" required />
             <div class="dropdown mb-2 mt-2">
               <input id="nama-genre" type="hidden" name="nama_genre" value="<?= $db_genre[0]['nama_genre'] ?>">
               <button class="btn btn-lg btn-light dropdown-toggle" type="button" id="pilih-genre" data-bs-toggle="dropdown" aria-expanded="false">

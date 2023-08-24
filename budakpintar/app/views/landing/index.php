@@ -112,8 +112,8 @@ $banyak_pagination = $data['banyak_pagination'];
               <p class="card-text"><?= ucfirst($kuis['deksripsi_kuis']); ?></p>
             </div>
             <div class="card-footer d-flex justify-content-between">
-                <button type="button" class="btn btn-primary tombol-mulai" data-bs-toggle="modal" data-bs-target="#formModal1">Mulai</button>
-                <button type="button" class="btn btn-outline-warning tombol-mulai px-2" data-bs-toggle="modal" data-bs-target="#formModal1">🏆</button>
+              <button type="button" class="btn btn-primary tombol-mulai" data-bs-toggle="modal" data-bs-target="#formModal1">Mulai</button>
+              <button type="button" class="btn btn-outline-warning tombol-mulai px-2" data-bs-toggle="modal" data-bs-target="#formModal1">🏆</button>
             </div>
           </div>
         </div>
