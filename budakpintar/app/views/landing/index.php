@@ -63,7 +63,7 @@ $banyak_pagination = $data['banyak_pagination'];
   </section>
 
   <br><br><br>
-  <div id="category-linked"></div><br>
+  <div id="category-linked"></div><br><br>
 
   <section id="search" class="mt-5 mb-3">
     <h2 class="">Temukan kuis yang kamu suka!</h2>
@@ -103,7 +103,7 @@ $banyak_pagination = $data['banyak_pagination'];
       ?>
         <div class="col-md-4">
           <div class="card mb-3">
-            <div class="card-header">
+            <div class="card-header bg-primary text-white">
               <?= ucfirst($nama_genre); ?>
             </div>
             <div class="card-body" style="min-height:190px;">

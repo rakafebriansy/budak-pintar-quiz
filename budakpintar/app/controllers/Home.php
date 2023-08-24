@@ -143,7 +143,7 @@ class Home extends Controller
                             $nama_genre = $genre['nama_genre'];
                             echo '<div class="col-md-4">
                                 <div class="card mb-3">
-                                    <div class="card-header">
+                                    <div class="card-header bg-primary text-white">
                                     ' . ucfirst($nama_genre) . '
                                     </div>
                                     <div class="card-body" style="min-height:190px;">
@@ -195,7 +195,7 @@ class Home extends Controller
                             $nama_genre = $genre['nama_genre'];
                             echo '<div class="col-md-4">
                                 <div class="card" mb-3>
-                                    <div class="card-header">
+                                    <div class="card-header bg-primary text-white">
                                     ' . ucfirst($nama_genre) . '
                                     </div>
                                     <form action="' . BASEURL . '/attempt" method="post">', '</form>

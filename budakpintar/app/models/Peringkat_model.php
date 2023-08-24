@@ -18,7 +18,7 @@ class Peringkat_model extends Controller
 
     public function getSkor($id_kuis)
     {
-        $query = "SELECT * FROM " . $this->table . " WHERE kuis_id_kuis=" . $id_kuis;
+        $query = "SELECT * FROM " . $this->table . " WHERE kuis_id_kuis=" . $id_kuis . " ORDER BY total_skor ASC";
         $this->db->query($query);
         return $this->db->resultSet();
     }
