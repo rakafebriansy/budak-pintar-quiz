@@ -39,13 +39,13 @@ $banyak_pagination = $data['banyak_pagination'];
       <div class="col-md-6 mt-5">
         <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
           <div class="carousel-inner">
-            <div class="carousel-item active" data-bs-interval="4000">
+            <div class="carousel-item active" data-bs-interval="2000">
               <img src="<?= BASEURL; ?>/img/hero.jpg" alt="" class="img-fluid">
             </div>
-            <div class="carousel-item" data-bs-interval="4000">
+            <div class="carousel-item" data-bs-interval="2000">
               <img src="<?= BASEURL; ?>/img/math.jpeg" alt="" class="img-fluid">
             </div>
-            <div class="carousel-item" data-bs-interval="4000">
+            <div class="carousel-item" data-bs-interval="2000">
               <img src="<?= BASEURL; ?>/img/statistika.jpeg" alt="" class="img-fluid">
             </div>
           </div>
