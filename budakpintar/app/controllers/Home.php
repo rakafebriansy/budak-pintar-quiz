@@ -141,7 +141,7 @@ class Home extends Controller
                     foreach ($db_genre as $genre) {
                         if ($genre['id_genre'] == $id_genre) {
                             $nama_genre = $genre['nama_genre'];
-                            echo '<div class="col-md-4">
+                            echo '<div class="col-md-4 mb-3">
                                 <div class="card mb-3">
                                     <div class="card-header bg-primary text-white">
                                     ' . ucfirst($nama_genre) . '
@@ -193,7 +193,7 @@ class Home extends Controller
                     foreach ($db_genre as $genre) {
                         if ($genre['id_genre'] == $id_genre) {
                             $nama_genre = $genre['nama_genre'];
-                            echo '<div class="col-md-4">
+                            echo '<div class="col-md-4 mb-3">
                                 <div class="card" mb-3>
                                     <div class="card-header bg-primary text-white">
                                     ' . ucfirst($nama_genre) . '

@@ -8,6 +8,7 @@ TAMBAHSOAL_SINGLE.addEventListener('click', function () {
   const EL = document.createElement('div');
   EL.id = `soal-${counter}`;
   EL.classList = 'justify-content-center';
+  EL.setAttribute('style','animation: fade-down 0.5s')
   let template = `          
     <h5 class="text-center">Soal ${counter}</h5>
     <div class="row">
@@ -74,6 +75,7 @@ TAMBAHSOAL_MULTIPLE.addEventListener('click', function () {
   const EL = document.createElement('div');
   EL.id = `soal-${counter}`;
   EL.classList = 'justify-content-center';
+  EL.setAttribute('style','animation: fade-down 0.5s')
   let template = `          
     <h5 class="text-center">Soal ${counter}</h5>
     <input type="hidden" name="soal[${counter}][tipe_soal]" value="multiple">

@@ -46,6 +46,15 @@
     transform: translateX(0px) scale(1);
   }
 }
+.card {
+  animation: fade-up 0.5s;
+}
+#hero .row .col-md-6 h2 {
+  animation: fade-right 1s;
+}
+#hero .row .col-md-6 p {
+  animation: fade-right 1.5s;
+}
 .popup {
   display: none;
   position: fixed;

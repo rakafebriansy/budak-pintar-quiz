@@ -103,9 +103,9 @@ $('#tombol-urut').on('click', function () {
         $.ajax({
             url: 'http://localhost/budakpintar/public/home/searching',
             data: {
-                kata_kunci:value,
+                kata_kunci: value,
                 halaman_aktif: HALAMAN_AKTIF,
-                urut_berdasar: 'DESC' 
+                urut_berdasar: 'DESC'
             },
             method: 'post',
             success: function (data) {
@@ -118,9 +118,9 @@ $('#tombol-urut').on('click', function () {
         $.ajax({
             url: 'http://localhost/budakpintar/public/home/searching',
             data: {
-                kata_kunci:value,
+                kata_kunci: value,
                 halaman_aktif: HALAMAN_AKTIF,
-                urut_berdasar: 'ASC' 
+                urut_berdasar: 'ASC'
             },
             method: 'post',
             success: function (data) {
@@ -133,49 +133,71 @@ $('#tombol-urut').on('click', function () {
 });
 $('body').on('click', function (e) {
     if ($(e.target).hasClass('halaman-ke')) {
-      const KATA_KUNCI = $('#kata-kunci').val();
-      const HALAMAN_AKTIF = $(e.target).text();
-      $.ajax({
-        url: 'http://localhost/budakpintar/public/home/searching',
-        data: {
-          kata_kunci: KATA_KUNCI,
-          halaman_aktif: HALAMAN_AKTIF
-        },
-        method: 'post',
-        success: function (data) {
-          $('#hasil-cari').html(data);
+        var order;
+        if ($('#tombol-urut').hasClass('descending')) {
+            order = 'ASC';
+        } else if ($('#tombol-urut').hasClass('ascending')) {
+            order = 'DESC';
         }
-      });
+        const KATA_KUNCI = $('#kata-kunci').val();
+        const HALAMAN_AKTIF = $(e.target).text();
+        $.ajax({
+            url: 'http://localhost/budakpintar/public/home/searching',
+            data: {
+                kata_kunci: KATA_KUNCI,
+                halaman_aktif: HALAMAN_AKTIF,
+                urut_berdasar: order
+            },
+            method: 'post',
+            success: function (data) {
+                $('#hasil-cari').html(data);
+            }
+        });
     }
     if ($(e.target).attr('id') == 'halaman-prev') {
-      const KATA_KUNCI = $('#kata-kunci').val();
-      const HALAMAN_AKTIF = parseInt($('#halaman-sekarang').val()) - 1;
-      console.log(HALAMAN_AKTIF)
-      $.ajax({
-        url: 'http://localhost/budakpintar/public/home/searching',
-        data: {
-          kata_kunci: KATA_KUNCI,
-          halaman_aktif: HALAMAN_AKTIF
-        },
-        method: 'post',
-        success: function (data) {
-          $('#hasil-cari').html(data);
+        var order;
+        if ($('#tombol-urut').hasClass('descending')) {
+            order = 'ASC';
+        } else if ($('#tombol-urut').hasClass('ascending')) {
+            order = 'DESC';
         }
-      });
+        const KATA_KUNCI = $('#kata-kunci').val();
+        const HALAMAN_AKTIF = parseInt($('#halaman-sekarang').val()) - 1;
+        console.log(HALAMAN_AKTIF)
+        $.ajax({
+            url: 'http://localhost/budakpintar/public/home/searching',
+            data: {
+                kata_kunci: KATA_KUNCI,
+                halaman_aktif: HALAMAN_AKTIF,
+                urut_berdasar: order
+            },
+            method: 'post',
+            success: function (data) {
+                $('#hasil-cari').html(data);
+            }
+        });
     }
     if ($(e.target).attr('id') == 'halaman-next') {
-      const KATA_KUNCI = $('#kata-kunci').val();
-      const HALAMAN_AKTIF = parseInt($('#halaman-sekarang').val()) + 1;
-      $.ajax({
-        url: 'http://localhost/budakpintar/public/home/searching',
-        data: {
-          kata_kunci: KATA_KUNCI,
-          halaman_aktif: HALAMAN_AKTIF
-        },
-        method: 'post',
-        success: function (data) {
-          $('#hasil-cari').html(data);
+        var order;
+        if ($('#tombol-urut').hasClass('descending')) {
+            order = 'ASC';
+        } else if ($('#tombol-urut').hasClass('ascending')) {
+            order = 'DESC';
         }
-      });
+        const KATA_KUNCI = $('#kata-kunci').val();
+        const HALAMAN_AKTIF = parseInt($('#halaman-sekarang').val()) + 1;
+        console.log(HALAMAN_AKTIF);
+        $.ajax({
+            url: 'http://localhost/budakpintar/public/home/searching',
+            data: {
+                kata_kunci: KATA_KUNCI,
+                halaman_aktif: HALAMAN_AKTIF,
+                urut_berdasar: order
+            },
+            method: 'post',
+            success: function (data) {
+                $('#hasil-cari').html(data);
+            }
+        });
     }
-  });
+});

@@ -79,8 +79,8 @@ function cetakSoal($soal, $counter)
                         </div>
                     </div>
                     <div class="col-md-8 col-xl-10">
-                        <div id="soal1">
-                            <div class="card">
+                        <div id="soal<?=$i?>">
+                            <div class="card" style="animation: fade-right <?=0.8+0.2*($i+1)?>s;">
                                 <div class="card-header"><?= ucfirst($nama_genre) ?></div>
                                 <div class="card-body">
                                     <?php if (strlen($kumpulan_soal[$i]['gambar_pendukung']) > 1) { ?>
