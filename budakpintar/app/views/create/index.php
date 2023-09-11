@@ -14,9 +14,14 @@ $nama_kuis = $data['nama_kuis'];
           </a>
           <!-- SEND -->
 
-          <div class="buttons">
-            <button type="button" id="tombol-keluar" class="btn btn-danger" data-bs-target="#formModal2" data-bs-toggle="modal" data-bs-dismiss="modal">Keluar</button>
-            <button type="submit" name="tombol-kirim" class="btn btn-primary" style="padding-right: 1rem !important; padding-left: 1rem !important;">Kirim</button>
+          <div class="dropdown">
+            <button class="btn btn-outline-primary dropdown-toggle  btn-sm" type="button" id="tambah" data-bs-toggle="dropdown" aria-expanded="false">
+              Tambah Soal
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="tambah">
+            <li><a id="tambah-soal-single" class="dropdown-item">Single</a></li>
+            <li><a id="tambah-soal-multiple" class="dropdown-item">Multiple</a></li>
+          </ul>
           </div>
         </div>
       </div>
@@ -36,15 +41,11 @@ $nama_kuis = $data['nama_kuis'];
     </div>
     <div class="container d-flex justify-content-center">
       <div class="col-md-8 d-flex justify-content-between align-items-start">
-        <button type="button" id="tombol-hapus" class="btn btn-outline-danger btn-sm">Hapus</button>
-        <div class="dropdown mb-5 ms-3">
-          <button class="btn btn-outline-primary dropdown-toggle  btn-sm" type="button" id="tambah" data-bs-toggle="dropdown" aria-expanded="false">
-            Tambah Soal
-          </button>
-          <ul class="dropdown-menu" aria-labelledby="tambah">
-            <li><a id="tambah-soal-single" class="dropdown-item">Single</a></li>
-            <li><a id="tambah-soal-multiple" class="dropdown-item">Multiple</a></li>
-          </ul>
+        <button type="button" id="tombol-hapus" class="btn btn-outline-danger">Hapus</button>
+        <div class="buttons  mb-5 ms-3">
+          <button type="button" id="tombol-keluar" class="btn btn-danger" data-bs-target="#formModal2" data-bs-toggle="modal" data-bs-dismiss="modal">Keluar</button>
+          <button type="submit" name="tombol-kirim" class="btn btn-primary" style="padding-right: 1rem !important; padding-left: 1rem !important;">Kirim</button>
+
         </div>
       </div>
     </div>
